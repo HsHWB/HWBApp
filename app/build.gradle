@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 //如果是com.android.library表示这是一个 android library module 。
+
+def path = "../markets.list"//在app模块根目录下访问项目目录用../
+
 android {
     //要从相同项目中的模块访问这些属性，请在模块的 build.gradle 文件（您可以在以下部分了解有关此文件的详细信息）中使用以下语法。
     println(rootProject.getProjectDir())
@@ -15,6 +18,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion //目标版本。
         versionCode rootProject.ext.versionCode //版本号。
         versionName rootProject.ext.versionName //版本名称。
+        flavorDimensions "$versionCode"
+        // dex突破65535的限制
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,7 +35,8 @@ android {
             minifyEnabled true //是否使用混淆
             zipAlignEnabled true//Zipalign优化,内存对齐，google要求的
             shrinkResources false//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
-            //使用的混淆文件，一个是系统默认的混淆文件，它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件。
+            //使用的混淆文件，一个是系统默认的混淆文件，
+            // 它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件，比如有一些文件不能混淆的就keep住，就在这个文件写。
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,6 +54,30 @@ android {
             storePassword 'hwb123'
             keyAlias 'huehn'
             keyPassword 'hwb123'
+        }
+    }
+    publishNonDefault false //设置没有默认发布类型
+    //渠道配置，如果不配置渠道，则只有official和debug。配了渠道之后，每个渠道都有official和debug
+    productFlavors {
+        file(path).eachLine {line ->
+            def channelName = line
+            if (!channelName.trim().equals("")){
+                "$channelName" {
+                    println("$channelName" + " is marking-------------------------------------------")
+                    resValue "string", "channel_name", channelName
+                }
+                if("qa".equals(channelName.trim())){
+                    qa {
+                        applicationId "com.huehn.initword.test"
+                        resValue "string", "app_name", "HWB App Test"
+                    }
+                }else if("official".equals(channelName.trim())){
+                    official {
+                        applicationId "com.huehn.initword"
+                        resValue "string", "app_name", "HWB App"
+                    }
+                }
+            }
         }
     }
 }
