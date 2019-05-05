@@ -28,7 +28,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.2.8'
     //retrofit网络库
     api 'com.squareup.retrofit2:retrofit:2.5.0'
-
+    api 'com.google.code.gson:gson:2.8.5'
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'

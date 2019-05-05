@@ -7,7 +7,12 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class RxUtils {
+
+/**
+ * RxJava的工具类
+ * 免费api  https://zhuanlan.zhihu.com/p/21320392
+ */
+public class RxJavaUtils {
 
     /**
      * 关闭观察
