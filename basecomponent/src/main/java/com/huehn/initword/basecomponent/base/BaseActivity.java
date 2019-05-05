@@ -5,7 +5,8 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.huehn.initword.core.rxUtils.RxUtils;
+
+import com.huehn.initword.core.rxUtils.RxJavaUtils;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -21,11 +22,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 
+     * 给网络请求添加到队列里面，方便销毁时统一去除监听
      * @param disposable
      */
     public void addDisposable(Disposable disposable){
-        if (RxUtils.isUnDisposed(disposable)){
+        if (RxJavaUtils.isUnDisposed(disposable)){
             compositeDisposable = new CompositeDisposable();
         }
 
@@ -41,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        RxUtils.close(compositeDisposable);
+        RxJavaUtils.close(compositeDisposable);
         if (compositeDisposable != null){
             compositeDisposable.clear();
             compositeDisposable = null;
