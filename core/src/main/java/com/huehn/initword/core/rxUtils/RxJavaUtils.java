@@ -32,8 +32,8 @@ public class RxUtils {
      * 在io线程中运行
      * @param runnable
      */
-    public static void runOnIOThread(Runnable runnable){
-        Observable.just(runnable)
+    public static Disposable runOnIOThread(Runnable runnable){
+        return Observable.just(runnable)
             .observeOn(Schedulers.io())
             .subscribe(new Consumer<Runnable>() {
                 @Override
@@ -54,8 +54,8 @@ public class RxUtils {
      * 在一个新线程中运行  使用Schedulers.io()的好处在于它使用线程池的事实，而Schedulers.newThread()没有。
      * @param runnable
      */
-    public static void runOnNewThread(Runnable runnable){
-        Observable.just(runnable)
+    public static Disposable runOnNewThread(Runnable runnable){
+        return Observable.just(runnable)
             .observeOn(Schedulers.newThread())
             .subscribe(new Consumer<Runnable>() {
                 @Override
@@ -76,8 +76,8 @@ public class RxUtils {
      * 在UI线程中进行
      * @param runnable
      */
-    public static void runOnUIThread(Runnable runnable){
-        Observable.just(runnable)
+    public static Disposable runOnUIThread(Runnable runnable){
+        return Observable.just(runnable)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Consumer<Runnable>() {
                 @Override
