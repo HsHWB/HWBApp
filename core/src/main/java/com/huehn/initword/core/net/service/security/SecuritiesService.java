@@ -2,10 +2,13 @@ package com.huehn.initword.core.net.service.security;
 
 import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 /**
  * 关于证券的api的Service
@@ -18,6 +21,6 @@ public interface SecuritiesService {
      */
     @POST
     @FormUrlEncoded
-    Observable<ShangHaiPlateListResponse> getShangHaiPlateList(@Path("showapi_sign") String body);
+    Observable<ShangHaiPlateListResponse> getShangHaiPlateList(@QueryMap Map<String, String> map);
 
 }

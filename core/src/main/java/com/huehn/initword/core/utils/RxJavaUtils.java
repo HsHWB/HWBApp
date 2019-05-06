@@ -1,7 +1,6 @@
-package com.huehn.initword.core.rxUtils;
+package com.huehn.initword.core.utils;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;

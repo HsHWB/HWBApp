@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 
-import com.huehn.initword.core.rxUtils.RxJavaUtils;
+import com.huehn.initword.core.utils.RxJavaUtils;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
