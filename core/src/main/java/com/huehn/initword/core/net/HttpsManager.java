@@ -3,8 +3,10 @@ package com.huehn.initword.core.net;
 
 import android.util.Log;
 
+import com.huehn.initword.core.net.request.ShangHaiPlateListRequest;
 import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesService;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,14 +38,16 @@ public class HttpsManager {
 
     public void getDemo(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://route.showapi.com/131-58")
+                .baseUrl("http://route.showapi.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
         SecuritiesService service = retrofit.create(SecuritiesService.class);
 
 
-        Observable<ShangHaiPlateListResponse> shangHaiPlateListResponseObservable = service.getShangHaiPlateList();
+        ShangHaiPlateListRequest shangHaiPlateListRequest = new ShangHaiPlateListRequest();
+        Observable<ShangHaiPlateListResponse> shangHaiPlateListResponseObservable = service.getShangHaiPlateList(shangHaiPlateListRequest.getMap());
         shangHaiPlateListResponseObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,19 +62,6 @@ public class HttpsManager {
                         throwable.printStackTrace();
                     }
                 });
-//        Call<Goods> call = service.getGood();
-//        call.enqueue(new Callback<Goods>() {
-//            @Override
-//            public void onResponse(Call<Goods> call, Response<Goods> response) {
-//                Goods goods = response.body();
-//                Log.d("sxl", goods != null ? goods.toString() :"null");
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Goods> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
 
     }
 

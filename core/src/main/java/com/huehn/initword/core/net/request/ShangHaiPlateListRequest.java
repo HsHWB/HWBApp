@@ -1,7 +1,13 @@
 package com.huehn.initword.core.net.request;
 
-public class ShangHaiPlateListRequest {
+import com.huehn.initword.core.net.request.security.SecurityBaseRequest;
 
+import java.util.Map;
 
+public class ShangHaiPlateListRequest extends SecurityBaseRequest{
 
+    @Override
+    public void setMap(Map<String, Object> map) {
+
+    }
 }

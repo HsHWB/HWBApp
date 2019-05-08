@@ -19,8 +19,7 @@ public interface SecuritiesService {
      * 获取沪深股票板块列表
      * @return
      */
-    @POST
-    @FormUrlEncoded
-    Observable<ShangHaiPlateListResponse> getShangHaiPlateList(@QueryMap Map<String, String> map);
+    @POST("/131-58/")
+    Observable<ShangHaiPlateListResponse> getShangHaiPlateList(@QueryMap Map<String, Object> map);
 
 }
