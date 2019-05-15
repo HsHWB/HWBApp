@@ -5,17 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.huehn.initword.basecomponent.base.BaseActivity;
-import com.huehn.initword.core.net.HttpsManager;
 import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {

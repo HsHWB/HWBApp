@@ -26,6 +26,10 @@ public class BaseActivity extends AppCompatActivity {
      * @param disposable
      */
     public void addDisposable(Disposable disposable){
+        if (compositeDisposable == null){
+            compositeDisposable = new CompositeDisposable();
+        }
+
         if (RxJavaUtils.isUnDisposed(disposable)){
             compositeDisposable = new CompositeDisposable();
         }

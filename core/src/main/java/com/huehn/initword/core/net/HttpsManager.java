@@ -1,6 +1,9 @@
 package com.huehn.initword.core.net;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+import okhttp3.OkHttpClient;
+import okhttp3.internal.tls.CertificateChainCleaner;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,8 +31,9 @@ public class HttpsManager {
 
     public Retrofit getRetrofit(){
         if (retrofit == null) {
+            OkHttpClient.Builder clientBuilder = new OkHttpClient().newBuilder();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://")
+                    .baseUrl("https://www.google.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

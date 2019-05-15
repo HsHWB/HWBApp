@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 //默认情况下，此顶级构建文件使用buildscript代码块来定义项目中所有模块共用的Gradle 存储区和依赖项
-buildscript {
+buildscript {//这是gradle用的配置，脚本用的库
     
     repositories {
         google()
@@ -10,13 +10,15 @@ buildscript {
     dependencies {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.4.0'
     }
 }
 
 //设置每一个module的构建过程。在此例中，设置了每一个 module 使用maven仓库依赖。
-allprojects {
+allprojects {//这是代码运行用的库
     repositories {
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'https://maven.fabric.io/public' }
         google()
         jcenter()
     }
@@ -30,7 +32,7 @@ ext{
     targetSdkVersion = 26
     versionCode = 1
     versionName = "0.0.1"
-    buildToolVersion = '27.0.2'// 构建工具版本
+    buildToolVersion = '28.0.2'// 构建工具版本
 }
 
 task clean(type: Delete) {
