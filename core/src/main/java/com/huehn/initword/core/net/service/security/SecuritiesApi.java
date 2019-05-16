@@ -19,8 +19,6 @@ public class SecuritiesApi {
     public static Observable<ShangHaiPlateListResponse> getShanghaiPlateList(){
         ShangHaiPlateListRequest request = new ShangHaiPlateListRequest();
         return getSecuritiesService().getShangHaiPlateList(request.getMap())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-//                .compose(MainThreadTransformer.<ShangHaiPlateListResponse>create());
+                .compose(MainThreadTransformer.<ShangHaiPlateListResponse>create());
     }
 }

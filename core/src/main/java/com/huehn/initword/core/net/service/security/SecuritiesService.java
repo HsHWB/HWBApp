@@ -20,7 +20,7 @@ public interface SecuritiesService {
      * 获取沪深股票板块列表
      * @return
      */
-    @POST(BaseUrl.SHARE_BASEURL + "route.showapi.com/131-58/")
+    @POST(BaseUrl.SHARE_BASEURL + "/131-58/")
     Observable<ShangHaiPlateListResponse> getShangHaiPlateList(@QueryMap Map<String, Object> map);
 
 }

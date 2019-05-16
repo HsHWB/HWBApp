@@ -6,6 +6,6 @@ package com.huehn.initword.core.net;
 
 public class BaseUrl {
     //股票baseUrl
-    public final static String SHARE_BASEURL = "http://route.showapi.com/";
+    public final static String SHARE_BASEURL = "https://route.showapi.com";
 
 }

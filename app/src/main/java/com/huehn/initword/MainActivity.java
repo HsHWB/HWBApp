@@ -29,6 +29,12 @@ public class MainActivity extends BaseActivity {
                 addDisposable(SecuritiesApi.getShanghaiPlateList().subscribe(new Consumer<ShangHaiPlateListResponse>() {
                     @Override
                     public void accept(ShangHaiPlateListResponse shangHaiPlateListResponse) throws Exception {
+
+                        if (shangHaiPlateListResponse == null || shangHaiPlateListResponse.getShowapi_res_body() == null ||
+                                shangHaiPlateListResponse.getShowapi_res_body().getList() == null){
+                            return;
+                        }
+
                         Log.d(TAG, "" + shangHaiPlateListResponse.getShowapi_res_body().getList().size());
                     }
                 }, new Consumer<Throwable>() {
