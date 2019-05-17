@@ -7,8 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.huehn.initword.basecomponent.base.BaseActivity;
+import com.huehn.initword.bean.TestData;
 import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
+import com.huehn.initword.core.utils.Log.LogDImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
@@ -26,6 +31,14 @@ public class MainActivity extends BaseActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                LogDImpl logD = new LogDImpl();
+//                List list = new ArrayList();
+//                for (int i = 0; i < 10; i++){
+//                    TestData testData = new TestData("name" + i, "age" + i);
+//                    list.add(testData);
+//                }
+//                logD.write(TAG, list);
+
                 addDisposable(SecuritiesApi.getShanghaiPlateList().subscribe(new Consumer<ShangHaiPlateListResponse>() {
                     @Override
                     public void accept(ShangHaiPlateListResponse shangHaiPlateListResponse) throws Exception {
@@ -34,8 +47,15 @@ public class MainActivity extends BaseActivity {
                                 shangHaiPlateListResponse.getShowapi_res_body().getList() == null){
                             return;
                         }
-
-                        Log.d(TAG, "" + shangHaiPlateListResponse.getShowapi_res_body().getList().size());
+                        LogDImpl logD = new LogDImpl();
+//
+//                        List list = new ArrayList();
+//                        for (int i = 0; i < 10; i++){
+//                            TestData testData = new TestData("name" + i, "age" + i);
+//                            list.add(testData);
+//                        }
+                        logD.write(TAG, shangHaiPlateListResponse.getShowapi_res_body().getList());
+//                        Log.d(TAG, "" + shangHaiPlateListResponse.getShowapi_res_body().getList().size());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
