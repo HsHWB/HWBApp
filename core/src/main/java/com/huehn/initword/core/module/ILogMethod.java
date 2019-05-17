@@ -6,5 +6,12 @@ package com.huehn.initword.core.module;
  */
 public interface ILogMethod {
 
-    void write(String tag, Object object);
+    /**
+     *
+     * @param level 日志等级
+     * @param stackTrace 日志所在堆栈
+     * @param tag
+     * @param object
+     */
+    void write(int level, String stackTrace, String tag, Object object);
 }

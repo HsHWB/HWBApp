@@ -30,17 +30,6 @@ android {
         disable 'MissingTranslation'
     }
 
-    buildTypes {
-        release {
-            minifyEnabled true //是否使用混淆
-            zipAlignEnabled true//Zipalign优化,内存对齐，google要求的
-            shrinkResources false//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
-            //使用的混淆文件，一个是系统默认的混淆文件，
-            // 它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件，比如有一些文件不能混淆的就keep住，就在这个文件写。
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     //使用Android studio生成了hwb.jsk，将它挪到项目，然后引用
     signingConfigs {
         release {
@@ -56,6 +45,20 @@ android {
             keyPassword 'hwb123'
         }
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true //是否使用混淆
+            zipAlignEnabled true//Zipalign优化,内存对齐，google要求的
+            shrinkResources false//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
+            //使用的混淆文件，一个是系统默认的混淆文件，
+            // 它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件，比如有一些文件不能混淆的就keep住，就在这个文件写。
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名配置
+            signingConfig signingConfigs.release
+        }
+    }
+
     publishNonDefault false //设置没有默认发布类型
     //渠道配置，如果不配置渠道，则只有official和debug。配了渠道之后，每个渠道都有official和debug
     productFlavors {

@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+#混淆配置文件
+-dontskipnonpubliclibraryclassmembers
+#混淆时可能会因为一些三方库的warning导致出错，这里直接忽略
+-ignorewarnings

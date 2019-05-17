@@ -21,6 +21,12 @@ public abstract class LogImpl implements ILogMethod {
 
     public final static String FIELD_NAME = "\"";
 
+    /**
+     * list转字符串
+     * @param list
+     * @param stringBuilder
+     * @return
+     */
     protected StringBuilder listToString(List list, StringBuilder stringBuilder){
 
         if (stringBuilder == null){
@@ -105,5 +111,26 @@ public abstract class LogImpl implements ILogMethod {
         }
         stringBuilder.append(MODULE_END);
         return stringBuilder;
+    }
+
+    /**
+     * 获取日志在代码中的位置堆栈
+     * @param clazz
+     * @return
+     */
+    protected StackTraceElement getTargetStackTraceElement(Class clazz) {
+        // find the target invoked method
+        StackTraceElement targetStackTrace = null;
+        boolean shouldTrace = false;
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        for (StackTraceElement stackTraceElement : stackTrace) {
+            boolean isLogMethod = stackTraceElement.getClassName().equals(clazz.getName());
+            if (shouldTrace && !isLogMethod) {
+                targetStackTrace = stackTraceElement;
+                break;
+            }
+            shouldTrace = isLogMethod;
+        }
+        return targetStackTrace;
     }
 }
