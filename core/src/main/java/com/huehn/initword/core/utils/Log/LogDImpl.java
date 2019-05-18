@@ -1,6 +1,5 @@
 package com.huehn.initword.core.utils.Log;
 
-import android.app.Application;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -9,14 +8,14 @@ import com.huehn.initword.core.BuildConfig;
 import java.util.List;
 import java.util.Map;
 
-public class LogDImpl extends LogImpl {
+public class LogDImpl extends BaseLogImpl {
 
     public LogDImpl() {
 
     }
 
     @Override
-    public void write(int level, String stackTrace, String tag, Object object) {
+    public void write(int level, Class stackTraceClazz, String tag, Object object) {
         StringBuilder stringBuilder = null;
         if (TextUtils.isEmpty(tag)){
             tag = "";
@@ -42,7 +41,7 @@ public class LogDImpl extends LogImpl {
 
 
         if (BuildConfig.DEBUG) {
-            Log.v(tag, stackTrace + stringBuilder.toString());
+            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
         }
 
     }

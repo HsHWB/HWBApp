@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 import com.huehn.initword.core.utils.RxJavaUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -37,6 +38,18 @@ public class BaseActivity extends AppCompatActivity {
         if (disposable != null && !disposable.isDisposed()){
             compositeDisposable.add(disposable);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

@@ -9,9 +9,9 @@ public interface ILogMethod {
     /**
      *
      * @param level 日志等级
-     * @param stackTrace 日志所在堆栈
+     * @param stackTraceClazz 日志所在堆栈
      * @param tag
      * @param object
      */
-    void write(int level, String stackTrace, String tag, Object object);
+    void write(int level, Class stackTraceClazz, String tag, Object object);
 }

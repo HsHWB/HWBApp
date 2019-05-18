@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 这个类用来写imp一些公用的方法，比如list转string， map转string
  */
-public abstract class LogImpl implements ILogMethod {
+public abstract class BaseLogImpl implements ILogMethod {
 
     public final static String LIST_BEGIN = "[";
     public final static String LIST_END = "]";
@@ -30,10 +30,10 @@ public abstract class LogImpl implements ILogMethod {
     protected StringBuilder listToString(List list, StringBuilder stringBuilder){
 
         if (stringBuilder == null){
-            throw new RuntimeException("LogImpl.listToString.stringBuilder is null");
+            throw new RuntimeException("BaseLogImpl.listToString.stringBuilder is null");
         }
         if (list == null){
-            stringBuilder.append("LogImpl.listToString.list is null");
+            stringBuilder.append("BaseLogImpl.listToString.list is null");
             return stringBuilder;
         }
         if (list.size() > 200){
@@ -102,11 +102,12 @@ public abstract class LogImpl implements ILogMethod {
                 if (List.class.isAssignableFrom(field.get(object).getClass())){
                     listToString((List) field.get(object), stringBuilder);
                 }else {
-                    stringBuilder.append(field.get(object));
+//                    stringBuilder.append(field.get(object));
+                    stringBuilder.append(objectToString(field.get(object)));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-                throw new RuntimeException("LogImpl.objectToString field IllegalAccessException");
+                throw new RuntimeException("BaseLogImpl.objectToString field IllegalAccessException");
             }
         }
         stringBuilder.append(MODULE_END);
@@ -114,11 +115,21 @@ public abstract class LogImpl implements ILogMethod {
     }
 
     /**
+     * 打印堆栈日志，进行日志跳转
+     * @param clazz
+     * @return
+     */
+    protected String printTargetStack(Class clazz){
+        StackTraceElement targetStackTraceElement = getTargetStackTraceElement(clazz);
+        return "(" + targetStackTraceElement.getFileName() + ":" + targetStackTraceElement.getLineNumber() + ") ";
+    }
+
+    /**
      * 获取日志在代码中的位置堆栈
      * @param clazz
      * @return
      */
-    protected StackTraceElement getTargetStackTraceElement(Class clazz) {
+    private StackTraceElement getTargetStackTraceElement(Class clazz) {
         // find the target invoked method
         StackTraceElement targetStackTrace = null;
         boolean shouldTrace = false;
@@ -129,6 +140,7 @@ public abstract class LogImpl implements ILogMethod {
                 targetStackTrace = stackTraceElement;
                 break;
             }
+            //如果isLogMethod为true，则是找到clazz对应的堆栈，然后继续往下遍历看是否还有符合的，如果没有（isLogMethod为false），则把上一次符合的返回堆栈。
             shouldTrace = isLogMethod;
         }
         return targetStackTrace;

@@ -27,9 +27,7 @@ public class LogManager implements ILog {
 
     @Override
     public void d(String tag, Object value) {
-        StackTraceElement targetStackTraceElement = logD.getTargetStackTraceElement(LogManager.class);
-        logD.write(0, "(" + targetStackTraceElement.getFileName() + ":"
-                + targetStackTraceElement.getLineNumber() + ") ", tag, value);
+        logD.write(0, LogManager.class, tag, value);
     }
 
     @Override

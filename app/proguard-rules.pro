@@ -25,3 +25,16 @@
 -dontskipnonpubliclibraryclassmembers
 #混淆时可能会因为一些三方库的warning导致出错，这里直接忽略
 -ignorewarnings
+
+#防止友盟sdk被混淆
+-keep class com.umeng.** {*;}
+
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+#防止友盟sdk被混淆

@@ -5,6 +5,7 @@ buildscript {//这是gradle用的配置，脚本用的库
     repositories {
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
     //声明了使用 Android Studio gradle 插件版本。
     dependencies {
@@ -21,6 +22,7 @@ allprojects {//这是代码运行用的库
         maven { url 'https://maven.fabric.io/public' }
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 
