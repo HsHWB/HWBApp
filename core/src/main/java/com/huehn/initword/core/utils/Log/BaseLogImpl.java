@@ -1,5 +1,7 @@
 package com.huehn.initword.core.utils.Log;
 
+import android.util.Log;
+
 import com.huehn.initword.core.module.ILogMethod;
 
 import java.lang.reflect.Field;
@@ -47,9 +49,11 @@ public abstract class BaseLogImpl implements ILogMethod {
             }
             if (list.get(i) instanceof List){
                 listToString((List) list.get(i), stringBuilder);
+            }else if (list.get(i) instanceof Map){
+                mapToString((Map) list.get(i), stringBuilder);
+            }else{
+                stringBuilder.append(objectToString(list.get(i)));
             }
-
-            stringBuilder.append(objectToString(list.get(i)));
             if (i <= list.size() - 2){
                 stringBuilder.append(",");
             }
@@ -93,18 +97,30 @@ public abstract class BaseLogImpl implements ILogMethod {
             //setAccessible功能是启用或禁用安全检查 ，public的方法 Accessible仍为false
             //使用了method.setAccessible(true)后 性能有了20倍的提升
             field.setAccessible(true);
+            try {
+                if (field.getName() == null || field.get(object) == null){
+                    continue;
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                continue;
+            }
             stringBuilder.append(FIELD_NAME);
             stringBuilder.append(field.getName());
             stringBuilder.append(FIELD_NAME);
             stringBuilder.append(":");
+            //https://stackoverflow.com/questions/36549129/android-java-objmodelclass-getclass-getdeclaredfields-returns-change-as-o
             try {
-
                 if (List.class.isAssignableFrom(field.get(object).getClass())){
                     listToString((List) field.get(object), stringBuilder);
+                }else if (String.class.isAssignableFrom(field.get(object).getClass())){
+                    stringBuilder.append((String)field.get(object));
+                }else if (Number.class.isAssignableFrom(field.get(object).getClass())){//Integer,Long
+                    stringBuilder.append("" + (field.get(object)));
                 }else {
-//                    stringBuilder.append(field.get(object));
                     stringBuilder.append(objectToString(field.get(object)));
                 }
+                stringBuilder.append(",");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
                 throw new RuntimeException("BaseLogImpl.objectToString field IllegalAccessException");
@@ -113,7 +129,6 @@ public abstract class BaseLogImpl implements ILogMethod {
         stringBuilder.append(MODULE_END);
         return stringBuilder;
     }
-
     /**
      * 打印堆栈日志，进行日志跳转
      * @param clazz

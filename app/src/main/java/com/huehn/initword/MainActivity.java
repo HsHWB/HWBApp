@@ -4,10 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
@@ -20,7 +26,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         textView = findViewById(R.id.text);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +38,7 @@ public class MainActivity extends BaseActivity {
                                 shangHaiPlateListResponse.getShowapi_res_body().getList() == null){
                             return;
                         }
+
                         LogManager.getInstance().d(TAG, shangHaiPlateListResponse);
                     }
                 }, new Consumer<Throwable>() {
