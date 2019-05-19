@@ -111,6 +111,7 @@ public abstract class BaseLogImpl implements ILogMethod {
             stringBuilder.append(":");
             //https://stackoverflow.com/questions/36549129/android-java-objmodelclass-getclass-getdeclaredfields-returns-change-as-o
             try {
+
                 
                 if (List.class.isAssignableFrom(field.get(object).getClass())){
                     listToString((List) field.get(object), stringBuilder);
