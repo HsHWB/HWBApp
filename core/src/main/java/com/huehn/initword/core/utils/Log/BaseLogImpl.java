@@ -121,6 +121,8 @@ public abstract class BaseLogImpl implements ILogMethod {
                 }else {
                     stringBuilder.append(objectToString(field.get(object)));
                 }
+
+
                 stringBuilder.append(",");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
