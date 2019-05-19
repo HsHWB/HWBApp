@@ -123,6 +123,7 @@ public abstract class BaseLogImpl implements ILogMethod {
                 }
 
 
+                
                 stringBuilder.append(",");
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
