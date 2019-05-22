@@ -1,11 +1,12 @@
 package com.huehn.initword.core.utils.Log;
 
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.huehn.initword.core.BuildConfig;
 import com.huehn.initword.core.module.ILogMethod;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ public abstract class BaseLogImpl implements ILogMethod {
         }
         if (list.size() > 200){
             stringBuilder.append("list is more than 200");
+            return stringBuilder;
         }
 
         stringBuilder.append(LIST_BEGIN);
@@ -165,4 +167,20 @@ public abstract class BaseLogImpl implements ILogMethod {
         }
         return targetStackTrace;
     }
+
+    @Override
+    public void write(int level, Class stackTraceClazz, String tag, Object object) {
+
+        StringBuilder stringBuilder = writeLog(object);
+
+        if (TextUtils.isEmpty(tag)){
+            tag = "";
+        }
+
+        if (BuildConfig.DEBUG) {
+            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
+        }
+    }
+
+    protected abstract StringBuilder writeLog(Object object);
 }

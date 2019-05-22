@@ -18,4 +18,12 @@ public interface ILog {
      * @param value
      */
     void i(String tag, Object value);
+
+    /**
+     * log写入文件
+     * @param tag
+     * @param subPath
+     * @param value
+     */
+    void w(String tag, String subPath, Object value);
 }

@@ -7,6 +7,7 @@ public class LogManager implements ILog {
 
     private static LogManager instance;
     private LogDImpl logD;
+    private LogWImpl logW;
 
     public static LogManager getInstance() {
 
@@ -33,5 +34,10 @@ public class LogManager implements ILog {
     @Override
     public void i(String tag, Object value) {
 
+    }
+
+    @Override
+    public void w(String tag, String subPath, Object value) {
+        logW.writeLog()
     }
 }

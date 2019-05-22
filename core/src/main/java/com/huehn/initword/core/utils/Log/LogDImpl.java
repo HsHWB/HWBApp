@@ -15,17 +15,13 @@ public class LogDImpl extends BaseLogImpl {
     }
 
     @Override
-    public void write(int level, Class stackTraceClazz, String tag, Object object) {
+    public StringBuilder writeLog(Object object) {
         StringBuilder stringBuilder = null;
-        if (TextUtils.isEmpty(tag)){
-            tag = "";
-        }
 
         stringBuilder = new StringBuilder();
 
         if (object == null){
-            Log.d(tag, "null");
-            return;
+            return stringBuilder.append("null");
         }
 
         if (object instanceof String){
@@ -39,10 +35,8 @@ public class LogDImpl extends BaseLogImpl {
             stringBuilder = objectToString(object);
         }
 
+        return stringBuilder;
 
-        if (BuildConfig.DEBUG) {
-            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
-        }
 
     }
 }
