@@ -1,13 +1,18 @@
 package com.huehn.initword.core.utils.Log;
 
-import com.huehn.initword.core.module.ILog;
 
+import com.huehn.initword.core.module.ILogMethod;
 
-public class LogManager implements ILog {
+import java.util.HashMap;
+import java.util.Map;
+
+public class LogManager {
 
     private static LogManager instance;
-    private LogDImpl logD;
-    private LogWImpl logW;
+    private Map<Integer, ILogMethod> logMap = new HashMap<>();
+
+    public final static int D_LOG = 1;
+    public final static int W_LOG = 2;
 
     public static LogManager getInstance() {
 
@@ -23,21 +28,41 @@ public class LogManager implements ILog {
     }
 
     private LogManager() {
-        logD = new LogDImpl();
+        registerLog(D_LOG, new LogDImpl());
+        registerLog(W_LOG, new LogWImpl());
     }
 
-    @Override
-    public void d(String tag, Object value) {
-        logD.write(0, LogManager.class, tag, value);
+    private void registerLog(int logType, ILogMethod iLogMethod){
+        if (logMap != null && iLogMethod != null && !logMap.containsKey(logType)){
+            logMap.put(logType, iLogMethod);
+        }
     }
 
-    @Override
-    public void i(String tag, Object value) {
-
+    public static void d(String tag, Object value) {
+        if (getInstance().logMap != null && getInstance().logMap.containsKey(D_LOG)) {
+            getInstance().logMap.get(D_LOG).write(0, LogManager.class, tag, value);
+        }
     }
 
-    @Override
-    public void w(String tag, String subPath, Object value) {
-        logW.writeLog()
+    public static void d(Object value) {
+        d("LogManager", value);
+    }
+
+    public static void i(String tag, Object value) {
+        if (getInstance().logMap != null && getInstance().logMap.containsKey(W_LOG)){
+            getInstance().logMap.get(W_LOG).write(0, LogManager.class, tag, value);
+        }
+    }
+
+    public static void i(Object value) {
+        i("LogManager", value);
+    }
+
+    public static void w(String tag, String subPath, Object value) {
+//        logW.write();
+    }
+
+    public static void w(String subPath, Object value) {
+
     }
 }

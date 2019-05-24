@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 
 import com.huehn.initword.core.app.App;
 import com.huehn.initword.core.app.BaseConstant;
+import com.huehn.initword.core.utils.Log.LogManager;
 import com.umeng.commonsdk.UMConfigure;
 
 public class MyApplication extends Application {
@@ -13,11 +14,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
         App.getInstance().setApp(this);
         /*
             注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调用初始化接口
@@ -26,9 +22,16 @@ public class MyApplication extends Application {
         UMConfigure.init(this, BaseConstant.UMENG_APPKEY, "HWBAPP_CHANNEL", UMConfigure.DEVICE_TYPE_PHONE, null);
         if (BuildConfig.DEBUG){
             UMConfigure.setLogEnabled(true);
+            LogManager.getInstance().d("umeng debug");
         }else {
             UMConfigure.setLogEnabled(false);
+            LogManager.getInstance().d("umeng office");
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override
