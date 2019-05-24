@@ -49,20 +49,22 @@ public class LogManager {
     }
 
     public static void i(String tag, Object value) {
-        if (getInstance().logMap != null && getInstance().logMap.containsKey(W_LOG)){
-            getInstance().logMap.get(W_LOG).write(0, LogManager.class, tag, value);
-        }
+//        if (getInstance().logMap != null && getInstance().logMap.containsKey()){
+//            getInstance().logMap.get().write(0, LogManager.class, tag, value);
+//        }
     }
 
     public static void i(Object value) {
         i("LogManager", value);
     }
 
-    public static void w(String tag, String subPath, Object value) {
-//        logW.write();
+    public static void w(String tag, Object value) {
+        if (getInstance().logMap != null && getInstance().logMap.containsKey(W_LOG)){
+            getInstance().logMap.get(W_LOG).write(0, LogManager.class, tag, value);
+        }
     }
 
-    public static void w(String subPath, Object value) {
-
+    public static void w(Object value) {
+        w("LogManager", value);
     }
 }
