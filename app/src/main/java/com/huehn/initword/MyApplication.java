@@ -22,10 +22,8 @@ public class MyApplication extends Application {
         UMConfigure.init(this, BaseConstant.UMENG_APPKEY, "HWBAPP_CHANNEL", UMConfigure.DEVICE_TYPE_PHONE, null);
         if (BuildConfig.DEBUG){
             UMConfigure.setLogEnabled(true);
-            LogManager.getInstance().d("umeng debug");
         }else {
             UMConfigure.setLogEnabled(false);
-            LogManager.getInstance().d("umeng office");
         }
     }
 

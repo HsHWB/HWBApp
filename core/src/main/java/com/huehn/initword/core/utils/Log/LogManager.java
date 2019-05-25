@@ -47,7 +47,6 @@ public class LogManager {
     public static void d(Object value) {
         d("LogManager", value);
     }
-
     public static void i(String tag, Object value) {
 //        if (getInstance().logMap != null && getInstance().logMap.containsKey()){
 //            getInstance().logMap.get().write(0, LogManager.class, tag, value);

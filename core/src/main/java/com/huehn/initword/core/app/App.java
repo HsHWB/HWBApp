@@ -22,7 +22,7 @@ public class App {
         this.application = app;
     }
 
-    public Application getApp() {
-        return application;
+    public static Application getApp() {
+        return getInstance().application;
     }
 }
