@@ -11,8 +11,13 @@ public class LogManager {
     private static LogManager instance;
     private Map<Integer, ILogMethod> logMap = new HashMap<>();
 
-    public final static int D_LOG = 1;
-    public final static int W_LOG = 2;
+    public final static int D_LOG = 1;//普通的log
+    public final static int W_LOG = 2;//写文件的log
+
+    public final static int DEFAULT_LOG = 0;
+    public final static int DEFAULT_EXCEPTION_LOG_FILE_LOCAL = 1;
+    public final static int APP_EXCEPTION_LOG_FILE_LOCAL = 2;
+    public final static int CORE_EXCEPTION_LOG_FILE_LOCAL = 3;
 
     public static LogManager getInstance() {
 
@@ -48,22 +53,29 @@ public class LogManager {
         d("LogManager", value);
     }
     public static void i(String tag, Object value) {
-//        if (getInstance().logMap != null && getInstance().logMap.containsKey()){
-//            getInstance().logMap.get().write(0, LogManager.class, tag, value);
-//        }
+
     }
 
     public static void i(Object value) {
         i("LogManager", value);
     }
 
-    public static void w(String tag, Object value) {
+    /**
+     * 写入log文件到本地
+     * @param fileId 文件分类（决定文件名）
+     * @param value 要写入的数据
+     */
+    public static void w(int fileId, Object value) {
         if (getInstance().logMap != null && getInstance().logMap.containsKey(W_LOG)){
-            getInstance().logMap.get(W_LOG).write(0, LogManager.class, tag, value);
+            getInstance().logMap.get(W_LOG).write(fileId, LogManager.class, value);
         }
     }
 
     public static void w(Object value) {
-        w("LogManager", value);
+        w(DEFAULT_EXCEPTION_LOG_FILE_LOCAL, value);
+    }
+
+    private static void doLog(int logTypeId, Object value){
+
     }
 }

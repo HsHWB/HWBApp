@@ -7,7 +7,7 @@ package com.huehn.initword.core.module;
 public interface ILogMethod {
 
     /**
-     *
+     * 处理日志
      * @param level 日志等级
      * @param stackTraceClazz 日志所在堆栈
      * @param tag

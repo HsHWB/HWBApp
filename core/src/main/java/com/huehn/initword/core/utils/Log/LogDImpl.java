@@ -4,11 +4,12 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.huehn.initword.core.BuildConfig;
+import com.huehn.initword.core.module.BaseLogDMethod;
 
 import java.util.List;
 import java.util.Map;
 
-public class LogDImpl extends BaseLogImpl {
+public class LogDImpl extends BaseLogDMethod {
 
     public LogDImpl() {
 

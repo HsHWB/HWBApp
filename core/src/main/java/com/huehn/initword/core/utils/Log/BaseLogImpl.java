@@ -168,19 +168,25 @@ public abstract class BaseLogImpl implements ILogMethod {
         return targetStackTrace;
     }
 
-    @Override
-    public void write(int level, Class stackTraceClazz, String tag, Object object) {
-
-        StringBuilder stringBuilder = writeLog(object);
-
-        if (TextUtils.isEmpty(tag)){
-            tag = "";
-        }
-
-        if (BuildConfig.DEBUG) {
-            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
-        }
-    }
-
+//    /**
+//     * 要不要把这个write改成object...
+//     * @param level 日志等级
+//     * @param stackTraceClazz 日志所在堆栈
+//     * @param tag
+//     * @param object
+//     */
+//    @Override
+//    public void write(int level, Class stackTraceClazz, String tag, Object object) {
+//
+////        StringBuilder stringBuilder = writeLog(object);
+////
+////        if (TextUtils.isEmpty(tag)){
+////            tag = "";
+////        }
+////
+////        if (BuildConfig.DEBUG) {
+////            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
+////        }
+//    }
     protected abstract StringBuilder writeLog(Object object);
 }
