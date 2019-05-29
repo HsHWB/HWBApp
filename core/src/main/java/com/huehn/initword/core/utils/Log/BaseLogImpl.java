@@ -188,5 +188,7 @@ public abstract class BaseLogImpl implements ILogMethod {
 ////            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
 ////        }
 //    }
-    protected abstract StringBuilder writeLog(Object object);
+//    protected abstract StringBuilder writeLog(Object object);
+
+
 }

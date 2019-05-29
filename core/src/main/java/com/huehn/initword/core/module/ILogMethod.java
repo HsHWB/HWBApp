@@ -14,4 +14,5 @@ public interface ILogMethod {
      * @param object
      */
     void write(int level, Class stackTraceClazz, String tag, Object object);
+
 }
