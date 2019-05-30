@@ -1,9 +1,5 @@
 package com.huehn.initword.core.utils.Log;
 
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.huehn.initword.core.BuildConfig;
 import com.huehn.initword.core.module.ILogMethod;
 
 import java.lang.reflect.Field;
@@ -168,41 +164,6 @@ public abstract class BaseLogImpl implements ILogMethod {
         return targetStackTrace;
     }
 
-    /**
-     * 要不要把这个write改成object...
-     * @param level 日志等级
-     * @param stackTraceClazz 日志所在堆栈
-     * @param tag
-     * @param object
-     */
-    @Override
-    public void write(int level, Class stackTraceClazz, String tag, Object object) {
-
-//        StringBuilder stringBuilder = writeLog(object);
-//
-//        if (TextUtils.isEmpty(tag)){
-//            tag = "";
-//        }
-//
-<<<<<<< HEAD
-//        if (BuildConfig.DEBUG) {
-//            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
-//        }
-    }
     protected abstract StringBuilder writeLog(Object object);
-=======
-////        StringBuilder stringBuilder = writeLog(object);
-////
-////        if (TextUtils.isEmpty(tag)){
-////            tag = "";
-////        }
-////
-////        if (BuildConfig.DEBUG) {
-////            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
-////        }
-//    }
-//    protected abstract StringBuilder writeLog(Object object);
-
-
->>>>>>> 8a339898365da301d54c0c99e93b1850a1d3df35
+//    public abstract StringBuilder writeLog(int logType, Object object);
 }

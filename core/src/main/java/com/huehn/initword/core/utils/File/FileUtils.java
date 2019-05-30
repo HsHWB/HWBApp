@@ -34,7 +34,7 @@ public class FileUtils {
         File file = new File(path + fileName);
         boolean isCreate = false;
         if (file.exists()){
-            LogManager.d("File is exits");
+            LogManager.d(LogManager.DEFAULT_LOG, "File is exits");
             return new FileResult(FileResult.FILE_HAS_EXITS, file);
         }else {
             try {
