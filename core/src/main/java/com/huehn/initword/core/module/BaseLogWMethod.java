@@ -12,6 +12,6 @@ public abstract class BaseLogWMethod extends BaseLogImpl {
 
     @Override
     public void write(int level, Class stackTraceClazz, String tag, Object object) {
-        super.write(level, stackTraceClazz, tag, object);
+//        super.write(level, stackTraceClazz, tag, object);
     }
 }

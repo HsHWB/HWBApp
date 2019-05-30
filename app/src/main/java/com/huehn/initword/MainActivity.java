@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
                             return;
                         }
 
-                        LogManager.w(TAG, shangHaiPlateListResponse);
+//                        LogManager.w(TAG, shangHaiPlateListResponse);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

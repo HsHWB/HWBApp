@@ -67,7 +67,7 @@ public class LogManager {
      */
     public static void w(int fileId, Object value) {
         if (getInstance().logMap != null && getInstance().logMap.containsKey(W_LOG)){
-            getInstance().logMap.get(W_LOG).write(fileId, LogManager.class, value);
+//            getInstance().logMap.get(W_LOG).write(fileId, LogManager.class, value);
         }
     }
 

@@ -90,4 +90,8 @@ public class LogWImpl extends BaseLogImpl {
             });
     }
 
+    @Override
+    public void write(int level, Class stackTraceClazz, String tag, Object object) {
+
+    }
 }
