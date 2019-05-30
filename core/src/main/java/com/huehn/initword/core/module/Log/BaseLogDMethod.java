@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 import android.text.TextUtils;
 import android.util.Log;

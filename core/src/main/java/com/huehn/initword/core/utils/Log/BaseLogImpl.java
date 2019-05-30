@@ -1,6 +1,6 @@
 package com.huehn.initword.core.utils.Log;
 
-import com.huehn.initword.core.module.ILogMethod;
+import com.huehn.initword.core.module.Log.ILogMethod;
 
 import java.lang.reflect.Field;
 import java.util.List;

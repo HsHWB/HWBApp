@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 /**
  * 打印功能应该实现的功能

@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 /**
  * ILog下，每一个impl都应该实现的功能

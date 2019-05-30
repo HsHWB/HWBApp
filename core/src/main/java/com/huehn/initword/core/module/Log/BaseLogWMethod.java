@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 import com.huehn.initword.core.utils.File.FileUtils;
 import com.huehn.initword.core.utils.Log.BaseLogImpl;
