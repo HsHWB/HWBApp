@@ -184,9 +184,25 @@ public abstract class BaseLogImpl implements ILogMethod {
 //            tag = "";
 //        }
 //
+<<<<<<< HEAD
 //        if (BuildConfig.DEBUG) {
 //            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
 //        }
     }
     protected abstract StringBuilder writeLog(Object object);
+=======
+////        StringBuilder stringBuilder = writeLog(object);
+////
+////        if (TextUtils.isEmpty(tag)){
+////            tag = "";
+////        }
+////
+////        if (BuildConfig.DEBUG) {
+////            Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
+////        }
+//    }
+//    protected abstract StringBuilder writeLog(Object object);
+
+
+>>>>>>> 8a339898365da301d54c0c99e93b1850a1d3df35
 }

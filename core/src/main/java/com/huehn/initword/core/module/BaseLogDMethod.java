@@ -23,4 +23,6 @@ public abstract class BaseLogDMethod extends BaseLogImpl {
             Log.v(tag, printTargetStack(stackTraceClazz) + stringBuilder.toString());
         }
     }
+
+    public abstract StringBuilder writeLog(int logType, Object object);
 }

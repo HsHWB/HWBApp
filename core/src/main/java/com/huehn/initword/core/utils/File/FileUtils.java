@@ -79,14 +79,20 @@ public class FileUtils {
     }
 
     /**
+     *
+     * 获取手机外部储存的路径，如果没有外部储存或者不能访问，通过canUserAppStorage判断是否能获取内部储存路径
+     *
      * https://blog.csdn.net/csdn_aiyang/article/details/80665185
      * 在外部储存中建立App专属文件，这些文件会随着应用卸载而被删除（内部储存和外部储存都会被删除）
      *
-     * 内部储存路径：data/data/< package name >/files/
-     * 外部储存路径：mnt/sdcard/Android/data/< package name >/files/
+     * 内部储存路径，内部存储不是内存：data/data/< package name >/files/
+     * 内置储存卡储存路径(机身储存，也是定义上的外部储存)：/storage/emulated/0/Android/data/com.huehn.initword.test/files/
      * 外部储存getExternalFilesDir(null)参数传入的为null，这样默认访问的是files文件夹，
      * 我们可以指定子文件夹File externalFilesDir = getExternalFilesDir("Caches");则访问
-     * mnt/sdcard/Android/data/< package name >/files/Caches
+     * /storage/emulated/0/Android/data/com.huehn.initword.test/Caches
+     *
+     * 4.4以后外部存储就包含两部分了，其中通过getExternalStorageDirectory获取的是机身存储的外部存储，
+     * 而外置SD卡我们则需要通过getExternalDirs遍历来获取了
      * @param canUserAppStorage  是否允许使用内部储存
      */
     private static String getAppDataDirectory(String fileName, boolean canUserAppStorage){
