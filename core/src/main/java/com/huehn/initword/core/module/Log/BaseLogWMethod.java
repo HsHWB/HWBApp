@@ -45,7 +45,7 @@ public abstract class BaseLogWMethod extends BaseLogImpl {
         .flatMap(new Function<StringBuilder, ObservableSource<StringBuilder>>() {
             @Override
             public ObservableSource<StringBuilder> apply(final StringBuilder stringBuilder) throws Exception {
-                LogManager.d("huehn writeToFile : " + stringBuilder.toString());
+//                LogManager.d("huehn writeToFile : " + stringBuilder.toString());
                 return Observable.create(new ObservableOnSubscribe<StringBuilder>() {
                     @Override
                     public void subscribe(ObservableEmitter<StringBuilder> emitter) throws Exception {
