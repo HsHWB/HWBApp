@@ -1,4 +1,4 @@
-package com.huehn.initword.core.utils;
+package com.huehn.initword.core.utils.SystemUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

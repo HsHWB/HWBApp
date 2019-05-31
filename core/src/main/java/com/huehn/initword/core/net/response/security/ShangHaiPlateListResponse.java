@@ -1,4 +1,4 @@
-package com.huehn.initword.core.net.response;
+package com.huehn.initword.core.net.response.security;
 
 import java.util.List;
 

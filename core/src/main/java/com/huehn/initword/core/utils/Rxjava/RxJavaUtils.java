@@ -1,4 +1,4 @@
-package com.huehn.initword.core.utils;
+package com.huehn.initword.core.utils.Rxjava;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
