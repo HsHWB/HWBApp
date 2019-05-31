@@ -1,9 +1,10 @@
-package com.huehn.initword.business.activity;
+package com.huehn.initword.component.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
@@ -44,5 +45,6 @@ public class MainActivity extends BaseActivity {
                 }));
             }
         });
+
     }
 }
