@@ -35,9 +35,10 @@ dependencies {
 //    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //android权限管理
 //    api 'com.github.tbruyelle:rxpermissions:0.10.2'
-    api  'com.umeng.umsdk:analytics:7.5.4'
-    api  'com.umeng.umsdk:common:1.5.4'
-
+    api 'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.umeng.umsdk:common:1.5.4'
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
