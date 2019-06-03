@@ -1,5 +1,6 @@
 package com.huehn.initword.component.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import io.reactivex.functions.Consumer;
 
@@ -46,5 +49,13 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.loadImage("http://pic15.nipic.com/20110628/1369025_192645024000_2.jpg", new SimpleImageLoadingListener(){
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                super.onLoadingComplete(imageUri, view, loadedImage);
+
+            }
+        });
     }
 }
