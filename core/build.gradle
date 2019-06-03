@@ -38,6 +38,7 @@ dependencies {
     api 'com.umeng.umsdk:analytics:7.5.4'
     api 'com.umeng.umsdk:common:1.5.4'
     api 'com.github.bumptech.glide:glide:4.9.0'
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
