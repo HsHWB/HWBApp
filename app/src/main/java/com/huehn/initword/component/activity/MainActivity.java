@@ -3,6 +3,7 @@ package com.huehn.initword.component.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,12 +21,15 @@ public class MainActivity extends BaseActivity {
 
     public final static String TAG = "MainActivity";
     private TextView textView;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text);
+        imageView = findViewById(R.id.imageview);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +43,7 @@ public class MainActivity extends BaseActivity {
                         }
 
                         LogManager.w(LogManager.CORE_EXCEPTION_LOG_FILE_LOCAL, TAG, shangHaiPlateListResponse);
+                        LogManager.d(TAG, shangHaiPlateListResponse);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -58,4 +63,5 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
 }
