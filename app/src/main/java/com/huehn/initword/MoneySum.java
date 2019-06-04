@@ -38,10 +38,12 @@ public class MoneySum{
             "2020-01-12 00:00:00"
     };
 
-//    //三万，0.004
-//    //两万四 0.004
+    //三万，0.004
+    //两万四 0.004
 //    public static void main(String[] args){
 //        getAll();
+//        int a = 2;
+//        System.out.println("a 非的结果是："+(~a));
 //    }
 
     public static float getAll(){
