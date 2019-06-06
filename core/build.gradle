@@ -39,6 +39,10 @@ dependencies {
     api 'com.umeng.umsdk:common:1.5.4'
     api 'com.github.bumptech.glide:glide:4.9.0'
     api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    // weex sdk and fastjson
+    api 'com.taobao.android:weex_sdk:0.20.0.2@aar'
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
