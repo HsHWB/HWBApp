@@ -1,5 +1,6 @@
 package com.huehn.initword.component.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ public class MainActivity extends BaseActivity {
 
     public final static String TAG = "MainActivity";
     private TextView textView;
+    private TextView weexView;
     private ImageView imageView;
 
     @Override
@@ -26,6 +28,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text);
         imageView = findViewById(R.id.imageview);
+        weexView = findViewById(R.id.goto_weex);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +52,14 @@ public class MainActivity extends BaseActivity {
                         throwable.printStackTrace();
                     }
                 }));
+            }
+        });
+
+        weexView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WeexActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
 
