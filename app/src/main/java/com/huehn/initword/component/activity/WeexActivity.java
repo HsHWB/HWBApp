@@ -11,6 +11,7 @@ import com.huehn.initword.core.utils.Log.LogManager;
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
+import com.taobao.weex.utils.WXFileUtils;
 
 public class WeexActivity extends BaseActivity implements IWXRenderListener{
 
@@ -33,7 +34,7 @@ public class WeexActivity extends BaseActivity implements IWXRenderListener{
          * bundleUrl source http://dotwe.org/vue/38e202c16bdfefbdb88a8754f975454c
          */
         String pageName = "WXSample";
-        String bundleUrl = "https://www.baidu.com";//https://h5.mangatoon.mobi
+        String bundleUrl = WXFileUtils.loadAsset("recommend.js", this);//https://h5.mangatoon.mobi
         mWXSDKInstance.renderByUrl(pageName, bundleUrl, null,
                 null, WXRenderStrategy.APPEND_ASYNC);
     }
