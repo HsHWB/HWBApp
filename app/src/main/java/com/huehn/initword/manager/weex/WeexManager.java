@@ -3,7 +3,7 @@ package com.huehn.initword.manager.weex;
 
 import android.app.Application;
 
-import com.huehn.initword.component.weex.adapter.ImageAdapter;
+import com.huehn.initword.adapter.weex.ImageAdapter;
 import com.huehn.initword.component.weex.component.CircleImageView;
 import com.huehn.initword.component.weex.module.CommonModule;
 import com.taobao.weex.InitConfig;

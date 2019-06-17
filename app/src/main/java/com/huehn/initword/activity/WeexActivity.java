@@ -1,4 +1,4 @@
-package com.huehn.initword.component.activity;
+package com.huehn.initword.activity;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -35,8 +35,10 @@ public class WeexActivity extends BaseActivity implements IWXRenderListener{
          */
         String pageName = "WXSample";
         String bundleUrl = WXFileUtils.loadAsset("recommend.js", this);//https://h5.mangatoon.mobi
-        mWXSDKInstance.renderByUrl(pageName, bundleUrl, null,
-                null, WXRenderStrategy.APPEND_ASYNC);
+//        mWXSDKInstance.render(pageName, bundleUrl, null,
+//                null, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstance.renderByUrl("huehn weex", "http://172.21.16.9:8081/web/preview.html?page=index.js",
+                null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Override

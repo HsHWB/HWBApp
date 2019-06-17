@@ -1,4 +1,4 @@
-package com.huehn.initword.component.weex.adapter;
+package com.huehn.initword.adapter.weex;
 
 import android.widget.ImageView;
 

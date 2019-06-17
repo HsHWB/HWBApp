@@ -1,4 +1,4 @@
-package com.huehn.initword.component.activity;
+package com.huehn.initword.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
