@@ -4,8 +4,8 @@ package com.huehn.initword.manager.weex;
 import android.app.Application;
 
 import com.huehn.initword.adapter.weex.ImageAdapter;
-import com.huehn.initword.component.weex.component.CircleImageView;
-import com.huehn.initword.component.weex.module.CommonModule;
+import com.huehn.initword.module.weex.CommonModule;
+import com.huehn.initword.ui.view.CircleImageView;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;

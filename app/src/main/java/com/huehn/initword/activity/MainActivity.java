@@ -10,6 +10,9 @@ import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.basecomponent.bean.permission.PermissionRequestCode;
 import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
+import com.huehn.initword.core.module.IOnCallBack;
+import com.huehn.initword.core.net.download.FileDownLoad;
+import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
@@ -20,6 +23,7 @@ public class MainActivity extends BaseActivity {
     public final static String TAG = "MainActivity";
     private TextView textView;
     private TextView weexView;
+    private TextView downFileView;
     private ImageView imageView;
 
     @Override
@@ -29,6 +33,7 @@ public class MainActivity extends BaseActivity {
         textView = findViewById(R.id.text);
         imageView = findViewById(R.id.imageview);
         weexView = findViewById(R.id.goto_weex);
+        downFileView = findViewById(R.id.goto_downfile);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +65,28 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WeexActivity.class);
                 MainActivity.this.startActivity(intent);
+            }
+        });
+
+        downFileView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileDownLoad<ImageView> fileDownLoad = new FileDownLoad.Builder()
+                        .setUrl("http://pic15.nipic.com/20110628/1369025_192645024000_2.jpg")
+                        .setOnSuccessListener(new IOnCallBack() {
+                            @Override
+                            public void accept(Object o)  {
+                                LogManager.d(TAG, "downFile success");
+                            }
+                        })
+                        .setOnErrorListener(new IOnCallBack<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable)  {
+                                throwable.printStackTrace();
+                            }
+                        })
+                        .build();
+                fileDownLoad.startDownLoad(HttpConfig.HttpURLType.GET.getId(), "picture");
             }
         });
 

@@ -46,7 +46,8 @@ public abstract class BaseLogDMethod extends BaseLogImpl {
             mapToString((Map) object, stringBuilder);
         }else if (object instanceof String[]){
             stringBuilder = stringArrayToString((String[]) object);
-        } else {
+        }
+        else {
             stringBuilder = objectToString(object);
         }
 

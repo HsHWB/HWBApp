@@ -25,4 +25,20 @@ public class AppException {
     public static RuntimeException permissionIdHasExits(){
         return new RuntimeException("申请的权限的request已经被占用");
     }
+
+    /**
+     * 给httpURLConnection配置的方法在 @link #HttpURLType 中没找到
+     * @return
+     */
+    public static RuntimeException httpUrlMethodNotFind(){
+        return new RuntimeException("HttpURLConnection设置了错误的请求方法");
+    }
+
+    /**
+     * 文件创建失败
+     * @return
+     */
+    public static RuntimeException fileCreateError(){
+        return new RuntimeException("文件创建失败");
+    }
 }
