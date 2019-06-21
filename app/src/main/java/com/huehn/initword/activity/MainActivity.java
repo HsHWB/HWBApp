@@ -72,7 +72,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 FileDownLoad<ImageView> fileDownLoad = new FileDownLoad.Builder()
-                        .setUrl("http://pic15.nipic.com/20110628/1369025_192645024000_2.jpg")
+//                        .setUrl("https://hydl.huya.com/mobile/kiwi-android/7.0.1/yygamelive-7.0.1-25091-official.apk")
+                        .setUrl("https://apk-download.nimostatic.tv/anchor/apk/NimoTVforStreamer-1.2.9-490-web.apk")
                         .setOnSuccessListener(new IOnCallBack() {
                             @Override
                             public void accept(Object o)  {
@@ -86,7 +87,8 @@ public class MainActivity extends BaseActivity {
                             }
                         })
                         .build();
-                fileDownLoad.startDownLoad(HttpConfig.HttpURLType.GET.getId(), "picture");
+                fileDownLoad.startDownLoad(HttpConfig.HttpURLType.GET.getId(), "NimoTVforStreamer-1.2.9-490-web.apk");
+
             }
         });
 

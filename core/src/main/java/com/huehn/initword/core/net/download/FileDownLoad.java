@@ -20,6 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import io.reactivex.functions.Consumer;
 
 /**
@@ -81,13 +83,13 @@ public class FileDownLoad<T> {
                         return;
                     }
 
-                    httpURLConnection = getConnection(typeId, url);
+                    httpURLConnection = getConnection(typeId, url, HttpConfig.HttpURLRequestProperty.Apk.name());
                     int contentLength = httpURLConnection.getContentLength();
                     LogManager.d(TAG, "" + contentLength);
 
                     if (contentLength <= 0){
                         if (onErrorListener != null){
-                            onErrorListener.accept(new RuntimeException("file length is less than 0"));
+                            onErrorListener.accept(new RuntimeException("文件长度为0"));
                         }
                         httpURLConnection.disconnect();
                     }
@@ -123,13 +125,10 @@ public class FileDownLoad<T> {
                 }finally {
                     try {
                         if (bufferedInputStream != null){
-                                bufferedInputStream.close();
-                        }
-                        if (bufferedOutputStream != null){
                             bufferedInputStream.close();
                         }
-                        if (httpURLConnection != null){
-                            httpURLConnection.disconnect();
+                        if (bufferedOutputStream != null){
+                            bufferedOutputStream.close();
                         }
                     } catch (Exception e) {
                             e.printStackTrace();
@@ -140,7 +139,7 @@ public class FileDownLoad<T> {
     }
 
 
-    private HttpURLConnection getConnection(int typeId, String url) throws IOException {
+    private HttpURLConnection getConnection(int typeId, String url, String requestProperty) throws IOException {
         String methodName = HttpConfig.HttpURLType.getName(typeId);
         if (methodName == null){
             throw AppException.httpUrlMethodNotFind();
@@ -150,28 +149,27 @@ public class FileDownLoad<T> {
         HttpURLConnection httpURLConnection = (HttpURLConnection) url1.openConnection();
         httpURLConnection.setRequestMethod(methodName);
 
-
-        // 设定传送的内容类型是可序列化的java对象
-        // (如果不设此项,在传送序列化对象时,当WEB服务默认的不是这种类型时可能抛java.io.EOFException)
-//        httpURLConnection.setRequestProperty("Content-type", "application/x-java-serialized-object");
-
-        //设定传送的内容类型是文件
-        httpURLConnection.setRequestProperty("Content-Type", "application/octet-stream");
+        httpURLConnection.setRequestProperty("Content-Type", requestProperty);
         httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+        httpURLConnection.setRequestProperty("Accept-Encoding", "identity");
         // 设置是否向httpUrlConnection输出，如果是post请求，参数要放在
         // http正文内，因此需要设为true, 默认情况下是false;
         if (methodName.equals(HttpConfig.HttpURLType.POST.name())) {
             httpURLConnection.setDoOutput(true);
+            // Post 请求不能使用缓存
+            httpURLConnection.setUseCaches(false);
         }
         // 设置是否从httpUrlConnection读入，默认情况下是true;
         httpURLConnection.setDoInput(true);
-        // Post 请求不能使用缓存
-        httpURLConnection.setUseCaches(false);
+        httpURLConnection.setConnectTimeout(30000);
+        httpURLConnection.setReadTimeout(30000);
         httpURLConnection.connect();
         return httpURLConnection;
     }
 
-
+//    private HttpsURLConnection getHttpsConnection(int typeId, String url) {
+//
+//    }
 
     public static class Builder{
         private String url;
