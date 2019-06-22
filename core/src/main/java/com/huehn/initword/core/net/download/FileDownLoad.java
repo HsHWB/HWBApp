@@ -4,6 +4,8 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.huehn.initword.core.module.IOnCallBack;
+import com.huehn.initword.core.net.HttpsManager;
+import com.huehn.initword.core.net.RequestTrustX509Manager;
 import com.huehn.initword.core.utils.Exception.AppException;
 import com.huehn.initword.core.utils.File.FileResult;
 import com.huehn.initword.core.utils.File.FileUtils;
@@ -19,6 +21,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -68,7 +71,7 @@ public class FileDownLoad<T> {
             public void run() {
                 BufferedInputStream bufferedInputStream = null;
                 BufferedOutputStream bufferedOutputStream = null;
-                HttpURLConnection httpURLConnection = null;
+                URLConnection urlConnection = null;
                 try {
                     if (TextUtils.isEmpty(url)){
                         if (onErrorListener != null){
@@ -83,17 +86,17 @@ public class FileDownLoad<T> {
                         return;
                     }
 
-                    httpURLConnection = getConnection(typeId, url, HttpConfig.HttpURLRequestProperty.Apk.name());
-                    int contentLength = httpURLConnection.getContentLength();
+                    urlConnection = getConnection(typeId, url, HttpConfig.HttpURLRequestProperty.Apk.name());
+                    int contentLength = urlConnection.getContentLength();
                     LogManager.d(TAG, "" + contentLength);
 
                     if (contentLength <= 0){
                         if (onErrorListener != null){
                             onErrorListener.accept(new RuntimeException("文件长度为0"));
                         }
-                        httpURLConnection.disconnect();
+//                        httpURLConnection.disconnect();
                     }
-                    InputStream inputStream = httpURLConnection.getInputStream();
+                    InputStream inputStream = urlConnection.getInputStream();
                     //bufferedInputStream储存httpUrlConnection的inputStream输入流
                     bufferedInputStream = new BufferedInputStream(inputStream);
                     //bufferedOutputStream输出到文件
@@ -138,8 +141,24 @@ public class FileDownLoad<T> {
         });
     }
 
+    /**
+     * 判断是拿http还是https
+     * @param url
+     * @return
+     */
+    private URLConnection getConnection(int typeId, String url, String requestProperty) throws IOException {
+        if (TextUtils.isEmpty(url)){
+            return null;
+        }
 
-    private HttpURLConnection getConnection(int typeId, String url, String requestProperty) throws IOException {
+        if (url.startsWith("https")){
+            return getHttpsConnection(typeId, url, requestProperty);
+        }else {
+            return getHttpConnection(typeId, url, requestProperty);
+        }
+    }
+
+    private HttpURLConnection getHttpConnection(int typeId, String url, String requestProperty) throws IOException {
         String methodName = HttpConfig.HttpURLType.getName(typeId);
         if (methodName == null){
             throw AppException.httpUrlMethodNotFind();
@@ -167,9 +186,34 @@ public class FileDownLoad<T> {
         return httpURLConnection;
     }
 
-//    private HttpsURLConnection getHttpsConnection(int typeId, String url) {
-//
-//    }
+    private HttpsURLConnection getHttpsConnection(int typeId, String url, String requestProperty) throws IOException {
+        String methodName = HttpConfig.HttpURLType.getName(typeId);
+        if (methodName == null){
+            throw AppException.httpUrlMethodNotFind();
+        }
+
+        URL url1 = new URL(url);
+        //信任证书
+        HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url1.openConnection();
+        httpsURLConnection.setSSLSocketFactory(HttpsManager.sslSocketFactory(new RequestTrustX509Manager()));
+
+        httpsURLConnection.setRequestProperty("Content-Type", requestProperty);
+        httpsURLConnection.setRequestProperty("Connection", "Keep-Alive");
+        httpsURLConnection.setRequestProperty("Accept-Encoding", "identity");
+        // 设置是否向httpUrlConnection输出，如果是post请求，参数要放在
+        // http正文内，因此需要设为true, 默认情况下是false;
+        if (methodName.equals(HttpConfig.HttpURLType.POST.name())) {
+            httpsURLConnection.setDoOutput(true);
+            // Post 请求不能使用缓存
+            httpsURLConnection.setUseCaches(false);
+        }
+        // 设置是否从httpUrlConnection读入，默认情况下是true;
+        httpsURLConnection.setDoInput(true);
+        httpsURLConnection.setConnectTimeout(30000);
+        httpsURLConnection.setReadTimeout(30000);
+        httpsURLConnection.connect();
+        return httpsURLConnection;
+    }
 
     public static class Builder{
         private String url;
