@@ -50,7 +50,7 @@ public abstract class BaseLogWMethod extends BaseLogImpl {
                     @Override
                     public void subscribe(ObservableEmitter<StringBuilder> emitter) throws Exception {
                         emitter.onNext(stringBuilder);
-                        FileUtils.saveFile(getFilePath(), stringBuilder);
+                        FileUtils.saveFile(getFilePath(), stringBuilder, true);
                     }
                 });
             }

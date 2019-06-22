@@ -23,8 +23,8 @@ public class FileUtils {
      * @param fileName 文件名
      * @return
      */
-    private static FileResult createFile(String fileName){
-        String path = getAppDataDirectory(fileName, true);
+    public static FileResult createFile(String fileName, boolean canUserAppStorage){
+        String path = getAppDataDirectory(fileName, canUserAppStorage);
         if (TextUtils.isEmpty(path) || TextUtils.isEmpty(fileName)){
             return new FileResult(FileResult.FILE_CREATE_FAIL, null);
         }
@@ -59,16 +59,39 @@ public class FileUtils {
      * OutputStream(String fileName,boolean append)：使用给定的名称name创建一个FileOutputStream对象，
      * 如果第二个参数为 true，则将字节写入文件末尾处，而不是写入文件开始处。
      */
-    public static void saveFile(String name, StringBuilder stringBuilder){
+    public static void saveFile(String name, StringBuilder stringBuilder, boolean canUserAppStorage){
 
         if (TextUtils.isEmpty(name) || stringBuilder == null || TextUtils.isEmpty(stringBuilder.toString())){
             return;
         }
         try {
-            FileResult result = createFile(name);
+            FileResult result = createFile(name, canUserAppStorage);
             if (result.isSuccessToGetFile()) {
                 FileOutputStream fileOutputStream = new FileOutputStream(result.getFile(), true);
                 fileOutputStream.write(stringBuilder.toString().getBytes());
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 储存二进制文件
+     * @param bytes
+     * @param name
+     */
+    private static void saveFile(String name, byte[] bytes, boolean canUserAppStorage){
+        if (TextUtils.isEmpty(name) || bytes == null){
+            return;
+        }
+        try {
+            FileResult result = createFile(name, canUserAppStorage);
+            if (result.isSuccessToGetFile()) {
+                FileOutputStream fileOutputStream = new FileOutputStream(result.getFile(), true);
+                fileOutputStream.write(bytes);
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }
@@ -113,5 +136,4 @@ public class FileUtils {
         LogManager.d(TAG, phoneStorageDirectory);
         return phoneStorageDirectory;
     }
-
 }
