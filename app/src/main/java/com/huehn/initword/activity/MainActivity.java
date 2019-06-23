@@ -120,6 +120,7 @@ public class MainActivity extends BaseActivity {
                         .setFromY(0)
                         .setToX(100)
                         .setToY(100)
+                        .setFillAfter(true)
                         .setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) {

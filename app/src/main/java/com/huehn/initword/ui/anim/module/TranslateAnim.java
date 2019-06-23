@@ -1,11 +1,9 @@
 package com.huehn.initword.ui.anim.module;
 
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
 import com.huehn.initword.ui.anim.BaseNormalAnimation;
-import com.huehn.initword.ui.anim.IAnimationBuilder;
 
 public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, TranslateAnimation> {
 
@@ -16,9 +14,11 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
     public TranslateAnim(TranslateAnim.Builder iAnimationBuilder) {
         super(iAnimationBuilder);
         this.iAnimationBuilder = iAnimationBuilder;
+        
         if (iAnimationBuilder.getAnimationListener() != null){
             this.translateAnimation.setAnimationListener(iAnimationBuilder.getAnimationListener());
         }
+        this.translateAnimation.setFillAfter(this.iAnimationBuilder.isFillAfter());
     }
 
     @Override
@@ -53,14 +53,17 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
     }
 
 
-    public static class Builder extends BaseNormalAnimation.Builder<TranslateAnim>{
+    public static class Builder extends BaseNormalAnimation.Builder<TranslateAnim, Builder>{
 
         public int fromX;
         public int fromY;
         public int toX;
         public int toY;
-        public int duration = 2000;
-        public Animation.AnimationListener animationListener = null;
+
+        public Builder() {
+            super();
+        }
+
 
         public int getFromX() {
             return fromX;
@@ -95,24 +98,6 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
 
         public TranslateAnim.Builder setToY(int toY) {
             this.toY = toY;
-            return this;
-        }
-
-        public int getDuration() {
-            return duration;
-        }
-
-        public TranslateAnim.Builder setDuration(int duration) {
-            this.duration = duration;
-            return this;
-        }
-
-        public Animation.AnimationListener getAnimationListener() {
-            return animationListener;
-        }
-
-        public TranslateAnim.Builder setAnimationListener(Animation.AnimationListener animationListener) {
-            this.animationListener = animationListener;
             return this;
         }
 
