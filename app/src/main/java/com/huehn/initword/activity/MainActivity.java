@@ -3,6 +3,7 @@ package com.huehn.initword.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.ui.anim.module.TranslateAnim;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
@@ -110,6 +112,34 @@ public class MainActivity extends BaseActivity {
                 }
             }));
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TranslateAnim translateAnim = new TranslateAnim.Builder()
+                        .setFromX(0)
+                        .setFromY(0)
+                        .setToX(100)
+                        .setToY(100)
+                        .setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                LogManager.d(TAG, "animation start");
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                LogManager.d(TAG, "animation end");
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        })
+                        .create();
+                translateAnim.onStart(imageView);
+            }
+        });
     }
 
 }
