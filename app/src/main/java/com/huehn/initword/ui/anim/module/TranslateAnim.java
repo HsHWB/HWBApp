@@ -2,7 +2,9 @@ package com.huehn.initword.ui.anim.module;
 
 import android.view.View;
 import android.view.animation.TranslateAnimation;
+import android.widget.Toast;
 
+import com.huehn.initword.core.app.App;
 import com.huehn.initword.ui.anim.BaseNormalAnimation;
 
 public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, TranslateAnimation> {
@@ -14,16 +16,27 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
     public TranslateAnim(TranslateAnim.Builder iAnimationBuilder) {
         super(iAnimationBuilder);
         this.iAnimationBuilder = iAnimationBuilder;
-        
+
         if (iAnimationBuilder.getAnimationListener() != null){
             this.translateAnimation.setAnimationListener(iAnimationBuilder.getAnimationListener());
         }
         this.translateAnimation.setFillAfter(this.iAnimationBuilder.isFillAfter());
+        this.translateAnimation.setDuration(this.iAnimationBuilder.duration);
+        if (iAnimationBuilder.getInterpolator() != null){
+            this.translateAnimation.setInterpolator(this.iAnimationBuilder.getInterpolator());
+        }
     }
+
+
 
     @Override
     public void onStart(View view) {
         if (view != null && translateAnimation != null){
+            if (view.getTranslationX() == this.iAnimationBuilder.getToX()
+                    && view.getTranslationY() == this.iAnimationBuilder.getToY()){
+                Toast.makeText(App.getApp().getApplicationContext(), "已经是在指定位置了", Toast.LENGTH_SHORT).show();
+                return;
+            }
             view.startAnimation(translateAnimation);
         }
     }
@@ -41,8 +54,8 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
         if (builder != null) {
             if (builder.getFromX() >= 0 && builder.getFromY() >=0 && builder.getToX() >=0
                     && builder.getToY() >=0){
-                translateAnimation = new TranslateAnimation(builder.getFromX(), builder.getFromY(),
-                        builder.getToX(), builder.getToY());
+                translateAnimation = new TranslateAnimation(builder.getFromX(), builder.getToX(),
+                        builder.getFromY(), builder.getToY());
             }else {
                 throw new RuntimeException("参数小于0");
             }

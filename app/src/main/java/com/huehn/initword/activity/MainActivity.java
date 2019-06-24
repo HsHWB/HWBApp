@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -120,7 +121,14 @@ public class MainActivity extends BaseActivity {
                         .setFromY(0)
                         .setToX(100)
                         .setToY(100)
+                        .setDuration(2000)
                         .setFillAfter(true)
+                        .setInterpolator(new Interpolator() {
+                            @Override
+                            public float getInterpolation(float input) {
+                                return 0;
+                            }
+                        })
                         .setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) {

@@ -2,6 +2,7 @@ package com.huehn.initword.ui.anim;
 
 import android.app.AlertDialog;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 
 import com.huehn.initword.ui.anim.module.TranslateAnim;
 
@@ -38,6 +39,8 @@ public abstract class BaseNormalAnimation<T extends IAnimationBuilder, R extends
         public int duration = 2000;
         //保持动画后的状态
         public boolean fillAfter = false;
+        //插值器
+        public Interpolator interpolator;
 
         public Builder(){
         }
@@ -66,6 +69,15 @@ public abstract class BaseNormalAnimation<T extends IAnimationBuilder, R extends
 
         public R setFillAfter(boolean fillAfter) {
             this.fillAfter = fillAfter;
+            return (R) this;
+        }
+
+        public Interpolator getInterpolator() {
+            return interpolator;
+        }
+
+        public R setInterpolator(Interpolator interpolator) {
+            this.interpolator = interpolator;
             return (R) this;
         }
     }
