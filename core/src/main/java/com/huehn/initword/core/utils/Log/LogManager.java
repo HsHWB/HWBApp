@@ -3,7 +3,7 @@ package com.huehn.initword.core.utils.Log;
 
 import android.text.TextUtils;
 
-import com.huehn.initword.core.module.ILogMethod;
+import com.huehn.initword.core.module.Log.ILogMethod;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,7 +44,10 @@ public abstract class BaseLogDMethod extends BaseLogImpl {
             listToString((List) object, stringBuilder);
         }else if (object instanceof Map){
             mapToString((Map) object, stringBuilder);
-        }else {
+        }else if (object instanceof String[]){
+            stringBuilder = stringArrayToString((String[]) object);
+        }
+        else {
             stringBuilder = objectToString(object);
         }
 

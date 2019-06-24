@@ -1,4 +1,4 @@
-package com.huehn.initword.core.module;
+package com.huehn.initword.core.module.Log;
 
 import com.huehn.initword.core.utils.File.FileUtils;
 import com.huehn.initword.core.utils.Log.BaseLogImpl;
@@ -45,12 +45,12 @@ public abstract class BaseLogWMethod extends BaseLogImpl {
         .flatMap(new Function<StringBuilder, ObservableSource<StringBuilder>>() {
             @Override
             public ObservableSource<StringBuilder> apply(final StringBuilder stringBuilder) throws Exception {
-                LogManager.d("huehn writeToFile : " + stringBuilder.toString());
+//                LogManager.d("huehn writeToFile : " + stringBuilder.toString());
                 return Observable.create(new ObservableOnSubscribe<StringBuilder>() {
                     @Override
                     public void subscribe(ObservableEmitter<StringBuilder> emitter) throws Exception {
                         emitter.onNext(stringBuilder);
-                        FileUtils.saveFile(getFilePath(), stringBuilder);
+                        FileUtils.saveFile(getFilePath(), stringBuilder, true);
                     }
                 });
             }

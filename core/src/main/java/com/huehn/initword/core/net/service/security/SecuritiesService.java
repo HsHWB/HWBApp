@@ -1,14 +1,12 @@
 package com.huehn.initword.core.net.service.security;
 
 import com.huehn.initword.core.net.BaseUrl;
-import com.huehn.initword.core.net.response.ShangHaiPlateListResponse;
+import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 
 import java.util.Map;
 
 import io.reactivex.Observable;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 /**

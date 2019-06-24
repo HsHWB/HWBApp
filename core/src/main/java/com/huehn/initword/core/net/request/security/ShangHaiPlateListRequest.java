@@ -1,4 +1,4 @@
-package com.huehn.initword.core.net.request;
+package com.huehn.initword.core.net.request.security;
 
 import com.huehn.initword.core.net.request.security.SecurityBaseRequest;
 

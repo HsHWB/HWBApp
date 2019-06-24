@@ -1,13 +1,16 @@
 package com.huehn.initword;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Bundle;
 
 import com.huehn.initword.core.app.App;
-import com.huehn.initword.core.app.BaseConstant;
-import com.huehn.initword.core.utils.Log.LogManager;
-import com.umeng.commonsdk.UMConfigure;
+import com.huehn.initword.manager.ImagerLoaderManager;
+import com.huehn.initword.manager.UMManager;
+import com.huehn.initword.manager.weex.WeexManager;
+
 
 public class MyApplication extends Application {
 
@@ -15,16 +18,48 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         App.getInstance().setApp(this);
-        /*
-            注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调用初始化接口
-            （如需要使用AndroidManifest.xml中配置好的appkey和channel值，UMConfigure.init调用中appkey和channel参数请置为null）。
-        */
-        UMConfigure.init(this, BaseConstant.UMENG_APPKEY, "HWBAPP_CHANNEL", UMConfigure.DEVICE_TYPE_PHONE, null);
-        if (BuildConfig.DEBUG){
-            UMConfigure.setLogEnabled(true);
-        }else {
-            UMConfigure.setLogEnabled(false);
-        }
+        UMManager.init(this);
+        ImagerLoaderManager.init(this);
+        WeexManager.init(this);
+
+        registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+
+
     }
 
     @Override

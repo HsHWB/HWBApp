@@ -38,3 +38,11 @@
     public static ** valueOf(java.lang.String);
 }
 #防止友盟sdk被混淆
+
+#防止weex被混淆
+-keep class com.taobao.weex.bridge.** { *; }
+-keep class com.taobao.weex.layout.** { *; }
+-keep class com.taobao.weex.WXSDKEngine { *; }
+-keep class com.taobao.weex.base.SystemMessageHandler { *; }
+-dontwarn com.taobao.weex.bridge.**
+#防止weex被混淆

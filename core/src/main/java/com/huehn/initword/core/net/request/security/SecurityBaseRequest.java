@@ -1,10 +1,8 @@
 package com.huehn.initword.core.net.request.security;
 
-import com.huehn.initword.core.utils.TimeUtils;
+import com.huehn.initword.core.utils.SystemUtils.TimeUtils;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public abstract class SecurityBaseRequest {
@@ -13,10 +11,10 @@ public abstract class SecurityBaseRequest {
     public final static String showapi_sign = "showapi_sign";
     public final static String showapi_timestamp = "showapi_timestamp";
     public final static String showapi_res_gzip = "showapi_res_gzip";
-    public final static String showapi_appsercet = "c90dccb1a63b404391648108f01c8918";//秘钥
+    public final static String showapi_appsercet = "dff0b925ac3743c58ce2dd37e32654e8";//秘钥 c90dccb1a63b404391648108f01c8918
     private Map<String, Object> map = new HashMap<>();
 
-    public final static String SHOWAPI_APPID = "93778";
+    public final static String SHOWAPI_APPID = "96774";//93778
 
     protected SecurityBaseRequest() {
         toMap();

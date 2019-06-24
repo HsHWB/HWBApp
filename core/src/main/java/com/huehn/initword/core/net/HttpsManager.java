@@ -53,7 +53,7 @@ public class HttpsManager {
         return retrofit;
     }
 
-    private static SSLSocketFactory sslSocketFactory(X509TrustManager x509Manager) {
+    public static SSLSocketFactory sslSocketFactory(X509TrustManager x509Manager) {
 
         try {
             SSLContext sslContext = SSLContext.getInstance("TLS");

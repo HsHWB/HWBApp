@@ -35,9 +35,38 @@ dependencies {
 //    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //android权限管理
 //    api 'com.github.tbruyelle:rxpermissions:0.10.2'
-    api  'com.umeng.umsdk:analytics:7.5.4'
-    api  'com.umeng.umsdk:common:1.5.4'
+    api 'com.umeng.umsdk:analytics:7.5.4'
+    api 'com.umeng.umsdk:common:1.5.4'
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+    // weex sdk and fastjson
+    api 'com.taobao.android:weex_sdk:0.20.0.2@aar'
+    api 'com.taobao.android.weex_inspection:urlconnection_interceptor:1.0.0',{
+        exclude group: 'com.taobao.android.weex_inspection'
+        exclude module: 'protocol'
+    }
+    api 'com.squareup.okhttp:okhttp-ws:2.3.0'
+    api 'com.taobao.android:weex_sdk:0.20.3.0-beta'
+    api 'com.taobao.android.weex_inspection:protocol:1.1.4.1'
+    api 'com.facebook.fresco:fresco:0.10.0',{
+        exclude group: 'com.android.support'
+        exclude module: 'support-v4'
+    }
+    api 'com.taobao.android.weex_inspection:urlconnection_interceptor:1.0.0'
+    api 'com.squareup.picasso:picasso:2.5.2'
+    api 'com.alibaba:fastjson:1.1.46.android'
+    api 'com.taobao.android:weex_inspector:0.24.2.4'
+    api 'com.alibaba.android:bindingx-core:1.1.1.2@aar'
+    api 'com.alibaba.android:bindingx_weex_plugin:1.1.1@aar'
+
+
+    api 'com.android.support:recyclerview-v7:27.1.1', {
+        exclude group: 'com.android.support'
+        exclude module: 'support-v4'
+    }
+
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

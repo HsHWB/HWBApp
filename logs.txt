@@ -1,0 +1,81 @@
+
+> Configure project :app
+/Users/huehn/Coding/HWBApp
+26
+publishNonDefault is deprecated and has no effect anymore. All variants are now published.
+qa is marking-------------------------------------------
+official is marking-------------------------------------------
+
+> Task :app:preBuild UP-TO-DATE
+> Task :basecomponent:preBuild UP-TO-DATE
+> Task :basecomponent:preDebugBuild UP-TO-DATE
+> Task :basecomponent:checkDebugManifest UP-TO-DATE
+> Task :basecomponent:processDebugManifest UP-TO-DATE
+> Task :core:preBuild UP-TO-DATE
+> Task :core:preDebugBuild UP-TO-DATE
+> Task :core:checkDebugManifest UP-TO-DATE
+> Task :core:processDebugManifest UP-TO-DATE
+> Task :app:preOfficialDebugBuild UP-TO-DATE
+> Task :core:compileDebugAidl UP-TO-DATE
+> Task :basecomponent:compileDebugAidl UP-TO-DATE
+> Task :app:compileOfficialDebugAidl UP-TO-DATE
+> Task :basecomponent:packageDebugRenderscript NO-SOURCE
+> Task :core:packageDebugRenderscript NO-SOURCE
+> Task :app:compileOfficialDebugRenderscript UP-TO-DATE
+> Task :app:checkOfficialDebugManifest UP-TO-DATE
+> Task :app:generateOfficialDebugBuildConfig UP-TO-DATE
+> Task :app:prepareLintJar UP-TO-DATE
+> Task :app:mainApkListPersistenceOfficialDebug UP-TO-DATE
+> Task :app:generateOfficialDebugResValues UP-TO-DATE
+> Task :app:generateOfficialDebugResources UP-TO-DATE
+> Task :basecomponent:compileDebugRenderscript UP-TO-DATE
+> Task :basecomponent:generateDebugResValues UP-TO-DATE
+> Task :basecomponent:generateDebugResources UP-TO-DATE
+> Task :basecomponent:packageDebugResources UP-TO-DATE
+> Task :core:compileDebugRenderscript UP-TO-DATE
+> Task :core:generateDebugResValues UP-TO-DATE
+> Task :core:generateDebugResources UP-TO-DATE
+> Task :core:packageDebugResources UP-TO-DATE
+> Task :app:mergeOfficialDebugResources UP-TO-DATE
+> Task :app:createOfficialDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:processOfficialDebugManifest UP-TO-DATE
+> Task :app:splitsDiscoveryTaskOfficialDebug UP-TO-DATE
+> Task :basecomponent:platformAttrExtractor UP-TO-DATE
+> Task :core:platformAttrExtractor UP-TO-DATE
+> Task :core:generateDebugRFile UP-TO-DATE
+> Task :basecomponent:generateDebugRFile UP-TO-DATE
+> Task :app:processOfficialDebugResources UP-TO-DATE
+> Task :app:generateOfficialDebugSources UP-TO-DATE
+> Task :basecomponent:generateDebugBuildConfig UP-TO-DATE
+> Task :basecomponent:prepareLintJar UP-TO-DATE
+> Task :basecomponent:generateDebugSources UP-TO-DATE
+> Task :core:generateDebugBuildConfig UP-TO-DATE
+> Task :core:prepareLintJar UP-TO-DATE
+> Task :core:generateDebugSources UP-TO-DATE
+> Task :core:javaPreCompileDebug UP-TO-DATE
+> Task :core:compileDebugJavaWithJavac UP-TO-DATE
+> Task :core:processDebugJavaRes NO-SOURCE
+> Task :core:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug UP-TO-DATE
+> Task :basecomponent:javaPreCompileDebug UP-TO-DATE
+> Task :basecomponent:compileDebugJavaWithJavac UP-TO-DATE
+> Task :basecomponent:processDebugJavaRes NO-SOURCE
+> Task :basecomponent:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug UP-TO-DATE
+> Task :app:javaPreCompileOfficialDebug UP-TO-DATE
+> Task :app:compileOfficialDebugJavaWithJavac
+> Task :app:compileOfficialDebugNdk NO-SOURCE
+> Task :app:compileOfficialDebugSources
+> Task :app:mergeOfficialDebugShaders UP-TO-DATE
+> Task :app:compileOfficialDebugShaders UP-TO-DATE
+> Task :app:generateOfficialDebugAssets UP-TO-DATE
+> Task :basecomponent:mergeDebugShaders UP-TO-DATE
+> Task :basecomponent:compileDebugShaders UP-TO-DATE
+> Task :basecomponent:generateDebugAssets UP-TO-DATE
+> Task :basecomponent:packageDebugAssets UP-TO-DATE
+> Task :core:mergeDebugShaders UP-TO-DATE
+> Task :core:compileDebugShaders UP-TO-DATE
+> Task :core:generateDebugAssets UP-TO-DATE
+> Task :core:packageDebugAssets UP-TO-DATE
+> Task :app:mergeOfficialDebugAssets UP-TO-DATE
+> Task :app:transformClassesWithDexBuilderForOfficialDebug
+> Task :app:transformClassesWithMultidexlistForOfficialDebug FAILED
+52 actionable tasks: 3 executed, 49 up-to-date

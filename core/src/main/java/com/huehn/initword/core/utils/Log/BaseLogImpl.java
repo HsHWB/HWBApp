@@ -1,6 +1,6 @@
 package com.huehn.initword.core.utils.Log;
 
-import com.huehn.initword.core.module.ILogMethod;
+import com.huehn.initword.core.module.Log.ILogMethod;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -132,6 +132,29 @@ public abstract class BaseLogImpl implements ILogMethod {
         stringBuilder.append(MODULE_END);
         return stringBuilder;
     }
+
+    /**
+     * 数组转换成字符串
+     * @param strings
+     * @return
+     */
+    protected StringBuilder stringArrayToString(String[] strings){
+        StringBuilder stringBuilder = new StringBuilder();
+        if (strings == null || strings.length == 0){
+            stringBuilder.append(MODULE_NULL);
+            return stringBuilder;
+        }
+        stringBuilder.append("stringArray : {");
+        for (int i = 0; i < strings.length; i++){
+            stringBuilder.append("index[" + i + "] : " + strings[i]);
+            if (i < strings.length - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+        stringBuilder.append("}");
+        return stringBuilder;
+    }
+
     /**
      * 打印堆栈日志，进行日志跳转
      * @param clazz
