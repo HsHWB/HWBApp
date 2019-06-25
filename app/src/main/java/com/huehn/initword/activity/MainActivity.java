@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.ui.anim.module.AlphaAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import io.reactivex.functions.Consumer;
@@ -123,12 +125,7 @@ public class MainActivity extends BaseActivity {
                         .setToY(100)
                         .setDuration(2000)
                         .setFillAfter(true)
-                        .setInterpolator(new Interpolator() {
-                            @Override
-                            public float getInterpolation(float input) {
-                                return 0;
-                            }
-                        })
+                        .setInterpolator(new OvershootInterpolator())
                         .setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) {
@@ -147,6 +144,8 @@ public class MainActivity extends BaseActivity {
                         })
                         .create();
                 translateAnim.onStart(imageView);
+
+//                AlphaAnim alphaAnim = new AlphaAnim.Builder().set
             }
         });
     }
