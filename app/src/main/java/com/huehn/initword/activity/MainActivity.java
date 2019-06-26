@@ -21,8 +21,8 @@ import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.ui.anim.module.AlphaAnim;
+import com.huehn.initword.ui.anim.module.AnimationSetAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
-import com.huehn.initword.ui.utils.AnimUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
@@ -169,9 +169,15 @@ public class MainActivity extends BaseActivity {
                             }
                         })
                         .create();
+
+                AnimationSetAnim animationSetAnim = new AnimationSetAnim.AnimationSetBuilder()
+                        .setShareInterpolator(true)
+                        .setAnimations(translateAnim.getAnimation(), alphaAnim.getAnimation())
+                        .create();
+                animationSetAnim.onStart(imageView);
 //                alphaAnim.onStart(imageView);
-                AnimUtils.normalAnimationSet(imageView, true,
-                        translateAnim.getAnimation(), alphaAnim.getAnimation());
+//                AnimUtils.normalAnimationSet(imageView, true,
+//                        translateAnim.getAnimation(), alphaAnim.getAnimation());
             }
         });
     }
