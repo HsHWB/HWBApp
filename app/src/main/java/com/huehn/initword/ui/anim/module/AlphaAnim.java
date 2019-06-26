@@ -7,9 +7,11 @@ import com.huehn.initword.ui.anim.BaseNormalAnimation;
 
 public class AlphaAnim extends BaseNormalAnimation<AlphaAnim.AlphaBuilder, AlphaAnimation> {
 
-
+    private AlphaAnimation alphaAnimation;
+    private AlphaAnim.AlphaBuilder alphaBuilder;
     public AlphaAnim(AlphaBuilder alphaBuilder) {
         super(alphaBuilder);
+        this.alphaBuilder = alphaBuilder;
     }
 
     @Override
@@ -17,7 +19,7 @@ public class AlphaAnim extends BaseNormalAnimation<AlphaAnim.AlphaBuilder, Alpha
         if (alphaBuilder == null){
             return null;
         }
-        AlphaAnimation alphaAnimation = new AlphaAnimation(alphaBuilder.beginAlpha, alphaBuilder.endAlpha);
+        alphaAnimation = new AlphaAnimation(alphaBuilder.beginAlpha, alphaBuilder.endAlpha);
         if (alphaBuilder.getAnimationListener() != null) {
             alphaAnimation.setAnimationListener(alphaBuilder.getAnimationListener());
         }
@@ -30,14 +32,24 @@ public class AlphaAnim extends BaseNormalAnimation<AlphaAnim.AlphaBuilder, Alpha
     }
 
     @Override
-    public void onStart(View view) {
+    public AlphaAnimation getAnimation() {
+        return alphaAnimation;
+    }
 
+    @Override
+    public void onStart(View view) {
+        if (view != null && alphaAnimation != null){
+            view.startAnimation(alphaAnimation);
+        }
     }
 
     @Override
     public void onStop(View view) {
-
+        if (view != null && alphaAnimation != null ){
+            alphaAnimation.cancel();
+        }
     }
+
 
     public static class AlphaBuilder extends BaseNormalAnimation.Builder<AlphaAnim, AlphaBuilder>{
 

@@ -13,6 +13,7 @@ import com.huehn.initword.ui.anim.module.TranslateAnim;
 public abstract class BaseNormalAnimation<T extends IAnimationBuilder, R extends Animation> implements IAnimation{
 
     private T t;
+    private R r;
     private int duration = 2000;
     private Animation.AnimationListener animationListener = null;
 
@@ -28,6 +29,7 @@ public abstract class BaseNormalAnimation<T extends IAnimationBuilder, R extends
      */
     public abstract R createAnim(T t);
 
+    public abstract R getAnimation();
 
     /**
      * 这个builder返回会返回一个anim对象T，这个对象继承了BaseNormalAnimation

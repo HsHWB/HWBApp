@@ -65,6 +65,11 @@ public class TranslateAnim extends BaseNormalAnimation<TranslateAnim.Builder, Tr
         return translateAnimation;
     }
 
+    @Override
+    public TranslateAnimation getAnimation() {
+        return translateAnimation;
+    }
+
 
     public static class Builder extends BaseNormalAnimation.Builder<TranslateAnim, Builder>{
 

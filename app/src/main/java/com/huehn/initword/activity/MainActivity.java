@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.ui.anim.module.AlphaAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
+import com.huehn.initword.ui.utils.AnimUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
@@ -143,9 +145,33 @@ public class MainActivity extends BaseActivity {
                             }
                         })
                         .create();
-                translateAnim.onStart(imageView);
+//                translateAnim.onStart(imageView);
 
-//                AlphaAnim alphaAnim = new AlphaAnim.Builder().set
+                AlphaAnim alphaAnim = new AlphaAnim.AlphaBuilder()
+                        .setBeginAlpha(1.0f)
+                        .setEndAlpha(0.2f)
+                        .setDuration(2000)
+                        .setFillAfter(true)
+                        .setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                LogManager.d(TAG, "animation start");
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                LogManager.d(TAG, "animation end");
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        })
+                        .create();
+//                alphaAnim.onStart(imageView);
+                AnimUtils.normalAnimationSet(imageView, true,
+                        translateAnim.getAnimation(), alphaAnim.getAnimation());
             }
         });
     }
