@@ -20,10 +20,16 @@ import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.service.DoSomethingModule;
+import com.huehn.initword.service.DoSomethingProxy;
+import com.huehn.initword.service.IDoSomething;
 import com.huehn.initword.ui.anim.module.AlphaAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
 import com.huehn.initword.ui.utils.AnimUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.lang.reflect.Proxy;
+
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
 
@@ -70,8 +76,14 @@ public class MainActivity extends BaseActivity {
         weexView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WeexActivity.class);
-                MainActivity.this.startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, WeexActivity.class);
+//                MainActivity.this.startActivity(intent);
+                DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
+                System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+                IDoSomething iDoSomething = (IDoSomething) Proxy.newProxyInstance(IDoSomething.class.getClassLoader(),
+                        new Class[]{IDoSomething.class},
+                        doSomethingProxy);
+                iDoSomething.doSomething("hello");
             }
         });
 
