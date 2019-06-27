@@ -16,6 +16,8 @@ public class AnimationSetAnim extends BaseNormalAnimation<AnimationSetAnim.Anima
 
     public AnimationSetAnim(AnimationSetBuilder animationSetBuilder) {
         super(animationSetBuilder);
+
+    
     }
 
     @Override
