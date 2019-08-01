@@ -2,6 +2,8 @@ package com.huehn.initword.core.utils.hook;
 
 import android.view.View;
 
+import com.huehn.initword.core.utils.Log.LogManager;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -28,14 +30,18 @@ public class HookManager {
         getListenerInfo.setAccessible(true);//setAccessible功能是启用或禁用安全检查 ，public的方法 Accessible仍为false
         Object listenerInfo = getListenerInfo.invoke(view);
 
+        LogManager.d("huehn -----1-----");
+
         // 第二步：得到原始的 OnClickListener事件方法
         Class<?> listenerInfoClass = Class.forName("android.view.View$ListenerInfo");
         Field clickListener = listenerInfoClass.getDeclaredField("mOnClickListener");
         clickListener.setAccessible(true);
-        View.OnClickListener originOnClickListener = (View.OnClickListener) clickListener.get(getListenerInfo);
+        View.OnClickListener originOnClickListener = (View.OnClickListener) clickListener.get(listenerInfo);
+        LogManager.d("huehn -----2-----");
         // 第三步：用 Hook代理类 替换原始的 OnClickListener
         View.OnClickListener hookOnClickListener = new HookClickLinstener(originOnClickListener);
         clickListener.set(listenerInfo, hookOnClickListener);
+        LogManager.d("huehn -----3-----");
     }
 
 }
