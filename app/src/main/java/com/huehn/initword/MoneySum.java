@@ -1,5 +1,10 @@
 package com.huehn.initword;
 
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+
+import com.huehn.initword.core.utils.Log.LogManager;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,12 +43,26 @@ public class MoneySum{
             "2020-01-12 00:00:00"
     };
 
-    //三万，0.004
-    //两万四 0.004
+//    三万，0.004
+//    两万四 0.004
 //    public static void main(String[] args){
 //        getAll();
 //        int a = 2;
 //        System.out.println("a 非的结果是："+(~a));
+//        System.out.println(formatString("abcaba", "A", "B"));
+//    }
+
+//    public static String formatString(@NonNull String source, Object... args){
+//        String formatString = source;
+//        if (source == null || source == "" || args == null || args.length == 0){
+//            return formatString;
+//        }
+//        try {
+//            formatString = String.format(source, args);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return formatString;
 //    }
 
     public static float getAll(){

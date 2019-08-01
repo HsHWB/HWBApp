@@ -20,6 +20,7 @@ import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.core.utils.hook.HookManager;
 import com.huehn.initword.service.DoSomethingModule;
 import com.huehn.initword.service.DoSomethingProxy;
 import com.huehn.initword.service.IDoSomething;
@@ -28,6 +29,7 @@ import com.huehn.initword.ui.anim.module.AnimationSetAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 
 import io.reactivex.functions.Consumer;
@@ -72,6 +74,12 @@ public class MainActivity extends BaseActivity {
                 }));
             }
         });
+
+        try {
+            HookManager.hookViewOnClickListener(textView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         weexView.setOnClickListener(new View.OnClickListener() {
             @Override

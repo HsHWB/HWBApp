@@ -61,6 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (disposable != null && !disposable.isDisposed()){
             compositeDisposable.add(disposable);
         }
+
+
     }
 
     @Override
