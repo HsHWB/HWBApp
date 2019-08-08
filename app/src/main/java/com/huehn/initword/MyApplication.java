@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.huehn.initword.core.app.App;
+import com.huehn.initword.core.utils.hook.HookManager;
 import com.huehn.initword.manager.ImagerLoaderManager;
 import com.huehn.initword.manager.UMManager;
 import com.huehn.initword.manager.weex.WeexManager;
@@ -21,7 +22,6 @@ public class MyApplication extends Application {
         UMManager.init(this);
         ImagerLoaderManager.init(this);
         WeexManager.init(this);
-
         registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {

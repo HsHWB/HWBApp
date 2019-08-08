@@ -9,6 +9,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
@@ -45,6 +46,18 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            HookManager.hookOnCreateActivity(this);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "toast error1", Toast.LENGTH_SHORT).show();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "toast error2", Toast.LENGTH_SHORT).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "toast error3", Toast.LENGTH_SHORT).show();
+        }
         textView = findViewById(R.id.text);
         imageView = findViewById(R.id.imageview);
         weexView = findViewById(R.id.goto_weex);
@@ -84,14 +97,14 @@ public class MainActivity extends BaseActivity {
         weexView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, WeexActivity.class);
-//                MainActivity.this.startActivity(intent);
-                DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
-                System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
-                IDoSomething iDoSomething = (IDoSomething) Proxy.newProxyInstance(IDoSomething.class.getClassLoader(),
-                        new Class[]{IDoSomething.class},
-                        doSomethingProxy);
-                iDoSomething.doSomething("hello");
+                Intent intent = new Intent(MainActivity.this, WeexActivity.class);
+                MainActivity.this.startActivity(intent);
+//                DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
+//                System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+//                IDoSomething iDoSomething = (IDoSomething) Proxy.newProxyInstance(IDoSomething.class.getClassLoader(),
+//                        new Class[]{IDoSomething.class},
+//                        doSomethingProxy);
+//                iDoSomething.doSomething("hello");
             }
         });
 

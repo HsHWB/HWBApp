@@ -3,6 +3,7 @@ package com.huehn.initword;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.huehn.initword.bean.TestData;
 import com.huehn.initword.core.utils.Log.LogManager;
 
 import java.text.ParseException;
@@ -45,12 +46,17 @@ public class MoneySum{
 
 //    三万，0.004
 //    两万四 0.004
-//    public static void main(String[] args){
+    public static void main(String[] args){
 //        getAll();
 //        int a = 2;
 //        System.out.println("a 非的结果是："+(~a));
 //        System.out.println(formatString("abcaba", "A", "B"));
-//    }
+        try {
+            printConstrutor(TestData.class, String.class, String.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
 
 //    public static String formatString(@NonNull String source, Object... args){
 //        String formatString = source;
@@ -64,6 +70,13 @@ public class MoneySum{
 //        }
 //        return formatString;
 //    }
+
+    private static void printConstrutor(Class<?> classObject, Class<?>... paramsType) throws NoSuchMethodException {
+        if (classObject != null){
+            System.out.println(classObject.getDeclaredConstructors());
+            System.out.println(classObject.getDeclaredConstructor(paramsType));
+        }
+    }
 
     public static float getAll(){
         float nowMoney = money;
