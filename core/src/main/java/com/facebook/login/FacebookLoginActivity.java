@@ -10,7 +10,7 @@ import com.facebook.internal.FacebookDialogFragment;
 import com.facebook.share.internal.DeviceShareDialogFragment;
 import com.facebook.share.model.ShareContent;
 
-public class FacebookMyActivity extends FacebookActivity {
+public class FacebookLoginActivity extends com.facebook.FacebookActivity {
 
     protected Fragment getFragment() {
         Intent intent = getIntent();
@@ -24,7 +24,8 @@ public class FacebookMyActivity extends FacebookActivity {
                 dialogFragment.show(manager, "SingleFragment");
 
                 fragment = dialogFragment;
-            } else if (DeviceShareDialogFragment.TAG.equals(intent.getAction())) {
+            }
+            else if (DeviceShareDialogFragment.TAG.equals(intent.getAction())) {
                 DeviceShareDialogFragment dialogFragment = new DeviceShareDialogFragment();
                 dialogFragment.setRetainInstance(true);
                 dialogFragment.setShareContent((ShareContent) intent.getParcelableExtra("content"));

@@ -3,7 +3,12 @@ package com.huehn.initword.core.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
+import android.util.Base64;
+import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -22,6 +27,8 @@ import com.huehn.initword.core.utils.hook.LoginFbFunction;
 
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import io.reactivex.functions.Consumer;
@@ -35,14 +42,29 @@ public class FbLoginMgr{
     public void doInit() {
         FacebookSdk.sdkInitialize(App.getApp());
         mCallbackManager = CallbackManager.Factory.create();
-        mFacebookLoginManager = LoginManager.getInstance();
         LoginFbFunction.hookFbLoginManager(new Consumer() {
             @Override
             public void accept(Object o) throws Exception {
                 LogManager.d("huehn LoginFbFunction hookFbLoginManager callback");
-                HookManager.hookActivity("FacebookActivity");
+                HookManager.hookActivity("FacebookLoginActivity");
             }
         });
+        mFacebookLoginManager = LoginManager.getInstance();
+        try {
+            PackageInfo info = App.getApp().getPackageManager().getPackageInfo(
+                    App.getApp().getPackageName(),
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+            LogManager.d("package name : " + App.getApp().getPackageName());
+        } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -94,7 +116,7 @@ public class FbLoginMgr{
 //                                result.id = id;
 //                                result.token = accessToken.getToken();
 //                                fetchFaceBookUserName(accessToken, result);
-//                                LogUtils.d("huehn third facebook userId : " + id);
+                                LogManager.d("huehn third facebook userId : " + loginResult.getAccessToken());
 //                            }
 //                        }
                     }

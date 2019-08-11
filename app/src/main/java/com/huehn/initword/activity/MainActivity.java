@@ -219,4 +219,10 @@ public class MainActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         fbLoginMgr.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void finish() {
+        fbLoginMgr.logout();
+        super.finish();
+    }
 }
