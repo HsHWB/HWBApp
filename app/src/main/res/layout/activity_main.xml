@@ -37,6 +37,16 @@
         android:gravity="center"
         android:text="下载文件"/>
 
+    <TextView
+        android:id="@+id/goto_facebook_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/goto_weex"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        android:text="facebook登陆"/>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="100dp"

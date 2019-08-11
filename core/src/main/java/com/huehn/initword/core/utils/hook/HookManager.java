@@ -9,6 +9,7 @@ import com.huehn.initword.core.utils.Log.LogManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class HookManager {
 
@@ -73,5 +74,45 @@ public class HookManager {
         HookActivityOnCreate hookActivityOnCreate = new HookActivityOnCreate(instrumentation);
         //把修改后的Instrumentation对象丢回给mInstrumentation字段，这个字段是从activityClass拿出来的，则给回activityClass。
         field.set(activityThread1, hookActivityOnCreate);
+    }
+
+
+    /**
+     * 从ActivityThread的mActivities中查找某个activity
+     * @param activityName 某个activity名
+     * @return
+     */
+    public static Activity hookActivity(String activityName){
+        Class activityThreadClass = null;
+        try {
+            activityThreadClass = Class.forName("android.app.ActivityThread");
+            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
+            Field activitiesField = activityThreadClass.getDeclaredField("mActivities");
+            activitiesField.setAccessible(true);
+            Map activities = (Map) activitiesField.get(activityThread);
+            for (Object activityRecord : activities.values()) {
+                Class activityRecordClass = activityRecord.getClass();//实际上是ActivityThread中的ActivityClientRecord.class
+                Field activityField = activityRecordClass.getDeclaredField("activity");//获取ActivityClientRecord.class中的activity属性
+                activityField.setAccessible(true);
+                Activity activityObject = (Activity) activityField.get(activityRecord);
+                if(activityObject != null){
+                    LogManager.d("huehn hookActivity activityObject name : " + activityObject.getClass().getSimpleName());
+                    if (activityObject.getClass().getSimpleName().contains(activityName)){
+                        return activityObject;
+                    }
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

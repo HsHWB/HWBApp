@@ -3,6 +3,7 @@ package com.huehn.initword;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.huehn.initword.bean.SubTestData;
 import com.huehn.initword.bean.TestData;
 import com.huehn.initword.core.utils.Log.LogManager;
 
@@ -51,11 +52,13 @@ public class MoneySum{
 //        int a = 2;
 //        System.out.println("a 非的结果是："+(~a));
 //        System.out.println(formatString("abcaba", "A", "B"));
-        try {
-            printConstrutor(TestData.class, String.class, String.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            printConstrutor(TestData.class, String.class, String.class);
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        }
+        SubTestData subTestData = new SubTestData("1", "2");
+        subTestData.printSuperString();
     }
 
 //    public static String formatString(@NonNull String source, Object... args){

@@ -14,11 +14,11 @@ public class UMManager {
             （如需要使用AndroidManifest.xml中配置好的appkey和channel值，UMConfigure.init调用中appkey和channel参数请置为null）。
         */
         UMConfigure.init(context, BaseConstant.UMENG_APPKEY, "HWBAPP_CHANNEL", UMConfigure.DEVICE_TYPE_PHONE, null);
-        if (BuildConfig.DEBUG){
-            UMConfigure.setLogEnabled(true);
-        }else {
-            UMConfigure.setLogEnabled(false);
-        }
+//        if (BuildConfig.DEBUG){
+//            UMConfigure.setLogEnabled(true);
+//        }else {
+//            UMConfigure.setLogEnabled(false);
+//        }
     }
 
 }

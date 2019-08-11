@@ -15,6 +15,7 @@ import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.basecomponent.bean.permission.PermissionRequestCode;
 import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
+import com.huehn.initword.core.login.FbLoginMgr;
 import com.huehn.initword.core.module.IOnCallBack;
 import com.huehn.initword.core.net.download.FileDownLoad;
 import com.huehn.initword.core.net.download.HttpConfig;
@@ -40,28 +41,20 @@ public class MainActivity extends BaseActivity {
     private TextView textView;
     private TextView weexView;
     private TextView downFileView;
+    private TextView facebookLogin;
     private ImageView imageView;
+
+    public FbLoginMgr fbLoginMgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            HookManager.hookOnCreateActivity(this);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "toast error1", Toast.LENGTH_SHORT).show();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "toast error2", Toast.LENGTH_SHORT).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "toast error3", Toast.LENGTH_SHORT).show();
-        }
         textView = findViewById(R.id.text);
         imageView = findViewById(R.id.imageview);
         weexView = findViewById(R.id.goto_weex);
         downFileView = findViewById(R.id.goto_downfile);
+        facebookLogin = findViewById(R.id.goto_facebook_login);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,11 +81,8 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        try {
-            HookManager.hookViewOnClickListener(textView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        fbLoginMgr = new FbLoginMgr();
+        fbLoginMgr.doInit();
 
         weexView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,6 +203,20 @@ public class MainActivity extends BaseActivity {
 //                        translateAnim.getAnimation(), alphaAnim.getAnimation());
             }
         });
+
+
+        facebookLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fbLoginMgr.doLogin(MainActivity.this);
+
+            }
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        fbLoginMgr.onActivityResult(requestCode, resultCode, data);
+    }
 }

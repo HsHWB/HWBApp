@@ -8,4 +8,10 @@ public class DoSomethingModule implements IDoSomething{
         LogManager.d(arg);
         return arg;
     }
+
+    @Override
+    public String doSomething2(String arg) {
+        LogManager.d(arg);
+        return arg;
+    }
 }

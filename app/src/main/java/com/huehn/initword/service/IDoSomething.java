@@ -4,4 +4,5 @@ public interface IDoSomething {
 
     String doSomething(String arg);
 
+    String doSomething2(String arg);
 }
