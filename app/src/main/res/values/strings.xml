@@ -2,10 +2,10 @@
     <!--<string name="app_name">HWB App</string>-->
     <!--<string name="channel_name">qa</string>-->
 
-    <!--<string name="facebook_app_id">396156207771711</string>-->
-    <!--<string name="fb_login_protocol_scheme">fb396156207771711</string>-->
+    <string name="facebook_app_id">396156207771711</string>
+    <string name="fb_login_protocol_scheme">fb396156207771711</string>
 
-    <string name="facebook_app_id">736625030116831</string>
-    <string name="fb_login_protocol_scheme">fb736625030116831</string>
+    <!--<string name="facebook_app_id">736625030116831</string>-->
+    <!--<string name="fb_login_protocol_scheme">fb736625030116831</string>-->
 
 </resources>
