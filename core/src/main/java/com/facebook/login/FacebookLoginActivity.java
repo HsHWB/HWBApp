@@ -9,6 +9,7 @@ import com.facebook.FacebookActivity;
 import com.facebook.internal.FacebookDialogFragment;
 import com.facebook.share.internal.DeviceShareDialogFragment;
 import com.facebook.share.model.ShareContent;
+import com.huehn.initword.core.R;
 
 public class FacebookLoginActivity extends com.facebook.FacebookActivity {
 
@@ -32,7 +33,7 @@ public class FacebookLoginActivity extends com.facebook.FacebookActivity {
                 dialogFragment.show(manager, "SingleFragment");
                 fragment = dialogFragment;
             } else {
-                fragment = new LoginFragment();
+                fragment = new LoginMyFragment();
                 fragment.setRetainInstance(true);
                 manager.beginTransaction()
                         .add(R.id.com_facebook_fragment_container, fragment, "SingleFragment")

@@ -2,6 +2,7 @@ package com.facebook.login;
 
 import android.os.Parcel;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.facebook.appevents.AppEventsConstants;
 
@@ -21,10 +22,16 @@ public class LoginMyClient extends LoginClient {
         super(source);
     }
 
+
+
+
+
     boolean tryCurrentHandler() {
         LoginMethodHandler handler = getCurrentHandler();
+
+
         if (handler.needsInternetPermission() && !checkInternetPermission()) {
-            addLoggingExtra(
+            addMyLoggingExtra(
                     LoginLogger.EVENT_EXTRAS_MISSING_INTERNET_PERMISSION,
                     AppEventsConstants.EVENT_PARAM_VALUE_YES,
                     false
@@ -45,7 +52,7 @@ public class LoginMyClient extends LoginClient {
             // notification -- log that we skipped it.
             getMyLogger().logAuthorizationMethodNotTried(pendingRequest.getAuthId(),
                     handler.getNameForLogging());
-            addLoggingExtra(
+            addMyLoggingExtra(
                     LoginLogger.EVENT_EXTRAS_NOT_TRIED,
                     handler.getNameForLogging(),
                     true
@@ -71,7 +78,18 @@ public class LoginMyClient extends LoginClient {
     }
 
 
-    private void addMyLoggingExtra(){
+    private void addMyLoggingExtra(String key, String value, boolean accumulate){
+        try {
+            Method addMyLoginMethod = LoginClient.class.getDeclaredMethod("addLoggingExtra", String.class, String.class, Boolean.class);
 
+            addMyLoginMethod.invoke(originLoginClient, key, value, accumulate);
+
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

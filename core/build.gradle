@@ -61,7 +61,7 @@ dependencies {
     api 'com.alibaba.android:bindingx_weex_plugin:1.1.1@aar'
 
 
-    api 'com.android.support:support-dynamic-animation:26.0.0-beta2'
+//    api 'com.android.support:support-dynamic-animation:26.0.0-beta2'
     api 'com.android.support:recyclerview-v7:27.1.1', {
         exclude group: 'com.android.support'
         exclude module: 'support-v4'
