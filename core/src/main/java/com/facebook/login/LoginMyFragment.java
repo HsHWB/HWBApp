@@ -10,6 +10,7 @@ import java.util.List;
 
 public class LoginMyFragment extends LoginFragment{
 
+    private LoginFragment originLoginFragment;
     private LoginClient originLoginClient;
     private LoginMyClient loginMyClient;
 
@@ -35,6 +36,14 @@ public class LoginMyFragment extends LoginFragment{
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+
+    }
+
     /**
      * 把自己的loginClient代替原来的loginClient
      */
@@ -44,7 +53,7 @@ public class LoginMyFragment extends LoginFragment{
                 Field loginClientField = LoginFragment.class.getDeclaredField("loginClient");
                 loginClientField.setAccessible(true);
                 originLoginClient = (LoginClient) loginClientField.get(this);
-                loginClientField.set(originLoginClient, loginMyClient);
+                loginClientField.set(this, loginMyClient);
             }catch (Exception e){
                 e.printStackTrace();
             }

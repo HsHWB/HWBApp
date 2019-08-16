@@ -65,7 +65,8 @@ public class LoginMyClient extends LoginClient {
     private LoginLogger getMyLogger(){
         try {
             Method method = LoginClient.class.getDeclaredMethod("getLogger");
-            LoginLogger loginLogger = (LoginLogger) method.invoke(originLoginClient);
+            method.setAccessible(true);
+            LoginLogger loginLogger = (LoginLogger) method.invoke(this);
             return loginLogger;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
