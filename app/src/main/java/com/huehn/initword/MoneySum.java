@@ -59,6 +59,7 @@ public class MoneySum{
 //        }
         SubTestData subTestData = new SubTestData("1", "2");
         subTestData.printSuperString();
+        subTestData.printTitle();
     }
 
 //    public static String formatString(@NonNull String source, Object... args){

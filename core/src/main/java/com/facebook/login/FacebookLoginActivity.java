@@ -10,6 +10,7 @@ import com.facebook.internal.FacebookDialogFragment;
 import com.facebook.share.internal.DeviceShareDialogFragment;
 import com.facebook.share.model.ShareContent;
 import com.huehn.initword.core.R;
+import com.huehn.initword.core.utils.Log.LogManager;
 
 public class FacebookLoginActivity extends com.facebook.FacebookActivity {
 
@@ -20,6 +21,7 @@ public class FacebookLoginActivity extends com.facebook.FacebookActivity {
         Toast.makeText(getBaseContext(), "activity", Toast.LENGTH_SHORT).show();
         if (fragment == null) {
             if (FacebookDialogFragment.TAG.equals(intent.getAction())) {
+                LogManager.d("huehn fb FacebookLoginActivity getFragment 1");
                 FacebookDialogFragment dialogFragment = new FacebookDialogFragment();
                 dialogFragment.setRetainInstance(true);
                 dialogFragment.show(manager, "SingleFragment");
@@ -27,12 +29,14 @@ public class FacebookLoginActivity extends com.facebook.FacebookActivity {
                 fragment = dialogFragment;
             }
             else if (DeviceShareDialogFragment.TAG.equals(intent.getAction())) {
+                LogManager.d("huehn fb FacebookLoginActivity getFragment 2");
                 DeviceShareDialogFragment dialogFragment = new DeviceShareDialogFragment();
                 dialogFragment.setRetainInstance(true);
                 dialogFragment.setShareContent((ShareContent) intent.getParcelableExtra("content"));
                 dialogFragment.show(manager, "SingleFragment");
                 fragment = dialogFragment;
             } else {
+                LogManager.d("huehn fb FacebookLoginActivity getFragment 3");
                 fragment = new LoginMyFragment();
                 fragment.setRetainInstance(true);
                 manager.beginTransaction()
