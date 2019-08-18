@@ -69,8 +69,7 @@ public class LoginFbManager extends LoginManager {
 
     public Intent getFacebookActivityIntent(LoginClient.Request request) {
 
-        LogManager.d("huehn LoginFbManager getFacebookActivityIntent");
-
+        LogManager.d("huehn fb LoginFbManager getFacebookActivityIntent");
         Intent intent = new Intent();
         intent.setClass(FacebookSdk.getApplicationContext(), FacebookLoginActivity.class);
         intent.setAction(request.getLoginBehavior().toString());

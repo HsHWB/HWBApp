@@ -17,11 +17,7 @@ public class HookManager {
      * 改变某些view的点击事件
      * onClickListener定义在View的ListenerInfo类中
      * @param view
-     * @throws ClassNotFoundException
-     * @throws NoSuchFieldException
-     * @throws NoSuchMethodException
      * @throws InvocationTargetException
-     * @throws IllegalAccessException
      */
     public static void hookViewOnClickListener(View view) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         if (view == null){
@@ -51,8 +47,6 @@ public class HookManager {
 
     /**
      * hook activity的onCreate方法
-     * @throws NoSuchFieldException
-     * @throws IllegalAccessException
      */
     public static void hookOnCreateActivity(Activity activity) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException {
 

@@ -7,9 +7,12 @@ public class TestData {
     private String name;
     private String age;
 
+    private String title;
+
     public TestData(String name, String age) {
         this.name = name;
         this.age = age;
+        this.title = "huehn TestData super title";
     }
 
     public String getName() {
@@ -36,6 +39,10 @@ public class TestData {
     }
 
     public void printSuperString(){
-        getString();
+        getSuperString();
+    }
+
+    public void printTitle(){
+        System.out.println(title);
     }
 }

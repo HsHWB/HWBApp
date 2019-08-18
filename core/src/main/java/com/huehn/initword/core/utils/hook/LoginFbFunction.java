@@ -2,6 +2,7 @@ package com.huehn.initword.core.utils.hook;
 
 import com.facebook.login.LoginFbManager;
 import com.facebook.login.LoginManager;
+import com.huehn.initword.core.utils.Log.LogManager;
 
 import java.lang.reflect.Field;
 
@@ -17,6 +18,7 @@ public class LoginFbFunction {
             instanceField.setAccessible(true);
             Object instanceObject = LoginManager.getInstance();
             instanceField.set(instanceObject, loginFbManager);
+            LogManager.d("huehn fb LoginFbFunction hookFbLoginManager");
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
