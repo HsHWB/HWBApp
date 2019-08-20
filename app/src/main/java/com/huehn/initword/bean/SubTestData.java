@@ -16,4 +16,9 @@ public class SubTestData extends TestData {
     protected void getSuperString() {
         System.out.println("huehn TestData sub getString");
     }
+
+//    @Override
+    public void getString() {
+        System.out.println("huehn TestData sub getString");
+    }
 }

@@ -42,6 +42,10 @@ public class TestData {
         getSuperString();
     }
 
+    private void getPrivateString(){
+        getString();
+    }
+
     public void printTitle(){
         System.out.println(title);
     }
