@@ -7,6 +7,9 @@ import com.huehn.initword.bean.SubTestData;
 import com.huehn.initword.bean.TestData;
 import com.huehn.initword.core.utils.Log.LogManager;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,8 +61,19 @@ public class MoneySum{
 //            e.printStackTrace();
 //        }
         SubTestData subTestData = new SubTestData("1", "2");
-        subTestData.printSuperString();
-        subTestData.printTitle();
+        try {
+            Method method = TestData.class.getDeclaredMethod("getPrivateString");
+            method.setAccessible(true);
+            method.invoke(subTestData);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        //        subTestData.printSuperString();
+//        subTestData.printTitle();
     }
 
 //    public static String formatString(@NonNull String source, Object... args){
