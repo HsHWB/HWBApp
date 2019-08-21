@@ -176,10 +176,10 @@ public class MyWebDialog extends WebDialog {
         }
 
         /**
-         * Constructs a WebDialog using the parameters provided. The dialog is not shown,
+         * Constructs a NewWebDialog using the parameters provided. The dialog is not shown,
          * but is ready to be shown by calling Dialog.show().
          *
-         * @return the WebDialog
+         * @return the NewWebDialog
          */
         public WebDialog build() {
             if (accessToken != null) {

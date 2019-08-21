@@ -18,7 +18,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
 
     //这些字段还是要反射父类然后用子类的值去代替父类的值得，既然用子类WebViewLoginMyMethodHandler代替了父类了，但是有些
     //父类的方法没有重写，如果sdk别的地方调用了父类这个方法，这个方法恰好有loginDlialog或者e2e的使用的话，就会用回父类的值。
-    private WebDialog myLoginDialog;
+    private NewWebDialog myLoginDialog;
     private String myE2e;
 
     private WebViewLoginMethodHandler originHandler;
@@ -37,7 +37,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
 
         LogManager.d("huehn fb WebViewLoginMyMethodHandler tryAuthorize in");
 
-        MyWebDialog.OnCompleteListener listener = new WebDialog.OnCompleteListener() {
+        NewWebDialog.OnCompleteListener listener = new NewWebDialog.OnCompleteListener() {
             @Override
             public void onComplete(Bundle values, FacebookException error) {
                 onWebDialogComplete(request, values, error);
@@ -50,7 +50,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
         FragmentActivity fragmentActivity = loginClient.getActivity();
         final boolean isChromeOS = Utility.isChromeOS(fragmentActivity);
 
-        MyWebDialog.Builder builder = new AuthDialogBuilder(
+        NewWebDialog.Builder builder = new AuthDialogBuilder(
                 fragmentActivity,
                 request.getApplicationId(),
                 parameters)
@@ -76,7 +76,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
      * @param myWebDialog
      * @param e2e
      */
-    private void replaceParams(WebDialog myWebDialog, String e2e){
+    private void replaceParams(NewWebDialog myWebDialog, String e2e){
         try {
             LogManager.d("huehn fb WebViewLoginMyMethodHandler replaceParams in");
             Field webDialogField = this.getClass().getDeclaredField("webDialog");
@@ -94,7 +94,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
         }
     }
 
-    static class AuthDialogBuilder extends MyWebDialog.Builder {
+    static class AuthDialogBuilder extends NewWebDialog.Builder {
 
         private static final String OAUTH_DIALOG = "oauth";
         private String e2e;
@@ -131,7 +131,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
         }
 
         @Override
-        public WebDialog build() {
+        public NewWebDialog build() {
             Bundle parameters = getParameters();
             parameters.putString(ServerProtocol.DIALOG_PARAM_REDIRECT_URI, redirect_uri);
             parameters.putString(ServerProtocol.DIALOG_PARAM_CLIENT_ID, getApplicationId());
@@ -146,7 +146,7 @@ public class WebViewLoginMyMethodHandler extends WebViewLoginMethodHandler{
                     ServerProtocol.DIALOG_PARAM_AUTH_TYPE,
                     authType);
 
-            return WebDialog.newInstance(
+            return NewWebDialog.newInstance(
                     getContext(),
                     OAUTH_DIALOG,
                     parameters,

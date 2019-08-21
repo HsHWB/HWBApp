@@ -61,19 +61,19 @@ public class MoneySum{
 //            e.printStackTrace();
 //        }
         SubTestData subTestData = new SubTestData("1", "2");
-        try {
-            Method method = TestData.class.getDeclaredMethod("getPrivateString");
-            method.setAccessible(true);
-            method.invoke(subTestData);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Method method = TestData.class.getDeclaredMethod("getPrivateString");
+//            method.setAccessible(true);
+//            method.invoke(subTestData);
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
         //        subTestData.printSuperString();
-//        subTestData.printTitle();
+        subTestData.printTitle();
     }
 
 //    public static String formatString(@NonNull String source, Object... args){
