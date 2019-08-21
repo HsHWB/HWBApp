@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
@@ -26,6 +27,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -60,6 +63,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
@@ -531,6 +535,7 @@ public class NewWebDialog extends Dialog {
         webView.getSettings().setSaveFormData(false);
         webView.setFocusable(true);
         webView.setFocusableInTouchMode(true);
+        webView.
         webView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -649,6 +654,23 @@ public class NewWebDialog extends Dialog {
             webView.setVisibility(View.VISIBLE);
             crossImageView.setVisibility(View.VISIBLE);
             isPageFinished = true;
+        }
+
+        @Nullable
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            LogManager.d("huehn shouldInterceptRequest request : " + request.getUrl() + "  method : " + request.getMethod());
+            Map<String, String> headers = request.getRequestHeaders();
+            if (headers != null) {
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+
+                    LogManager.d("huehn shouldInterceptRequest request header key : " + entry.getKey() +
+                            "      value : " + entry.getValue());
+
+                }
+
+            }
+            return super.shouldInterceptRequest(view, request);
         }
     }
 
