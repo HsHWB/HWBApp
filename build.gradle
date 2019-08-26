@@ -29,12 +29,12 @@ allprojects {//这是代码运行用的库
 //对于包含多个模块的 Android 项目，在项目级别定义某些属性，并在所有模块间共享这些属性可能会非常有用。
 //为此，您可以将 额外属性添加到顶级 build.gradle 文件的 ext 代码块中。
 ext{
-    compileSdkVersion = 26//用于编译的 SDK 版本。
+    compileSdkVersion = 28//用于编译的 SDK 版本。
     minSdkVersion = 19 //
-    targetSdkVersion = 26
+    targetSdkVersion = 28
     versionCode = 1
     versionName = "0.0.1"
-    buildToolVersion = '27.0.3'// 构建工具版本
+    buildToolVersion = '28.0.2'// 构建工具版本
 }
 
 task clean(type: Delete) {
