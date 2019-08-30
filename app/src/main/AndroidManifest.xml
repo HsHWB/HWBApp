@@ -45,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.WeexActivity"/>
+        <activity android:name=".activity.TwoSideScrollActivity"/>
     </application>
 
 </manifest>
