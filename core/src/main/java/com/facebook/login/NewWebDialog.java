@@ -535,7 +535,6 @@ public class NewWebDialog extends Dialog {
         webView.getSettings().setSaveFormData(false);
         webView.setFocusable(true);
         webView.setFocusableInTouchMode(true);
-//        webView.
         webView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
