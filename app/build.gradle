@@ -50,7 +50,8 @@ android {
         release {
             minifyEnabled true //是否使用混淆
             zipAlignEnabled true//Zipalign优化,内存对齐，google要求的
-            shrinkResources false//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
+            shrinkResources false
+//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
             //使用的混淆文件，一个是系统默认的混淆文件，
             // 它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件，比如有一些文件不能混淆的就keep住，就在这个文件写。
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -59,10 +60,11 @@ android {
         }
 
 
-        debug{
+        debug {
             minifyEnabled false //是否使用混淆
             zipAlignEnabled true//Zipalign优化,内存对齐，google要求的
-            shrinkResources false//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
+            shrinkResources false
+//删除无效的Resource,shrinkResources依赖于minifyEnabled，必须和minifyEnabled一起用,这样生成的APK会小很多.
             //使用的混淆文件，一个是系统默认的混淆文件，
             // 它位于sdk\tools\proguard\proguard-android.txt。proguard-rules.pro文件是项目中自定义的混淆文件，比如有一些文件不能混淆的就keep住，就在这个文件写。
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -74,19 +76,19 @@ android {
     publishNonDefault true //设置没有默认发布类型
     //渠道配置，如果不配置渠道，则只有official和debug。配了渠道之后，每个渠道都有official和debug
     productFlavors {
-        file(path).eachLine {line ->
+        file(path).eachLine { line ->
             def channelName = line
-            if (!channelName.trim().equals("")){
+            if (!channelName.trim().equals("")) {
                 "$channelName" {
                     println("$channelName" + " is marking-------------------------------------------")
                     resValue "string", "channel_name", channelName
                 }
-                if("qa".equals(channelName.trim())){
+                if ("qa".equals(channelName.trim())) {
                     qa {
                         applicationId "com.huehn.initword.test"
                         resValue "string", "app_name", "HWB App Test"
                     }
-                }else if("official".equals(channelName.trim())){
+                } else if ("official".equals(channelName.trim())) {
                     official {
                         applicationId "com.huehn.initword"
                         resValue "string", "app_name", "HWB App"
@@ -102,7 +104,6 @@ android {
 }
 
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -114,8 +115,8 @@ dependencies {
 
     //support library dependencies
 
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -74,6 +74,7 @@ public class MoneySum{
 //        }
         //        subTestData.printSuperString();
         subTestData.printTitle();
+        System.out.println("huehn subTestData name : " + SubTestData.class.getName());
     }
 
 //    public static String formatString(@NonNull String source, Object... args){
