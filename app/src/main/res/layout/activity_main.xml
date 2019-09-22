@@ -47,11 +47,31 @@
         android:gravity="center"
         android:text="facebook登陆"/>
 
+    <TextView
+        android:id="@+id/goto_two_side_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/goto_weex"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        android:text="两边滑动的seekbar控件"/>
+
+    <TextView
+        android:id="@+id/goto_corner_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/goto_weex"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        android:text="顶部圆角底部直角的webview"/>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="100dp"
         android:layout_height="200dp"
-        app:layout_constraintTop_toBottomOf="@+id/goto_downfile"
+        app:layout_constraintTop_toBottomOf="@+id/goto_two_side_view"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="50dp"/>
 

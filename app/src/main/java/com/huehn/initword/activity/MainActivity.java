@@ -38,6 +38,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
@@ -53,14 +54,17 @@ public class MainActivity extends BaseActivity {
     public TextView facebookLogin;
     @BindView(R.id.imageview)
     public ImageView imageView;
-
+    @BindView(R.id.goto_two_side_view)
+    public TextView twoSideSeekBar;
+    @BindView(R.id.goto_corner_web_view)
+    public TextView cornerWebView;
     public FbLoginMgr fbLoginMgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
 
         fbLoginMgr = new FbLoginMgr();
         fbLoginMgr.doInit();
@@ -85,7 +89,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview})
+    @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
+        , R.id.goto_two_side_view, R.id.goto_corner_web_view})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -103,7 +108,23 @@ public class MainActivity extends BaseActivity {
             case R.id.imageview:
                 clickImage();
                 break;
+            case R.id.goto_two_side_view:
+                goToTwoSideSeekBar();
+                break;
+            case R.id.goto_corner_web_view:
+                goToCornerWebView();
+                break;
         }
+    }
+
+    private void goToCornerWebView(){
+        Intent intent = new Intent(MainActivity.this, CornerWebViewActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    private void goToTwoSideSeekBar(){
+        Intent intent = new Intent(MainActivity.this, TwoSideScrollActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     private void clickText(){
