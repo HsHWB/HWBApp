@@ -58,6 +58,8 @@ public class MainActivity extends BaseActivity {
     public TextView twoSideSeekBar;
     @BindView(R.id.goto_corner_web_view)
     public TextView cornerWebView;
+    @BindView(R.id.goto_remote_activity)
+    public TextView remoteText;
     public FbLoginMgr fbLoginMgr;
 
     @Override
@@ -90,7 +92,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
-        , R.id.goto_two_side_view, R.id.goto_corner_web_view})
+        , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -113,6 +115,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_corner_web_view:
                 goToCornerWebView();
+                break;
+            case R.id.goto_remote_activity:
+                goToRemoteActivity();
                 break;
         }
     }
@@ -255,6 +260,11 @@ public class MainActivity extends BaseActivity {
 //                alphaAnim.onStart(imageView);
 //                AnimUtils.normalAnimationSet(imageView, true,
 //                        translateAnim.getAnimation(), alphaAnim.getAnimation());
+    }
+
+    private void goToRemoteActivity(){
+        Intent intent = new Intent(MainActivity.this, RemoteProcessActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     @Override
