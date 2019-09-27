@@ -1,46 +1,58 @@
 package com.huehn.initword.service;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.huehn.initword.core.module.IOnCallBack;
+import com.huehn.initword.core.net.download.FileDownLoad;
+import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.utils.Log.LogManager;
-import com.huehn.initword.core.utils.SystemUtils.AppUtils;
 
 /**
  * 放在主进程的service
  */
-public class MainThreadService extends Service {
+public class MainThreadService extends BaseService<MainThreadService, MainThreadService.MainThreadServiceBinder> {
+
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        LogManager.d("huehn MainThreadService onCreate getNowProcessName : " + AppUtils.getNowProcessName());
-
+    public MainThreadService getService() {
+        return this;
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        LogManager.d("huehn MainThreadService onStartCommand intent : " + intent + "      startId : " + startId);
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onDestroy() {
-        LogManager.d("huehn MainThreadService onDestroy");
-        super.onDestroy();
+    public MainThreadServiceBinder getBinder() {
+        return new MainThreadServiceBinder(this);
     }
 
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        LogManager.d("huehn MainThreadService onBind intent : " + intent);
-        return null;
+    public void download(){
+        FileDownLoad<ImageView> fileDownLoad = new FileDownLoad.Builder()
+                .setUrl("https://dl.google.com/dl/android/studio/install/3.5.0.21/android-studio-ide-191.5791312-windows.exe")
+                .setOnSuccessListener(new IOnCallBack() {
+                    @Override
+                    public void accept(Object o)  {
+                        LogManager.d("huehn downFile success");
+                    }
+                })
+                .setOnErrorListener(new IOnCallBack<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable)  {
+                        throwable.printStackTrace();
+                    }
+                })
+                .build();
+        fileDownLoad.startDownLoad(HttpConfig.HttpURLType.GET.getId(), "android-studio.exe");
     }
 
-    @Override
-    public boolean onUnbind(Intent intent) {
-        LogManager.d("huehn MainThreadService onUnbind intent : " + intent);
-        return super.onUnbind(intent);
+    public class MainThreadServiceBinder extends BaseBinder<MainThreadService>{
+
+        public MainThreadServiceBinder(MainThreadService service) {
+            super(service);
+        }
+
+    }
+
+    public void toast(){
+        Toast.makeText(getApplicationContext(), "toast", Toast.LENGTH_SHORT).show();
     }
 }
