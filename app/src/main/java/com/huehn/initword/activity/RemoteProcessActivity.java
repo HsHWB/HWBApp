@@ -11,6 +11,7 @@ import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.AppUtils;
+import com.huehn.initword.service.MainServiceConnection;
 import com.huehn.initword.service.MainThreadService;
 
 import butterknife.BindView;
@@ -29,6 +30,9 @@ public class RemoteProcessActivity extends BaseActivity {
     public TextView intentStartStop;
     @BindView(R.id.bind_start_unbind)
     public TextView bindStartUnBind;
+
+    private MainServiceConnection mainServiceConnection;
+
     private Unbinder unbinder;
 
     @Override
@@ -51,7 +55,9 @@ public class RemoteProcessActivity extends BaseActivity {
     }
 
     private void startServiceByBind(){
-
+        Intent intent = new Intent(RemoteProcessActivity.this, MainThreadService.class);
+        mainServiceConnection = new MainServiceConnection();
+        bindService(intent, mainServiceConnection, BIND_AUTO_CREATE);
     }
 
     /**
@@ -67,7 +73,9 @@ public class RemoteProcessActivity extends BaseActivity {
      * 通过bind启动的service，要通过unBind去关闭
      */
     private void bindStop(){
-//        unbindService();
+        if (mainServiceConnection != null) {
+            unbindService(mainServiceConnection);
+        }
     }
 
     @OnClick({R.id.intent_start, R.id.bind_start, R.id.intent_start_stop, R.id.bind_start_unbind})
@@ -85,6 +93,7 @@ public class RemoteProcessActivity extends BaseActivity {
                 break;
 
             case R.id.bind_start_unbind:
+                bindStop();
                 break;
         }
     }

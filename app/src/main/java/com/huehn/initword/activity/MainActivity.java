@@ -179,6 +179,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToDownFile(){
+        //https://dl.google.com/dl/android/studio/install/3.5.0.21/android-studio-ide-191.5791312-windows.exe
         FileDownLoad<ImageView> fileDownLoad = new FileDownLoad.Builder()
                 .setUrl("https://github.com/git-for-windows/git/releases/download/v2.22.0.windows.1/Git-2.22.0-64-bit.exe")
                 .setOnSuccessListener(new IOnCallBack() {
