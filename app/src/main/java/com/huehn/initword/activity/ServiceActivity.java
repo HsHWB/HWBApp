@@ -9,17 +9,15 @@ import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.AppUtils;
-import com.huehn.initword.service.service.MainThreadAIDLService;
-import com.huehn.initword.service.serviceConnection.MainAIDLServiceConnection;
-import com.huehn.initword.service.serviceConnection.MainServiceConnection;
 import com.huehn.initword.service.service.MainThreadService;
+import com.huehn.initword.service.serviceConnection.MainServiceConnection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class RemoteProcessActivity extends BaseActivity {
+public class ServiceActivity extends BaseActivity {
 
     private MainThreadService mainThreadService;
     @BindView(R.id.intent_start)
@@ -31,14 +29,14 @@ public class RemoteProcessActivity extends BaseActivity {
     @BindView(R.id.bind_start_unbind)
     public TextView bindStartUnBind;
 
-    private MainAIDLServiceConnection mainServiceConnection;
+    private MainServiceConnection mainServiceConnection;
 
     private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remote_process);
+        setContentView(R.layout.service_activity);
         LogManager.d("huehn RemoteProcessActivity onCreate getNowProcessName : " + AppUtils.getNowProcessName());
         unbinder = ButterKnife.bind(this);
         initService();
@@ -50,13 +48,13 @@ public class RemoteProcessActivity extends BaseActivity {
 
 
     private void startServiceByIntent(){
-        Intent intent = new Intent(RemoteProcessActivity.this, MainThreadAIDLService.class);
-        RemoteProcessActivity.this.startService(intent);
+        Intent intent = new Intent(ServiceActivity.this, MainThreadService.class);
+        ServiceActivity.this.startService(intent);
     }
 
     private void startServiceByBind(){
-        Intent intent = new Intent(RemoteProcessActivity.this, MainThreadAIDLService.class);
-        mainServiceConnection = new MainAIDLServiceConnection();
+        Intent intent = new Intent(ServiceActivity.this, MainThreadService.class);
+        mainServiceConnection = new MainServiceConnection();
         bindService(intent, mainServiceConnection, BIND_AUTO_CREATE);
     }
 
@@ -65,8 +63,8 @@ public class RemoteProcessActivity extends BaseActivity {
      * 如果同时通过intent和bind去启动了service，那么要stopService以及unbind才能完全关闭service
      */
     private void intentStop(){
-        Intent intent = new Intent(RemoteProcessActivity.this, MainThreadService.class);
-        RemoteProcessActivity.this.stopService(intent);
+        Intent intent = new Intent(ServiceActivity.this, MainThreadService.class);
+        ServiceActivity.this.stopService(intent);
     }
 
     /**
@@ -105,4 +103,5 @@ public class RemoteProcessActivity extends BaseActivity {
             unbinder.unbind();
         }
     }
+
 }

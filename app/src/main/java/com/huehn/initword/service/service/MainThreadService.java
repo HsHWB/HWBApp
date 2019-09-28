@@ -1,4 +1,4 @@
-package com.huehn.initword.service;
+package com.huehn.initword.service.service;
 
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -7,11 +7,13 @@ import com.huehn.initword.core.module.IOnCallBack;
 import com.huehn.initword.core.net.download.FileDownLoad;
 import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.service.base.BaseService;
+import com.huehn.initword.service.binder.MainThreadServiceBinder;
 
 /**
  * 放在主进程的service
  */
-public class MainThreadService extends BaseService<MainThreadService, MainThreadService.MainThreadServiceBinder> {
+public class MainThreadService extends BaseService<MainThreadService, MainThreadServiceBinder> {
 
 
     @Override
@@ -42,14 +44,6 @@ public class MainThreadService extends BaseService<MainThreadService, MainThread
                 })
                 .build();
         fileDownLoad.startDownLoad(HttpConfig.HttpURLType.GET.getId(), "android-studio.exe");
-    }
-
-    public class MainThreadServiceBinder extends BaseBinder<MainThreadService>{
-
-        public MainThreadServiceBinder(MainThreadService service) {
-            super(service);
-        }
-
     }
 
     public void toast(){
