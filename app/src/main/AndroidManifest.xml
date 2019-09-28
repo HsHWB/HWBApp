@@ -20,11 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".activity.ServiceActivity"/>
         <activity android:name=".activity.RemoteProcessActivity"
             android:process=":remote"/>
         <activity android:name=".activity.CornerWebViewActivity" />
 
-        <service android:name=".service.MainThreadService"/>
+        <service android:name=".service.service.MainThreadService"/>
+
+        <service android:name=".service.service.MainThreadAIDLService"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

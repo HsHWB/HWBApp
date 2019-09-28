@@ -1,4 +1,4 @@
-package com.huehn.initword.service;
+package com.huehn.initword.service.base;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.os.IBinder;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.AppUtils;
 
-public abstract class BaseService<T extends BaseService, R extends BaseBinder> extends Service {
+public abstract class BaseService<T extends BaseService, R extends IBaseBinder> extends Service {
 
     private T service;
     private R binder;
@@ -15,7 +15,7 @@ public abstract class BaseService<T extends BaseService, R extends BaseBinder> e
     public IBinder onBind(Intent intent) {
         binder = getBinder();
         LogManager.d("huehn BaseService onBind");
-        return binder;
+        return (IBinder) binder;
     }
 
     @Override
