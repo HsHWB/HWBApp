@@ -62,6 +62,8 @@ public class MainActivity extends BaseActivity {
     public TextView serviceText;
     @BindView(R.id.goto_remote_activity)
     public TextView remoteText;
+    @BindView(R.id.goto_drawelayout_activity)
+    public TextView draweLayoutText;
     public FbLoginMgr fbLoginMgr;
 
     @Override
@@ -94,7 +96,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
-        , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity})
+        , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity
+        , R.id.goto_drawelayout_activity})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -123,6 +126,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_remote_activity:
                 goToRemoteActivity();
+                break;
+            case R.id.goto_drawelayout_activity:
+                goToDrawerActivity();
                 break;
         }
     }
@@ -275,6 +281,11 @@ public class MainActivity extends BaseActivity {
 
     private void goToRemoteActivity(){
         Intent intent = new Intent(MainActivity.this, RemoteProcessActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    private void goToDrawerActivity(){
+        Intent intent = new Intent(MainActivity.this, DrawerViewPagerActivity.class);
         MainActivity.this.startActivity(intent);
     }
 
