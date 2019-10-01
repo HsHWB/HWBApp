@@ -34,7 +34,8 @@ public class ViewPagerFragment extends BaseFragment {
         return viewPagerFragment;
     }
 
-    private void getBundle(Bundle bundle){
+    @Override
+    public void getBundle(Bundle bundle){
         if (bundle == null){
             return;
         }
@@ -43,14 +44,10 @@ public class ViewPagerFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getBundle(getArguments());
-        initView(getView());
-    }
-
-    private void initView(View view){
+    public void initView(View view){
+        if (view == null){
+            return;
+        }
         viewPager = view.findViewById(R.id.view_pager);
         textView = view.findViewById(R.id.view_pager_recycler);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
@@ -87,12 +84,17 @@ public class ViewPagerFragment extends BaseFragment {
         }
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_pager_fragment, container, false);
-        return view;
+    public int getLayoutView() {
+        return R.layout.view_pager_fragment;
     }
+
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.view_pager_fragment, container, false);
+//        return view;
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
