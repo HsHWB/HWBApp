@@ -24,6 +24,7 @@ public class ViewPagerFragment2 extends BaseFragment {
     private int parentPosition;
     public final static String BUNDLE_POSITION = "position";
     public final static String BUNDLE_PARENT_POSITION = "parent_position";
+
     public static ViewPagerFragment2 getInstance(int position, int parentPosition){
         ViewPagerFragment2 viewPagerFragment = new ViewPagerFragment2();
         Bundle bundle = new Bundle();
@@ -33,7 +34,8 @@ public class ViewPagerFragment2 extends BaseFragment {
         return viewPagerFragment;
     }
 
-    private void getBundle(Bundle bundle){
+    @Override
+    public void getBundle(Bundle bundle){
         if (bundle == null){
             return;
         }
@@ -50,24 +52,27 @@ public class ViewPagerFragment2 extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getBundle(getArguments());
-        initView();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_pager_text, container, false);
-        return view;
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.view_pager_text, container, false);
+//        return view;
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void initView(){
-        textView = getView().findViewById(R.id.view_pager_text);
+    @Override
+    public void initView(View view){
+        if (view == null){
+            return;
+        }
+
+        textView = view.findViewById(R.id.view_pager_text);
 
         textView.setText("" + position);
         switch (parentPosition){
@@ -87,5 +92,10 @@ public class ViewPagerFragment2 extends BaseFragment {
                 textView.setBackgroundColor(getContext().getResources().getColor(R.color.color_ff45b6ff));
                 break;
         }
+    }
+
+    @Override
+    public int getLayoutView() {
+        return R.layout.view_pager_text;
     }
 }
