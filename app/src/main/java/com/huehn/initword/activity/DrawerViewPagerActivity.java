@@ -19,6 +19,7 @@ import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.ViewUtils;
 import com.huehn.initword.ui.adapter.ViewPagerAdapter;
+import com.huehn.initword.ui.view.TouchDrawerLayout;
 import com.huehn.initword.ui.view.ViewPagerForDrawer;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class DrawerViewPagerActivity extends BaseActivity {
 
-    private DrawerLayout drawerLayout;
+    private TouchDrawerLayout drawerLayout;
     private FrameLayout contentFrame;
     private RecyclerView recyclerView;
     private ViewPagerForDrawer viewPager;
@@ -46,6 +47,8 @@ public class DrawerViewPagerActivity extends BaseActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         contentFrame = findViewById(R.id.drawer_frame_content);
         recyclerView = findViewById(R.id.drawer_menu);
+
+//        TouchDrawerLayout.setCustomLeftEdgeSize(drawerLayout, 1f);
 
         initViewPager();
         initDrawerLayout();
@@ -78,7 +81,7 @@ public class DrawerViewPagerActivity extends BaseActivity {
 
             @Override
             public void requestDrawerLayout(int position, float distance) {
-                drawerLayout.openDrawer(Gravity.END);
+//                drawerLayout.openDrawer(Gravity.END);
 //                drawerLayout.scrollTo(ViewUtils.getScreenWidth() - (int) distance, 0);
                 LogManager.d("huehn requestDrawerLayout distance : " + (int) distance);
             }
@@ -97,27 +100,27 @@ public class DrawerViewPagerActivity extends BaseActivity {
     }
 
     private void initDrawerLayout(){
-        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-            }
-
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
+//        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+//            @Override
+//            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawerOpened(@NonNull View drawerView) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(@NonNull View drawerView) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawerStateChanged(int newState) {
+//
+//            }
+//        });
     }
 
     private void initGesture(){
