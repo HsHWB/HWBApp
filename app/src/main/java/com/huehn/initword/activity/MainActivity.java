@@ -64,6 +64,8 @@ public class MainActivity extends BaseActivity {
     public TextView remoteText;
     @BindView(R.id.goto_drawelayout_activity)
     public TextView draweLayoutText;
+    @BindView(R.id.goto_viewdrag_activity)
+    public TextView viewdragText;
     public FbLoginMgr fbLoginMgr;
 
     @Override
@@ -129,6 +131,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_drawelayout_activity:
                 goToDrawerActivity();
+                break;
+            case R.id.goto_viewdrag_activity:
                 break;
         }
     }
@@ -288,6 +292,8 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, DrawerViewPagerActivity.class);
         MainActivity.this.startActivity(intent);
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
