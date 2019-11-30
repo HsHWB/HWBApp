@@ -47,5 +47,5 @@
 -dontwarn com.taobao.weex.bridge.**
 #防止weex被混淆
 
-#有注解的不混淆
--keep public class *extends java.lang.annotation.Annotation{*;}
+##有注解的不混淆
+#-keep public class *extends java.lang.annotation.Annotation{*;}
