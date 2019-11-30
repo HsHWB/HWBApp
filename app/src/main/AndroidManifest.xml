@@ -20,14 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.ServiceActivity"/>
-        <activity android:name=".activity.RemoteProcessActivity"
-            android:process=":remote"/>
+        <activity android:name=".activity.ServiceActivity" />
+        <activity
+            android:name=".activity.RemoteProcessActivity"
+            android:process=":remote" />
         <activity android:name=".activity.CornerWebViewActivity" />
 
-        <service android:name=".service.service.MainThreadService"/>
-
-        <service android:name=".service.service.MainThreadAIDLService"/>
+        <service android:name=".service.service.MainThreadService" />
+        <service android:name=".service.service.MainThreadAIDLService" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -62,7 +62,8 @@
         </activity>
         <activity android:name=".activity.WeexActivity" />
         <activity android:name=".activity.TwoSideScrollActivity" />
-        <activity android:name=".activity.DrawerViewPagerActivity"/>
+        <activity android:name=".activity.DrawerViewPagerActivity" />
+        <activity android:name=".activity.MainKotlinActivity"/>
     </application>
 
 </manifest>
