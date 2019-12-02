@@ -19,6 +19,7 @@ import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.ViewUtils;
 import com.huehn.initword.ui.adapter.ViewPagerAdapter;
+import com.huehn.initword.ui.view.LeftDrawerLayout;
 import com.huehn.initword.ui.view.TouchDrawerLayout;
 import com.huehn.initword.ui.view.ViewPagerForDrawer;
 
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class DrawerViewPagerActivity extends BaseActivity {
 
-    private TouchDrawerLayout drawerLayout;
+    private LeftDrawerLayout drawerLayout;
     private FrameLayout contentFrame;
     private RecyclerView recyclerView;
     private ViewPagerForDrawer viewPager;
