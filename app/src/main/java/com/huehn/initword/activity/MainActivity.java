@@ -68,6 +68,8 @@ public class MainActivity extends BaseActivity {
     public TextView viewdragText;
     @BindView(R.id.goto_kotlin)
     public TextView kotlinText;
+    @BindView(R.id.goto_class_override)
+    public TextView overrideClass;
     public FbLoginMgr fbLoginMgr;
 
     @Override
@@ -101,7 +103,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
         , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity
-        , R.id.goto_drawelayout_activity, R.id.goto_kotlin})
+        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -138,6 +140,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_kotlin:
                 goToKotlinActivity();
+                break;
+            case R.id.goto_class_override:
+                goToOverrideClass();
                 break;
         }
     }
@@ -300,6 +305,11 @@ public class MainActivity extends BaseActivity {
 
     private void goToKotlinActivity(){
         Intent intent = new Intent(MainActivity.this, MainKotlinActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    private void goToOverrideClass(){
+        Intent intent = new Intent(MainActivity.this, SubClass.class);
         MainActivity.this.startActivity(intent);
     }
 

@@ -118,6 +118,13 @@
         android:gravity="center"
         android:text="打开kotlin"/>
 
+    <TextView
+        android:id="@+id/goto_class_override"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="重写类"/>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="100dp"
