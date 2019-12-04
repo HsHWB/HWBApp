@@ -64,6 +64,8 @@
         <activity android:name=".activity.TwoSideScrollActivity" />
         <activity android:name=".activity.DrawerViewPagerActivity" />
         <activity android:name=".activity.MainKotlinActivity"/>
+        <activity android:name=".activity.SuperClass"/>
+        <activity android:name=".activity.SubClass"/>
     </application>
 
 </manifest>
