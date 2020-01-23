@@ -14,6 +14,7 @@ val y = 0
 
 class MainKotlinActivity : AppCompatActivity() {
 
+    @ExperimentalUnsignedTypes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -38,14 +39,27 @@ class MainKotlinActivity : AppCompatActivity() {
 
     private fun getMultAnim() : AnimationSet {
         var animSet : AnimationSet = AnimationSet(this@MainKotlinActivity, null)
-        animSet.addAnimation(getScaleAnim())
+//        animSet.addAnimation(getScaleAnim())
         animSet.addAnimation(getAlphaAnim())
+        animSet.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {
+                println("huehn anim getMultAnim start : " + if (animation == null) "null" else animation.duration)
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                println("huehn anim getMultAnim end")
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
         return animSet
     }
 
     private fun getScaleAnim() : ScaleAnimation{
-        var anim : ScaleAnimation = ScaleAnimation(0f, 0f, 0f, 100f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f)
-        anim.duration = 500
+        var anim : ScaleAnimation = ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.duration = 5000
         anim.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationStart(animation: Animation?) {
                 println("huehn anim start")
@@ -63,8 +77,8 @@ class MainKotlinActivity : AppCompatActivity() {
     }
 
     private fun getAlphaAnim() : AlphaAnimation{
-        var anim : AlphaAnimation = AlphaAnimation(1.0f, 0.2f)
-        anim.duration = 5000
+        var anim : AlphaAnimation = AlphaAnimation(0.2f, 1.0f)
+        anim.duration = 2000
         return anim
     }
 
