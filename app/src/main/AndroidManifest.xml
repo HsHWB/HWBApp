@@ -20,6 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.huehn.initword.fileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/path" />
+        </provider>
         <activity android:name=".activity.ServiceActivity" />
         <activity
             android:name=".activity.RemoteProcessActivity"
@@ -63,9 +72,13 @@
         <activity android:name=".activity.WeexActivity" />
         <activity android:name=".activity.TwoSideScrollActivity" />
         <activity android:name=".activity.DrawerViewPagerActivity" />
-        <activity android:name=".activity.MainKotlinActivity"/>
-        <activity android:name=".activity.SuperClass"/>
-        <activity android:name=".activity.SubClass"/>
+        <activity android:name=".activity.MainKotlinActivity" />
+        <activity android:name=".activity.SuperClass" />
+        <activity android:name=".activity.SubClass" />
+        <activity android:name=".component.activity.ClipActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".component.activity.ClipImageActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
