@@ -47,6 +47,7 @@ import com.huehn.initword.service.IDoSomething;
 import com.huehn.initword.ui.anim.module.AlphaAnim;
 import com.huehn.initword.ui.anim.module.AnimationSetAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
+import com.huehn.initword.ui.dialog.BottomDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
@@ -223,26 +224,28 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToWeex(){
-        Intent intent = new Intent(MainActivity.this, WeexActivity.class);
-        MainActivity.this.startActivity(intent);
-        DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
-        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
-        IDoSomething iDoSomething = (IDoSomething) Proxy.newProxyInstance(IDoSomething.class.getClassLoader(),
-                new Class[]{IDoSomething.class},
-                doSomethingProxy);
-        iDoSomething.doSomething("hello");
-
-        TestData testData = new TestData("test", "27");
-        try {
-            Field field = TestData.class.getDeclaredField("subTestData");
-            field.setAccessible(true);
-            SubTestData subTestData = (SubTestData) field.get(testData);
-            LogManager.d("huehn name : " + subTestData.getName());
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        BottomDialog bottomDialog = new BottomDialog();
+        bottomDialog.show(getSupportFragmentManager(), BottomDialog.class.getSimpleName());
+//        Intent intent = new Intent(MainActivity.this, WeexActivity.class);
+//        MainActivity.this.startActivity(intent);
+//        DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
+//        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+//        IDoSomething iDoSomething = (IDoSomething) Proxy.newProxyInstance(IDoSomething.class.getClassLoader(),
+//                new Class[]{IDoSomething.class},
+//                doSomethingProxy);
+//        iDoSomething.doSomething("hello");
+//
+//        TestData testData = new TestData("test", "27");
+//        try {
+//            Field field = TestData.class.getDeclaredField("subTestData");
+//            field.setAccessible(true);
+//            SubTestData subTestData = (SubTestData) field.get(testData);
+//            LogManager.d("huehn name : " + subTestData.getName());
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void goToDownFile(){
