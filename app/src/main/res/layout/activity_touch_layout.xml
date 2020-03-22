@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="@color/color_ff000000"
+        android:text="拖动控件"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_b4b4b4"/>
+
+<!--    <android.support.v7.widget.RecyclerView-->
+<!--        android:id="@+id/touch_recycler"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="10dp"/>-->
+
+    <com.heaven7.android.dragflowlayout.DragFlowLayout
+        android:id="@+id/drag_flowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp200"
+        android:background="@color/color_b4b4b4"/>
+
+</LinearLayout>

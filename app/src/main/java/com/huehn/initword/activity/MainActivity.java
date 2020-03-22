@@ -187,16 +187,18 @@ public class MainActivity extends BaseActivity {
     }
 
     private void clickText(){
-        //权限判断
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            //申请WRITE_EXTERNAL_STORAGE权限
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-        } else {
-            //跳转到调用系统相机
-            gotoCamera();
-        }
+        Intent intent = new Intent(MainActivity.this, BehaviorActivity.class);
+        MainActivity.this.startActivity(intent);
+//        //权限判断
+//        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            //申请WRITE_EXTERNAL_STORAGE权限
+//            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+//        } else {
+//            //跳转到调用系统相机
+//            gotoCamera();
+//        }
 //        gotoCamera();
 //        addDisposable(SecuritiesApi.getShanghaiPlateList().subscribe(new Consumer<ShangHaiPlateListResponse>() {
 //            @Override

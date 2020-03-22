@@ -38,6 +38,9 @@
         <service android:name=".service.service.MainThreadService" />
         <service android:name=".service.service.MainThreadAIDLService" />
 
+        <activity android:name=".activity.ItemTouchActivity"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -79,6 +82,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".component.activity.ClipImageActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BehaviorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>

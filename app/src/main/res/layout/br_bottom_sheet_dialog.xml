@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    android:background="@color/color_ffffff">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp200"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:titleEnabled="true"
+            app:title="dialog"
+            app:contentScrim ="@color/color_ff7eb3ef"
+            app:statusBarScrim="@color/color_ff7762f7"
+            app:scrimAnimationDuration="200">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:minHeight="@dimen/dp50"
+                app:titleTextColor="@color/color_0f000000"
+                app:title="展开"
+                app:layout_collapseMode="pin"/>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/title_text"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="15sp"-->
+<!--            android:text="dialog"-->
+<!--            app:layout_scrollFlags="scroll|enterAlways"/>-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

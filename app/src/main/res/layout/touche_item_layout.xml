@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:maxWidth="100dp"
+    android:paddingStart="@dimen/dp15"
+    android:paddingEnd="@dimen/dp15"
+    android:paddingTop="@dimen/dp5"
+    android:paddingBottom="@dimen/dp5"
+    android:background="@drawable/corner4_border6">
+
+    <TextView
+        android:id="@+id/touch_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/color_ff000000"
+        android:text="1"/>
+
+    <ImageView
+        android:id="@+id/touch_item_close"
+        android:layout_width="@dimen/dp15"
+        android:layout_height="@dimen/dp15"
+        android:layout_alignEnd="@+id/touch_item_text"
+        android:background="@drawable/com_facebook_close"/>
+
+</RelativeLayout>
