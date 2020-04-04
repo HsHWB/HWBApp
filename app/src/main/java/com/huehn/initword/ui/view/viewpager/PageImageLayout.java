@@ -25,7 +25,7 @@ public class PageImageLayout extends LinearLayout implements IItemImageView {
     }
 
     private void initView(){
-//        View.inflate(getContext(), R.layout.)
+        View.inflate(getContext(), R.layout.adpater_page_item_image_layout, this);
     }
 
     @Override
@@ -36,6 +36,11 @@ public class PageImageLayout extends LinearLayout implements IItemImageView {
     @Override
     public String getImageUrl() {
         return null;
+    }
+
+    @Override
+    public View getView() {
+        return this;
     }
 
     @Override

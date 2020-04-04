@@ -6,6 +6,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.huehn.initword.core.utils.Log.LogManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +68,23 @@ public class GreatViewPagerAdapter<T extends IGreatViewPagerAdapterData> extends
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        if (position < itemViewList.size() && itemViewList.get(position) != null && itemViewList.get(position).getView() != null){
+            container.addView(itemViewList.get(position).getView());
+            LogManager.d("huehn instantiateItem position : " + position);
+            return itemViewList.get(position).getView();
+        }else {
+            return null;
+        }
+    }
 
-        return super.instantiateItem(container, position);
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+//        super.destroyItem(container, position, object);
+
+        if (container != null && position < itemViewList.size() && itemViewList.get(position) != null && itemViewList.get(position).getView() != null){
+            container.removeView(itemViewList.get(position).getView());
+        }
+
     }
 
     @Override

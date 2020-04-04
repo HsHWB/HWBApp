@@ -3,7 +3,6 @@ package com.huehn.initword.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,15 +14,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
-=======
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.content.FileProvider;
->>>>>>> #滑屏
+
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -40,13 +32,10 @@ import com.huehn.initword.basecomponent.bean.permission.PermissionRequestCode;
 import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
 import com.huehn.initword.bean.SubTestData;
 import com.huehn.initword.bean.TestData;
-<<<<<<< HEAD
 import com.huehn.initword.component.activity.ClipActivity;
 import com.huehn.initword.component.activity.ClipImageActivity;
 import com.huehn.initword.component.activity.clip.FileUtil;
-=======
 import com.huehn.initword.core.app.App;
->>>>>>> #滑屏
 import com.huehn.initword.core.login.FbLoginMgr;
 import com.huehn.initword.core.module.IOnCallBack;
 import com.huehn.initword.core.net.download.FileDownLoad;
@@ -212,7 +201,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void clickText(){
-        Intent intent = new Intent(MainActivity.this, BehaviorActivity.class);
+        Intent intent = new Intent(MainActivity.this, GreatPagerActivity.class);
         MainActivity.this.startActivity(intent);
 //        //权限判断
 //        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -226,27 +215,27 @@ public class MainActivity extends BaseActivity {
 //        }
 //        gotoCamera();
 
-        String storePath = Environment.getExternalStorageDirectory().toString();
-        String filePath = storePath + "/screenshot.png";
-        File file = new File(filePath);
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setPackage("com.instagram.android");
-        shareIntent.setType("image/*");
-        Uri imageUri = FileProvider.getUriForFile(
-                MainActivity.this,
-                "com.huehn.initword.fileprovider", //(use your app signature + ".provider" )
-                file);
-        Bitmap bitmap2 = BitmapFactory.decodeFile(imageUri.toString());
-//        shareIntent.setDataAndType(imageUri, "image/*");
-        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-//        shareIntent.putExtra(Intent.EXTRA_TEXT, content + "\n" + linkUrl);
-        if (isIntentUsable(shareIntent)) {
-            this.startActivity(shareIntent);
-            //不点击复制链接或者更多的时候，发送分享事件
-        } else {
-        }
+//        String storePath = Environment.getExternalStorageDirectory().toString();
+//        String filePath = storePath + "/screenshot.png";
+//        File file = new File(filePath);
+//        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//        shareIntent.setPackage("com.instagram.android");
+//        shareIntent.setType("image/*");
+//        Uri imageUri = FileProvider.getUriForFile(
+//                MainActivity.this,
+//                "com.huehn.initword.fileprovider", //(use your app signature + ".provider" )
+//                file);
+//        Bitmap bitmap2 = BitmapFactory.decodeFile(imageUri.toString());
+////        shareIntent.setDataAndType(imageUri, "image/*");
+//        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+////        shareIntent.putExtra(Intent.EXTRA_TEXT, content + "\n" + linkUrl);
+//        if (isIntentUsable(shareIntent)) {
+//            this.startActivity(shareIntent);
+//            //不点击复制链接或者更多的时候，发送分享事件
+//        } else {
+//        }
 //        addDisposable(SecuritiesApi.getShanghaiPlateList().subscribe(new Consumer<ShangHaiPlateListResponse>() {
 //            @Override
 //            public void accept(ShangHaiPlateListResponse shangHaiPlateListResponse) throws Exception {

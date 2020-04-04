@@ -39,6 +39,8 @@
         <service android:name=".service.service.MainThreadService" />
         <service android:name=".service.service.MainThreadAIDLService" />
 
+        <activity android:name=".activity.GreatPagerActivity"/>
+
         <activity android:name=".activity.ItemTouchActivity"
             android:screenOrientation="portrait"/>
 
