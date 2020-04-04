@@ -27,7 +27,8 @@
             android:exported="false">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/path" />
+                android:resource="@xml/file_paths">
+            </meta-data>
         </provider>
         <activity android:name=".activity.ServiceActivity" />
         <activity

@@ -3,6 +3,7 @@ package com.huehn.initword.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,6 +15,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
+=======
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
+>>>>>>> #滑屏
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -30,9 +40,13 @@ import com.huehn.initword.basecomponent.bean.permission.PermissionRequestCode;
 import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
 import com.huehn.initword.bean.SubTestData;
 import com.huehn.initword.bean.TestData;
+<<<<<<< HEAD
 import com.huehn.initword.component.activity.ClipActivity;
 import com.huehn.initword.component.activity.ClipImageActivity;
 import com.huehn.initword.component.activity.clip.FileUtil;
+=======
+import com.huehn.initword.core.app.App;
+>>>>>>> #滑屏
 import com.huehn.initword.core.login.FbLoginMgr;
 import com.huehn.initword.core.module.IOnCallBack;
 import com.huehn.initword.core.net.download.FileDownLoad;
@@ -54,6 +68,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -186,6 +201,15 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(MainActivity.this, TwoSideScrollActivity.class);
         MainActivity.this.startActivity(intent);
     }
+    public static boolean isIntentUsable(Intent intent) {
+        PackageManager pm = App.getApp().getPackageManager();
+        List<ResolveInfo> activities = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (activities != null && activities.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private void clickText(){
         Intent intent = new Intent(MainActivity.this, BehaviorActivity.class);
@@ -201,6 +225,28 @@ public class MainActivity extends BaseActivity {
 //            gotoCamera();
 //        }
 //        gotoCamera();
+
+        String storePath = Environment.getExternalStorageDirectory().toString();
+        String filePath = storePath + "/screenshot.png";
+        File file = new File(filePath);
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setPackage("com.instagram.android");
+        shareIntent.setType("image/*");
+        Uri imageUri = FileProvider.getUriForFile(
+                MainActivity.this,
+                "com.huehn.initword.fileprovider", //(use your app signature + ".provider" )
+                file);
+        Bitmap bitmap2 = BitmapFactory.decodeFile(imageUri.toString());
+//        shareIntent.setDataAndType(imageUri, "image/*");
+        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, content + "\n" + linkUrl);
+        if (isIntentUsable(shareIntent)) {
+            this.startActivity(shareIntent);
+            //不点击复制链接或者更多的时候，发送分享事件
+        } else {
+        }
 //        addDisposable(SecuritiesApi.getShanghaiPlateList().subscribe(new Consumer<ShangHaiPlateListResponse>() {
 //            @Override
 //            public void accept(ShangHaiPlateListResponse shangHaiPlateListResponse) throws Exception {
@@ -224,8 +270,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToWeex(){
-        BottomDialog bottomDialog = new BottomDialog();
-        bottomDialog.show(getSupportFragmentManager(), BottomDialog.class.getSimpleName());
+//        BottomDialog bottomDialog = new BottomDialog();
+//        bottomDialog.show(getSupportFragmentManager(), BottomDialog.class.getSimpleName());
 //        Intent intent = new Intent(MainActivity.this, WeexActivity.class);
 //        MainActivity.this.startActivity(intent);
 //        DoSomethingProxy doSomethingProxy = new DoSomethingProxy(new DoSomethingModule());
