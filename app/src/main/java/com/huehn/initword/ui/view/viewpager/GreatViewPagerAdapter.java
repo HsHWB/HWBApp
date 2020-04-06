@@ -23,6 +23,7 @@ public class GreatViewPagerAdapter<T extends IGreatViewPagerAdapterData> extends
 
     public void setDataList(List<T> dataList) {
         if (dataList != null && this.dataList != null){
+            this.dataList.clear();
             append(dataList);
         }
     }
@@ -30,10 +31,20 @@ public class GreatViewPagerAdapter<T extends IGreatViewPagerAdapterData> extends
 
     public void append(List<T> data){
         if (dataList != null && data != null && data.size() > 0) {
-            this.dataList.addAll(data);
+            if (data.size() == 1){
+                this.dataList.addAll(data);
+            }else if (data.size() > 1){
+                this.dataList.add(data.get(data.size() - 1));
+                this.dataList.addAll(data);
+                this.dataList.add(data.get(0));
+            }
             notifyList();
             notifyDataSetChanged();
         }
+    }
+
+    public List<T> getDataList() {
+        return dataList;
     }
 
     private void notifyList(){

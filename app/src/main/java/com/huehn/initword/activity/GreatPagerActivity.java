@@ -11,6 +11,7 @@ import com.huehn.initword.ui.view.viewpager.GreatPageTransformer;
 import com.huehn.initword.ui.view.viewpager.GreatViewPager;
 import com.huehn.initword.ui.view.viewpager.GreatViewPagerAdapter;
 import com.huehn.initword.ui.view.viewpager.IItemView;
+import com.huehn.initword.ui.view.viewpager.IPagerCallback;
 import com.huehn.initword.ui.view.viewpager.ItemData;
 import com.huehn.initword.ui.view.viewpager.PageStreamLayout;
 
@@ -28,7 +29,7 @@ public class GreatPagerActivity extends BaseActivity {
         setContentView(R.layout.activity_great_pager);
         greatViewPager = findViewById(R.id.great_view_pager);
         greatViewPagerAdapter = new GreatViewPagerAdapter(this);
-        greatViewPager.setAdapter(greatViewPagerAdapter);
+        greatViewPager.setGreatViewPagerAdapter(greatViewPagerAdapter);
         List<ItemData> dataList = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             ItemData itemData = new ItemData();
@@ -39,24 +40,33 @@ public class GreatPagerActivity extends BaseActivity {
         greatViewPager.setOffscreenPageLimit(dataList.size());
         greatViewPagerAdapter.setDataList(dataList);
 
-        greatViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        greatViewPager.setiPagerCallback(new IPagerCallback() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
             }
 
             @Override
-            public void onPageSelected(int i) {
-                if (dataList.get(i).getCardType() == IItemView.IType.STREAM_TYPE){
-                    ((PageStreamLayout)greatViewPager.getChildAt(i)).play();
+            public void onPageSelected(IItemView itemView, int i) {
+                if (itemView == null){
+                    return;
                 }
-                if (i - 1>= 0 && dataList.get(i - 1).getCardType() == IItemView.IType.STREAM_TYPE){
-                    LogManager.d("huehn onPageSelected i - 1 : " + (i - 1) + " is a video");
-                    ((PageStreamLayout)greatViewPager.getChildAt(i - 1)).pause();
+                if (itemView.getCardType() == IItemView.IType.STREAM_TYPE){
+                    ((PageStreamLayout)itemView).play();
                 }
-                if (i + 1 < dataList.size() && dataList.get(i + 1).getCardType() == IItemView.IType.STREAM_TYPE){
-                    LogManager.d("huehn onPageSelected i + 1 : " + (i + 1) + " is a video");
-                    ((PageStreamLayout)greatViewPager.getChildAt(i + 1)).pause();
+                if (i - 1 >= 0 && greatViewPager.getChildAt(i - 1) != null) {
+                    IItemView lastView = (IItemView) greatViewPager.getChildAt(i - 1);
+                    if (itemView.getCardType() == IItemView.IType.STREAM_TYPE) {
+                        LogManager.d("huehn onPageSelected i - 1 : " + (i - 1) + " is a video");
+                        ((PageStreamLayout) lastView).pause();
+                    }
+                }
+                if (i + 1 < dataList.size() && greatViewPager.getChildAt(i + 1) != null) {
+                    IItemView nextView = (IItemView) greatViewPager.getChildAt(i + 1);
+                    if (nextView.getCardType() == IItemView.IType.STREAM_TYPE) {
+                        LogManager.d("huehn onPageSelected i + 1 : " + (i + 1) + " is a video");
+                        ((PageStreamLayout) nextView).pause();
+                    }
                 }
 
             }
