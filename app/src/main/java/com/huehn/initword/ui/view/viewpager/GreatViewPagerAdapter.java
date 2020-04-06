@@ -43,7 +43,7 @@ public class GreatViewPagerAdapter<T extends IGreatViewPagerAdapterData> extends
                 if (dataList.get(i) == null){
                     continue;
                 }
-                IItemView iItemView = getViewByPosition(dataList.get(i).cardType());
+                IItemView iItemView = getViewByPosition(dataList.get(i).cardType(), i);
                 if (iItemView == null){
                     continue;
                 }
@@ -54,11 +54,11 @@ public class GreatViewPagerAdapter<T extends IGreatViewPagerAdapterData> extends
     }
 
 
-    private IItemView getViewByPosition(int dataType){
+    private IItemView getViewByPosition(int dataType, int position){
         if (dataType == IItemView.IType.IMAGE_TYPE){
             return new PageImageLayout(this.context);
         }else if (dataType == IItemView.IType.STREAM_TYPE){
-            return new PageStreamLayout(this.context);
+            return new PageStreamLayout(this.context, position);
         }else {
             return null;
         }

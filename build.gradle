@@ -32,7 +32,7 @@ allprojects {//这是代码运行用的库
 //为此，您可以将 额外属性添加到顶级 build.gradle 文件的 ext 代码块中。
 ext{
     compileSdkVersion = 28//用于编译的 SDK 版本。
-    minSdkVersion = 19 //
+    minSdkVersion = 21 //
     targetSdkVersion = 28
     versionCode = 1
     versionName = "0.0.1"

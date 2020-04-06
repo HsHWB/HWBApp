@@ -13,7 +13,7 @@ public class GreatPageTransformer implements ViewPager.PageTransformer {
 
     @Override
     public void transformPage(@NonNull View page, float position) {
-        LogManager.d("huehn transformPage position : " + position + "      page : " + ((IItemView)page).getView());
+//        LogManager.d("huehn transformPage position : " + position + "      page : " + ((IItemView)page).getView());
         float scale = Math.max(MIN_SCALE, 1 - Math.abs(position));
         float transparent = Math.max(MIN_TRANSPARENT, 1 - Math.abs(position));
         //position小于等于1的时候，代表page已经位于中心item的最左边，
