@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.huehn.initword">
@@ -15,23 +14,26 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true"
         tools:replace="android:allowBackup">
+        <activity android:name=".activity.MoveViewActivity"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.huehn.initword.fileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
+
         <activity android:name=".activity.ServiceActivity" />
         <activity
             android:name=".activity.RemoteProcessActivity"
@@ -41,10 +43,10 @@
         <service android:name=".service.service.MainThreadService" />
         <service android:name=".service.service.MainThreadAIDLService" />
 
-        <activity android:name=".activity.GreatPagerActivity"/>
-
-        <activity android:name=".activity.ItemTouchActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GreatPagerActivity" />
+        <activity
+            android:name=".activity.ItemTouchActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -83,13 +85,16 @@
         <activity android:name=".activity.MainKotlinActivity" />
         <activity android:name=".activity.SuperClass" />
         <activity android:name=".activity.SubClass" />
-        <activity android:name=".component.activity.ClipActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".component.activity.ClipImageActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activity.BehaviorActivity"
+        <activity
+            android:name=".component.activity.ClipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".component.activity.ClipImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BehaviorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     </application>
 
 </manifest>

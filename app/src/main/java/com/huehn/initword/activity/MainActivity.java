@@ -259,6 +259,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToWeex(){
+        Intent intent = new Intent(MainActivity.this, MoveViewActivity.class);
+        MainActivity.this.startActivity(intent);
 //        BottomDialog bottomDialog = new BottomDialog();
 //        bottomDialog.show(getSupportFragmentManager(), BottomDialog.class.getSimpleName());
 //        Intent intent = new Intent(MainActivity.this, WeexActivity.class);

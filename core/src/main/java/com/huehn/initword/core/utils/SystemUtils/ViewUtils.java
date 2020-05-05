@@ -1,6 +1,7 @@
 package com.huehn.initword.core.utils.SystemUtils;
 
 import android.app.Service;
+import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -95,4 +96,25 @@ public class ViewUtils {
         }
         return widthPixels;
     }
+
+    /**
+     * dip转换px
+     *
+     * @param dipValue 要转换的dip值
+     * @return
+     */
+    public static int dip2px(float dipValue) {
+        final float scale = App.getApp().getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    /**
+     * px转换dip
+     * @return
+     */
+    public static int px2dip(float pxValue) {
+        final float scale = App.getApp().getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
 }
