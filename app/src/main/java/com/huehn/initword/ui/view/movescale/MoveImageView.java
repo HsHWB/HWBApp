@@ -6,46 +6,53 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
-import com.huehn.initword.R;
 import com.huehn.initword.core.utils.Log.LogManager;
 
 @SuppressLint("AppCompatCustomView")
-public class ScaleView extends ImageView {
+public class MoveImageView extends ImageView {
 
+    private int defaultHeight;
+    private int defaultWidth;
     private GestureDetectorCompat gestureDetectorCompat;
     private MoveGesture moveGesture;
     private MoveListener moveListener;
     private MoveScaleView moveScaleView;
-    private long curTime = 0;
 
-
-    public ScaleView(Context context) {
+    public MoveImageView(Context context) {
         super(context);
-        init();
+        initView();
     }
 
-    public ScaleView(Context context, @Nullable AttributeSet attrs) {
+    public MoveImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        initView();
     }
 
-    public ScaleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MoveImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        initView();
     }
 
-    private void init(){
-        this.setScaleType(ScaleType.MATRIX);
+    private void initView(){
+        this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                MoveImageView.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                defaultHeight = MoveImageView.this.getMeasuredHeight();
+                defaultWidth = MoveImageView.this.getMeasuredWidth();
+                LogManager.d("huehn initView defaultHeight : " + defaultHeight + "      defaultWidth : " + defaultWidth);
+            }
+        });
         initListener();
-        setBackgroundColor(getResources().getColor(R.color.color_ff6600));
-
     }
+
     public void setScaleParentView(MoveScaleView moveScaleView){
         this.moveScaleView = moveScaleView;
     }
-
 
     private void initListener(){
         moveListener = new MoveListener(){
@@ -53,6 +60,7 @@ public class ScaleView extends ImageView {
             protected boolean onDown(MotionEvent e) {
                 if (moveScaleView != null) {
                     moveScaleView.bringToFront();
+                    moveScaleView.down();
                 }
                 return true;
             }
@@ -71,12 +79,8 @@ public class ScaleView extends ImageView {
             protected boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 LogManager.d("huehn move onScroll distanceX : " + distanceX + "      distanceY : " + distanceY);
 //                move(e1, e2);
-                if (System.currentTimeMillis() - curTime < 80){
-                    return true;
-                }
-                curTime = System.currentTimeMillis();
                 if (moveScaleView != null){
-                    moveScaleView.scaleByParams(e1, e2);
+                    moveScaleView.move(e1, e2);
                 }
                 return true;
             }
@@ -86,8 +90,6 @@ public class ScaleView extends ImageView {
         gestureDetectorCompat.setIsLongpressEnabled(false);
     }
 
-
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (gestureDetectorCompat != null){
@@ -95,4 +97,30 @@ public class ScaleView extends ImageView {
         }
         return super.onTouchEvent(event);
     }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+
+    public void scale(MoveScaleView.ScaleData scale){
+        if (scale == null){
+            return;
+        }
+        if (scale.getScaleX() < 1){
+            scale.setScaleX(1f);
+            scale.setScaleY(1f);
+        }else if (scale.getScaleY() > 2){
+            scale.setScaleX(2f);
+            scale.setScaleY(2f);
+        }
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        layoutParams.height = (int) (defaultHeight * scale.getScaleX());
+        layoutParams.width = (int) (defaultWidth * scale.getScaleX());
+        LogManager.d("huehn scale height : " + layoutParams.height + "      width : " + layoutParams.width + "      scale : " + scale.getScaleX() + "      defaultHeight : " + defaultHeight + "      defaultWidth : " + defaultWidth);
+        this.setLayoutParams(layoutParams);
+
+    }
+
 }

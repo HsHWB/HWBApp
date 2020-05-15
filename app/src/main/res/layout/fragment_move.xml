@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_move_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,6 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/color_b4b4b4"/>
+        app:br_drawable="@drawable/br_finish_subscriber"
+        app:br_scale_drawable="@drawable/br_dialog_close_icon"/>
 
+    <com.huehn.initword.ui.view.movescale.MoveScaleView
+        android:id="@+id/move_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:br_drawable="@drawable/br_anchor_attestation"
+        app:br_scale_drawable="@drawable/br_dialog_close_icon"/>
 </RelativeLayout>
