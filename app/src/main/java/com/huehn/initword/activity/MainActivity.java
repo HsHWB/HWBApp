@@ -62,6 +62,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.functions.Consumer;
 public class MainActivity extends BaseActivity {
 
@@ -94,6 +96,8 @@ public class MainActivity extends BaseActivity {
     public TextView overrideClass;
     @BindView(R.id.imageview2)
     public ImageView headImg;
+    @BindView(R.id.goto_rxjava)
+    public TextView gotoRxjava;
     public FbLoginMgr fbLoginMgr;
     private File tempFile;
     //请求相机
@@ -114,8 +118,6 @@ public class MainActivity extends BaseActivity {
 
         fbLoginMgr = new FbLoginMgr();
         fbLoginMgr.doInit();
-
-
 //        addDisposable(requestPermissions(PermissionRequestCode.WRITE_EXTERNAL_STORAGE, new String[]{PermissionRequestCode.WRITE_EXTERNAL_STORAGE_STRING})
 //            .subscribe(new Consumer<PermissionResult>() {
 //                @Override
@@ -137,11 +139,14 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
         , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity
-        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override})
+        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override, R.id.goto_rxjava})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
                 clickText();
+                break;
+            case R.id.goto_rxjava:
+                gotoRxJava();
                 break;
             case R.id.goto_weex:
                 goToWeex();
@@ -256,6 +261,11 @@ public class MainActivity extends BaseActivity {
 //                throwable.printStackTrace();
 //            }
 //        }));
+    }
+
+    private void gotoRxJava(){
+        Intent intent = new Intent(MainActivity.this, RxJavaTestActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     private void goToWeex(){

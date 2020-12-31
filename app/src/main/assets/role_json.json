@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "data":[
+    {"role":"teacher"},
+    {"role":"driver"},
+    {"role":"pilot"},
+    {"role":"farmer"},
+    {"role":"worker"}
+  ]
+}

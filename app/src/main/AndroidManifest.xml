@@ -35,6 +35,9 @@
         </provider>
 
         <activity android:name=".activity.ServiceActivity" />
+
+        <activity android:name=".activity.RxJavaTestActivity"/>
+
         <activity
             android:name=".activity.RemoteProcessActivity"
             android:process=":remote" />
