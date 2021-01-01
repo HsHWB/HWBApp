@@ -82,6 +82,8 @@ dependencies {
 
     api 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
 
+    api 'android.arch.lifecycle:extensions:1.1.1'
+    api 'org.greenrobot:eventbus:3.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'

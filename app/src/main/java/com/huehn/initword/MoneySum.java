@@ -17,41 +17,63 @@ import java.util.Date;
 
 public class MoneySum{
 
-    public final static float money = 30000f;
+    public final static float money = 50000f;
     public final static float rate = 0.0003f;
-    public final static int months = 10;
-    public final static String beginData = "2019-05-09 00:00:00";
-    public final static String endData = "2019-06-09 00:00:00";
+    public final static int months = 5;
+    public final static String beginData = "2020-09-23 00:00:00";
+    public final static String endData = "2021-02-23 00:00:00";
+
+    private int a = 1;
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getA() {
+        return a;
+    }
 
     public final static String[] beginDataArray = {
-            "2019-03-12 00:00:00",
-            "2019-04-12 00:00:00",
-            "2019-05-12 00:00:00",
-            "2019-06-12 00:00:00",
-            "2019-07-12 00:00:00",
-            "2019-08-12 00:00:00",
-            "2019-09-12 00:00:00",
-            "2019-10-12 00:00:00",
-            "2019-11-12 00:00:00",
-            "2019-12-12 00:00:00"};
+            "2020-09-23 00:00:00",
+            "2020-10-23 00:00:00",
+            "2020-11-23 00:00:00",
+            "2020-12-23 00:00:00",
+            "2021-01-23 00:00:00"
+//            "2019-03-12 00:00:00",
+//            "2019-04-12 00:00:00",
+//            "2019-05-12 00:00:00",
+//            "2019-06-12 00:00:00",
+//            "2019-07-12 00:00:00",
+//            "2019-08-12 00:00:00",
+//            "2019-09-12 00:00:00",
+//            "2019-10-12 00:00:00",
+//            "2019-11-12 00:00:00",
+//            "2019-12-12 00:00:00"
+    };
 
     public final static String[] endDataArray = {
-            "2019-04-12 00:00:00",
-            "2019-05-12 00:00:00",
-            "2019-06-12 00:00:00",
-            "2019-07-12 00:00:00",
-            "2019-08-12 00:00:00",
-            "2019-09-12 00:00:00",
-            "2019-10-12 00:00:00",
-            "2019-11-12 00:00:00",
-            "2019-12-12 00:00:00",
-            "2020-01-12 00:00:00"
+            "2020-10-23 00:00:00",
+            "2020-11-23 00:00:00",
+            "2020-12-23 00:00:00",
+            "2021-01-23 00:00:00",
+            "2021-02-23 00:00:00"
+
+//            "2019-04-12 00:00:00",
+//            "2019-05-12 00:00:00",
+//            "2019-06-12 00:00:00",
+//            "2019-07-12 00:00:00",
+//            "2019-08-12 00:00:00",
+//            "2019-09-12 00:00:00",
+//            "2019-10-12 00:00:00",
+//            "2019-11-12 00:00:00",
+//            "2019-12-12 00:00:00",
+//            "2020-01-12 00:00:00"
     };
 
 //    三万，0.004
 //    两万四 0.004
     public static void main(String[] args){
-//        getAll();
+        getAll();
 //        int a = 2;
 //        System.out.println("a 非的结果是："+(~a));
 //        System.out.println(formatString("abcaba", "A", "B"));
@@ -60,7 +82,7 @@ public class MoneySum{
 //        } catch (NoSuchMethodException e) {
 //            e.printStackTrace();
 //        }
-        SubTestData subTestData = new SubTestData("1", "2");
+//        SubTestData subTestData = new SubTestData("1", "2");
 //        try {
 //            Method method = TestData.class.getDeclaredMethod("getPrivateString");
 //            method.setAccessible(true);
@@ -73,8 +95,8 @@ public class MoneySum{
 //            e.printStackTrace();
 //        }
         //        subTestData.printSuperString();
-        subTestData.printTitle();
-        System.out.println("huehn subTestData name : " + SubTestData.class.getName());
+//        subTestData.printTitle();
+//        System.out.println("huehn subTestData name : " + SubTestData.class.getName());
     }
 
 //    public static String formatString(@NonNull String source, Object... args){

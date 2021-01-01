@@ -12,6 +12,8 @@ import com.huehn.initword.manager.ImagerLoaderManager;
 import com.huehn.initword.manager.UMManager;
 import com.huehn.initword.manager.weex.WeexManager;
 
+import leakcanary.LeakCanary;
+
 
 public class MyApplication extends Application {
 
@@ -22,6 +24,7 @@ public class MyApplication extends Application {
         UMManager.init(this);
         ImagerLoaderManager.init(this);
         WeexManager.init(this);
+//        LeakCanary.
         registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {

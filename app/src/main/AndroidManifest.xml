@@ -82,6 +82,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.WeexActivity" />
         <activity android:name=".activity.TwoSideScrollActivity" />
         <activity android:name=".activity.DrawerViewPagerActivity" />

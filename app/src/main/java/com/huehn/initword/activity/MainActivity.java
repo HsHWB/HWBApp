@@ -1,6 +1,8 @@
 package com.huehn.initword.activity;
 
 import android.Manifest;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,12 +20,14 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.content.pm.ResolveInfo;
 
+import android.util.Printer;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +50,7 @@ import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.hook.HookManager;
+import com.huehn.initword.manager.design.SingleInstanceManager;
 import com.huehn.initword.service.DoSomethingModule;
 import com.huehn.initword.service.DoSomethingProxy;
 import com.huehn.initword.service.IDoSomething;
@@ -52,6 +59,8 @@ import com.huehn.initword.ui.anim.module.AnimationSetAnim;
 import com.huehn.initword.ui.anim.module.TranslateAnim;
 import com.huehn.initword.ui.dialog.BottomDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -100,6 +109,7 @@ public class MainActivity extends BaseActivity {
     public TextView gotoRxjava;
     public FbLoginMgr fbLoginMgr;
     private File tempFile;
+    private LinearLayout mainLayout;
     //请求相机
     private static final int REQUEST_CAPTURE = 100;
     //请求相册
@@ -110,15 +120,43 @@ public class MainActivity extends BaseActivity {
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 103;
     //请求写入外部存储
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 104;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("color", 0xf5ffa200);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mainLayout.setBackgroundColor(savedInstanceState.getInt("color"));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        mainLayout = findViewById(R.id.main_layout);
+        mainLayout.setBackgroundColor(0x6633B5E5);
         fbLoginMgr = new FbLoginMgr();
         fbLoginMgr.doInit();
-//        addDisposable(requestPermissions(PermissionRequestCode.WRITE_EXTERNAL_STORAGE, new String[]{PermissionRequestCode.WRITE_EXTERNAL_STORAGE_STRING})
+        System.out.println(this);
+
+        Looper.getMainLooper().setMessageLogging(new Printer() {
+            @Override
+            public void println(String x) {
+                System.out.println("looper x : " + x);
+            }
+        });
+
+        //        textView.setText();
+//        imageView.setImageDrawable(getDrawable(R.drawable.br_add_facebook));
+//        imageView.setRotationY(180);
+//        textView.setBackground(getDrawable(R.drawable.br_add_facebook));
+//        textView.getBackground().setAutoMirrored(true);
+        //        addDisposable(requestPermissions(PermissionRequestCode.WRITE_EXTERNAL_STORAGE, new String[]{PermissionRequestCode.WRITE_EXTERNAL_STORAGE_STRING})
 //            .subscribe(new Consumer<PermissionResult>() {
 //                @Override
 //                public void accept(PermissionResult permissionResult) throws Exception {
@@ -143,7 +181,18 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
+                mainLayout.setBackgroundColor(0x00000000);
                 clickText();
+//                int i = 0;
+//                while (i < 10){
+//                    try {
+//                        System.out.println("循环卡顿中");
+//                        Thread.sleep(2000);
+//                        i++;
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
                 break;
             case R.id.goto_rxjava:
                 gotoRxJava();
@@ -206,8 +255,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void clickText(){
-        Intent intent = new Intent(MainActivity.this, GreatPagerActivity.class);
-        MainActivity.this.startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, TestActivity.class);
+        MainActivity.this.startActivityForResult(intent, 1);
 //        //权限判断
 //        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 //                != PackageManager.PERMISSION_GRANTED) {
@@ -401,9 +450,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToOverrideClass(){
-        Intent intent = new Intent(MainActivity.this, ClipActivity.class);
-        MainActivity.this.startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, ClipActivity.class);
+//        MainActivity.this.startActivity(intent);
 //        gotoCamera();
+        if (SingleInstanceManager.getInstance() != null) {
+            LogManager.d(SingleInstanceManager.getInstance().getContext());
+        }
     }
 
     @Override
@@ -442,7 +494,17 @@ public class MainActivity extends BaseActivity {
 
                 }
                 break;
+
+            case 1:
+//                imageView.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        System.gc();
+//                    }
+//                }, 2000);
+                break;
         }
+
     }
     /**
      * 打开截图界面
