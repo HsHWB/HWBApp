@@ -36,7 +36,7 @@
 
         <activity android:name=".activity.ServiceActivity" />
 
-        <activity android:name=".activity.RxJavaTestActivity"/>
+        <activity android:name=".activity.MainActivity"/>
 
         <activity
             android:name=".activity.RemoteProcessActivity"
@@ -75,7 +75,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.RxJavaTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -36,6 +36,8 @@ import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
 import com.huehn.initword.basecomponent.bean.permission.PermissionRequestCode;
 import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
+import com.huehn.initword.bean.PersonData;
+import com.huehn.initword.bean.PersonDetail;
 import com.huehn.initword.bean.SubTestData;
 import com.huehn.initword.bean.TestData;
 import com.huehn.initword.component.activity.ClipActivity;
@@ -66,14 +68,21 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+
 public class MainActivity extends BaseActivity {
 
     public final static String TAG = "MainActivity";
@@ -144,12 +153,12 @@ public class MainActivity extends BaseActivity {
         fbLoginMgr.doInit();
         System.out.println(this);
 
-        Looper.getMainLooper().setMessageLogging(new Printer() {
-            @Override
-            public void println(String x) {
-                System.out.println("looper x : " + x);
-            }
-        });
+//        Looper.getMainLooper().setMessageLogging(new Printer() {
+//            @Override
+//            public void println(String x) {
+//                System.out.println("looper x : " + x);
+//            }
+//        });
 
         //        textView.setText();
 //        imageView.setImageDrawable(getDrawable(R.drawable.br_add_facebook));
@@ -172,6 +181,13 @@ public class MainActivity extends BaseActivity {
 //                    throwable.printStackTrace();
 //                }
 //            }));
+
+        List<String> stringList = new ArrayList<>();
+        List<List<String>> list = new ArrayList<>();
+        getValue(list);
+    }
+
+    public <R, T extends R> void getValue(List<? extends List<T>> list){
 
     }
 
@@ -315,6 +331,27 @@ public class MainActivity extends BaseActivity {
     private void gotoRxJava(){
         Intent intent = new Intent(MainActivity.this, RxJavaTestActivity.class);
         MainActivity.this.startActivity(intent);
+        Observable.create((new ObservableOnSubscribe<PersonData>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<PersonData> emitter) throws Exception {
+
+            }
+        })).map(new Function<PersonData, PersonDetail>() {
+            @Override
+            public PersonDetail apply(@NonNull PersonData personData) throws Exception {
+                return null;
+            }
+        }).subscribe(new Consumer<PersonDetail>() {
+            @Override
+            public void accept(PersonDetail personDetail) throws Exception {
+
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+
+            }
+        });
     }
 
     private void goToWeex(){

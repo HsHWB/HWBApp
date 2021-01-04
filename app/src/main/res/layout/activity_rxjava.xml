@@ -14,5 +14,13 @@
         android:background="@color/color_bfbfbf"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp100"
+        android:gravity="center"
+        android:text="request"
+        android:background="@color/color_bfbfbf"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 </android.support.constraint.ConstraintLayout>
