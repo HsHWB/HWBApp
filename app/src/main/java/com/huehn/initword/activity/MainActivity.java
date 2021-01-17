@@ -116,6 +116,8 @@ public class MainActivity extends BaseActivity {
     public ImageView headImg;
     @BindView(R.id.goto_rxjava)
     public TextView gotoRxjava;
+    @BindView(R.id.goto_view)
+    public TextView goToView;
     public FbLoginMgr fbLoginMgr;
     private File tempFile;
     private LinearLayout mainLayout;
@@ -193,7 +195,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
         , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity
-        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override, R.id.goto_rxjava})
+        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override, R.id.goto_rxjava, R.id.goto_view})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -212,6 +214,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_rxjava:
                 gotoRxJava();
+                break;
+            case R.id.goto_view:
+                goToView();
                 break;
             case R.id.goto_weex:
                 goToWeex();
@@ -352,6 +357,11 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void goToView(){
+        Intent intent = new Intent(MainActivity.this, ScrollingActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     private void goToWeex(){

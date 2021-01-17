@@ -21,8 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.MoveViewActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.MoveViewActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -31,17 +36,16 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity android:name=".activity.ServiceActivity" />
-
-        <activity android:name=".activity.RxJavaTestActivity"/>
-
+        <activity android:name=".activity.RxJavaTestActivity" />
         <activity
             android:name=".activity.RemoteProcessActivity"
             android:process=":remote" />
         <activity android:name=".activity.CornerWebViewActivity" />
+        <activity android:name=".activity.ComstonViewActivity" />
 
         <service android:name=".service.service.MainThreadService" />
         <service android:name=".service.service.MainThreadAIDLService" />

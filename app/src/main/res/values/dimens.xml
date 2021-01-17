@@ -740,4 +740,7 @@
     <dimen name="n_dp13">-13.00dp</dimen>
     <dimen name="n_dp14">-14.00dp</dimen>
     <dimen name="n_dp15">-15.00dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
