@@ -3,6 +3,7 @@ package com.huehn.initword.activity;
 import android.Manifest;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -51,6 +52,7 @@ import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
 import com.huehn.initword.core.utils.Log.LogManager;
+import com.huehn.initword.core.utils.PluginLoader;
 import com.huehn.initword.core.utils.hook.HookManager;
 import com.huehn.initword.manager.design.SingleInstanceManager;
 import com.huehn.initword.service.DoSomethingModule;
@@ -67,6 +69,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,8 @@ public class MainActivity extends BaseActivity {
     public TextView textView;
     @BindView(R.id.goto_weex)
     public TextView weexView;
+    @BindView(R.id.plugin)
+    public TextView pluginView;
     @BindView(R.id.goto_downfile)
     public TextView downFileView;
     @BindView(R.id.goto_facebook_login)
@@ -195,7 +200,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.text, R.id.goto_weex, R.id.goto_downfile, R.id.goto_facebook_login, R.id.imageview
         , R.id.goto_two_side_view, R.id.goto_corner_web_view, R.id.goto_remote_activity, R.id.goto_service_activity
-        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override, R.id.goto_rxjava, R.id.goto_view})
+        , R.id.goto_drawelayout_activity, R.id.goto_kotlin, R.id.goto_class_override, R.id.goto_rxjava, R.id.goto_view
+        , R.id.plugin})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.text:
@@ -217,6 +223,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.goto_view:
                 goToView();
+                break;
+            case R.id.plugin:
+                goToPlugin();
                 break;
             case R.id.goto_weex:
                 goToWeex();
@@ -259,6 +268,22 @@ public class MainActivity extends BaseActivity {
     private void goToCornerWebView(){
         Intent intent = new Intent(MainActivity.this, CornerWebViewActivity.class);
         MainActivity.this.startActivity(intent);
+    }
+
+    private void goToPlugin(){
+//        PluginLoader.INSTANCE.loadPlugin("small", this);
+        try {
+            Class<?> tClass = Class.forName("com.example.small.utils.Constant");
+            Method constantsMethod = tClass.getMethod("getConstant", Context.class);
+//            Class<?> tClass = Class.forName("com.example.smallproject2.MainActivity");
+//            Method constantsMethod = tClass.getMethod("onCreate", null);
+            constantsMethod.setAccessible(true);
+            Object constant = tClass.newInstance();
+            constantsMethod.invoke(constant, this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void goToTwoSideSeekBar(){

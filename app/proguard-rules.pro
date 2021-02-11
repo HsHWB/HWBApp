@@ -26,8 +26,11 @@
 #混淆时可能会因为一些三方库的warning导致出错，这里直接忽略
 -ignorewarnings
 
+-keep class * {
+    public private *;
+}
 #防止友盟sdk被混淆
--keep class com.umeng.** {*;}
+#-keep class com.umeng.** {*;}
 
 -keepclassmembers class * {
    public <init> (org.json.JSONObject);
@@ -40,8 +43,8 @@
 #防止友盟sdk被混淆
 
 #防止weex被混淆
--keep class com.taobao.weex.bridge.** { *; }
--keep class com.taobao.weex.layout.** { *; }
+#-keep class com.taobao.weex.bridge.** { *; }
+#-keep class com.taobao.weex.layout.** { *; }
 -keep class com.taobao.weex.WXSDKEngine { *; }
 -keep class com.taobao.weex.base.SystemMessageHandler { *; }
 -dontwarn com.taobao.weex.bridge.**

@@ -12,11 +12,11 @@ buildscript {
     dependencies {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.android.tools.build:gradle:3.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31"
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30"
+//        classpath 'net.wequick.tools.build:gradle-small:1.5.0-beta2'
     }
 }
-
 //设置每一个module的构建过程。在此例中，设置了每一个 module 使用maven仓库依赖。
 allprojects {//这是代码运行用的库
     repositories {
@@ -30,16 +30,30 @@ allprojects {//这是代码运行用的库
 
 //对于包含多个模块的 Android 项目，在项目级别定义某些属性，并在所有模块间共享这些属性可能会非常有用。
 //为此，您可以将 额外属性添加到顶级 build.gradle 文件的 ext 代码块中。
-ext{
+ext {
     compileSdkVersion = 28//用于编译的 SDK 版本。
     minSdkVersion = 21 //
     targetSdkVersion = 28
     versionCode = 1
     versionName = "0.0.1"
-    buildToolVersion = '28.0.2'// 构建工具版本
-    kotlin_version = '1.3.61'
+    buildToolVersion = '28.0.3'// 构建工具版本
+    kotlin_version = '1.4.30'
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+//apply plugin: 'net.wequick.small'
+//small {
+//    aarVersion = '1.5.0-beta2'
+//
+//}
+//configurations.all {
+//    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//
+//    resolutionStrategy {
+//        force "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
+//        force "androidx.annotation:annotation:1.0.0"
+//    }
+//}
