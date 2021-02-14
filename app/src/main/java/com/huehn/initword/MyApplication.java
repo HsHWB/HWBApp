@@ -9,6 +9,7 @@ import android.system.ErrnoException;
 import android.system.StructStat;
 
 import com.huehn.initword.core.app.App;
+import com.huehn.initword.core.utils.HookUtils;
 import com.huehn.initword.core.utils.PluginLoader;
 import com.huehn.initword.core.utils.hook.HookManager;
 import com.huehn.initword.manager.ImagerLoaderManager;
@@ -34,7 +35,8 @@ public class MyApplication extends Application {
         ImagerLoaderManager.init(this);
         WeexManager.init(this);
 //        LeakCanary.
-        PluginLoader.INSTANCE.loadPlugin("small", this);
+//        PluginLoader.INSTANCE.loadPlugin("small", this);
+//        HookUtils.INSTANCE.hookStartActivityIntent();
         registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {

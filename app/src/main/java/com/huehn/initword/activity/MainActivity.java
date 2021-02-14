@@ -3,6 +3,7 @@ package com.huehn.initword.activity;
 import android.Manifest;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -51,6 +52,7 @@ import com.huehn.initword.core.net.download.FileDownLoad;
 import com.huehn.initword.core.net.download.HttpConfig;
 import com.huehn.initword.core.net.response.security.ShangHaiPlateListResponse;
 import com.huehn.initword.core.net.service.security.SecuritiesApi;
+import com.huehn.initword.core.utils.HookUtils;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.PluginLoader;
 import com.huehn.initword.core.utils.hook.HookManager;
@@ -273,13 +275,18 @@ public class MainActivity extends BaseActivity {
     private void goToPlugin(){
 //        PluginLoader.INSTANCE.loadPlugin("small", this);
         try {
-            Class<?> tClass = Class.forName("com.example.small.utils.Constant");
-            Method constantsMethod = tClass.getMethod("getConstant", Context.class);
-//            Class<?> tClass = Class.forName("com.example.smallproject2.MainActivity");
-//            Method constantsMethod = tClass.getMethod("onCreate", null);
-            constantsMethod.setAccessible(true);
-            Object constant = tClass.newInstance();
-            constantsMethod.invoke(constant, this);
+//            Class<?> tClass = Class.forName("com.example.small.utils.Constant");
+//            Method constantsMethod = tClass.getMethod("getConstant", Context.class);
+////            Class<?> tClass = Class.forName("com.example.smallproject2.MainActivity");
+////            Method constantsMethod = tClass.getMethod("onCreate", null);
+//            constantsMethod.setAccessible(true);
+//            Object constant = tClass.newInstance();
+//            constantsMethod.invoke(constant, this);
+            PluginLoader.INSTANCE.loadPlugin("small", this);
+            HookUtils.INSTANCE.hookStartActivityIntent();
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName("com.example.smallproject2", "com.example.smallproject2.MainActivity"));
+            startActivity(intent);
 
         } catch (Exception e) {
             e.printStackTrace();
