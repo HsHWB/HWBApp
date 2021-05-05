@@ -1,0 +1,58 @@
+if (rootProject.ext.isFloatModule) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 28
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        boolean isModule = rootProject.ext.isFloatModule
+        println("huehn isModule : " + isModule)
+        main {
+            if (!isModule) {
+                //如果是module组件模式的话，那就使用各自module的清单文件
+                manifest.srcFile "src/main/module/AndroidManifest.xml"
+            }else {//如果是集成模式的话，就使用app的清单文件
+                manifest.srcFile= "src/main/AndroidManifest.xml"
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(":resource")
+    implementation project(":core")
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.30"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

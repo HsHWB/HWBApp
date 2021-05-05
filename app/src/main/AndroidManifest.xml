@@ -40,6 +40,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <activity android:name=".activity.TestFragmentActivity"/>
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.RxJavaTestActivity" />
         <activity

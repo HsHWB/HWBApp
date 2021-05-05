@@ -1,1 +1,3 @@
+include ':resource'
+include ':floatWindow'
 include ':app', ':basecomponent', ':core'

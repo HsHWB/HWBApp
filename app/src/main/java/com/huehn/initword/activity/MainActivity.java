@@ -221,7 +221,8 @@ public class MainActivity extends BaseActivity {
 //                }
                 break;
             case R.id.goto_rxjava:
-                gotoRxJava();
+//                gotoRxJava();
+                goToFragment();
                 break;
             case R.id.goto_view:
                 goToView();
@@ -287,6 +288,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent();
             intent.setComponent(new ComponentName("com.example.smallproject2", "com.example.smallproject2.MainActivity"));
             startActivity(intent);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -389,6 +391,11 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private void goToFragment(){
+        Intent intent = new Intent(MainActivity.this, TestFragmentActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 
     private void goToView(){
