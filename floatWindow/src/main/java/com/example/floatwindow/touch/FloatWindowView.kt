@@ -72,10 +72,10 @@ class FloatWindowView : WindowTouchView {
     fun show(x : Int, y : Int, width : Int, height : Int){
         if (isWindowView()) {
             takeIf { targetView != null && parentWindow != null }?.run {
-                layoutParams = WindowManager.LayoutParams()
+                layoutParams = targetView?.layoutParams as WindowManager.LayoutParams?
                 layoutParams?.run {
                     this.gravity = Gravity.START or Gravity.TOP
-                    this.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+//                    this.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                     this.x = x
                     this.y = y
                     this.width = width

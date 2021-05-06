@@ -15,4 +15,16 @@
         android:text="启动悬浮窗"
         android:background="@color/color_ffadadad"/>
 
+    <TextView
+        android:id="@+id/click_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:text="点击"
+        android:background="@color/color_ffadadad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>
