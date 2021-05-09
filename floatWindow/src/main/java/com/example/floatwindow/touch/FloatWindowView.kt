@@ -5,12 +5,23 @@ import android.view.*
 class FloatWindowView : WindowTouchView {
 
     private var parentWindow : Window? = null
+    private var parentViewGroup : ViewGroup? = null
     private var targetView : View? = null
     private var layoutParams : WindowManager.LayoutParams? = null
+    private var isFloatOtherApp : Boolean = false
 
-    constructor(parentWindow : Window?, targetView : View?) {
+    constructor(parentWindow : Window?, targetView : View?, isFloatOtherApp : Boolean) {
         this.parentWindow = parentWindow
         this.targetView = targetView
+        this.isFloatOtherApp = isFloatOtherApp
+        super.initView()
+        addListener(this)
+    }
+
+    constructor(parentViewGroup : ViewGroup, targetView : View?, isFloatOtherApp : Boolean) {
+        this.parentViewGroup = parentViewGroup
+        this.targetView = targetView
+        this.isFloatOtherApp = isFloatOtherApp
         super.initView()
         addListener(this)
     }
@@ -58,7 +69,7 @@ class FloatWindowView : WindowTouchView {
     }
 
     override fun isWindowView(): Boolean {
-        return true
+        return isFloatOtherApp
     }
 
     override fun onlyTranslationX(): Boolean {
@@ -75,7 +86,6 @@ class FloatWindowView : WindowTouchView {
                 layoutParams = targetView?.layoutParams as WindowManager.LayoutParams?
                 layoutParams?.run {
                     this.gravity = Gravity.START or Gravity.TOP
-//                    this.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                     this.x = x
                     this.y = y
                     this.width = width
@@ -84,7 +94,9 @@ class FloatWindowView : WindowTouchView {
                 }
             }
         } else {
-
+            takeIf { targetView != null && parentViewGroup != null }?.run {
+                parentViewGroup?.addView(targetView)
+            }
         }
     }
 
