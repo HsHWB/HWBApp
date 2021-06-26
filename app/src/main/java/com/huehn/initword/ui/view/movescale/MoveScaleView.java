@@ -2,12 +2,8 @@ package com.huehn.initword.ui.view.movescale;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.huehn.initword.R;
-import com.huehn.initword.core.app.App;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.ViewUtils;
-
-import static android.widget.RelativeLayout.CENTER_IN_PARENT;
 
 public class MoveScaleView extends RelativeLayout {
 

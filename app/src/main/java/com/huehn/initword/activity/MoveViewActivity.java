@@ -1,8 +1,9 @@
 package com.huehn.initword.activity;
 
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+
+import androidx.fragment.app.FragmentTransaction;
 
 import com.huehn.initword.R;
 import com.huehn.initword.activity.fragment.MoveFragment;

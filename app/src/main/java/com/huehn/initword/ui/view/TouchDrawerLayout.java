@@ -17,8 +17,8 @@
 
 package com.huehn.initword.ui.view;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -32,21 +32,6 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.view.AbsSavedState;
-import android.support.v4.view.AccessibilityDelegateCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
-import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -57,10 +42,27 @@ import android.view.ViewParent;
 import android.view.WindowInsets;
 import android.view.accessibility.AccessibilityEvent;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.customview.view.AbsSavedState;
+import androidx.customview.widget.ViewDragHelper;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * DrawerLayout acts as a top-level container for window content that allows for
@@ -626,6 +628,7 @@ public class TouchDrawerLayout extends ViewGroup {
      * @see #LOCK_MODE_LOCKED_CLOSED
      * @see #LOCK_MODE_LOCKED_OPEN
      */
+    @SuppressLint("WrongConstant")
     public void setDrawerLockMode(@LockMode int lockMode, @NonNull View drawerView) {
         if (!isDrawerView(drawerView)) {
             throw new IllegalArgumentException("View " + drawerView + " is not a "
@@ -699,6 +702,7 @@ public class TouchDrawerLayout extends ViewGroup {
      * @return one of {@link #LOCK_MODE_UNLOCKED}, {@link #LOCK_MODE_LOCKED_CLOSED} or
      *         {@link #LOCK_MODE_LOCKED_OPEN}.
      */
+    @SuppressLint("WrongConstant")
     @LockMode
     public int getDrawerLockMode(@NonNull View drawerView) {
         if (!isDrawerView(drawerView)) {
@@ -2055,7 +2059,7 @@ public class TouchDrawerLayout extends ViewGroup {
             dest.writeInt(lockModeEnd);
         }
 
-        public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() {
             @Override
             public SavedState createFromParcel(Parcel in, ClassLoader loader) {
                 return new SavedState(in, loader);
@@ -2312,8 +2316,8 @@ public class TouchDrawerLayout extends ViewGroup {
             // itself as focusable to accessibility services.
             info.setFocusable(false);
             info.setFocused(false);
-            info.removeAction(AccessibilityActionCompat.ACTION_FOCUS);
-            info.removeAction(AccessibilityActionCompat.ACTION_CLEAR_FOCUS);
+            info.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_FOCUS);
+            info.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLEAR_FOCUS);
         }
 
         @Override

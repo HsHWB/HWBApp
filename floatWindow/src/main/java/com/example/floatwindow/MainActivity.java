@@ -3,24 +3,24 @@ package com.example.floatwindow;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.constraintlayout.ConstraintLayout;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.floatwindow.touch.FloatWindowView;
 import com.huehn.initword.basecomponent.base.BaseActivity;
-import com.huehn.initword.basecomponent.bean.permission.PermissionResult;
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.ViewUtils;
-
-import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
 
@@ -30,6 +30,8 @@ public class MainActivity extends BaseActivity {
     private TextView clickText;
     private FloatWindowView floatWindowView;
     private ImageView imageView;
+
+    private ImageView scaleImg, topLeftImg, topRightImg, bottomLeftImg, bottomRightImg;
 
     public static final int REQUEST_APP_REQUEST = 100;
 
@@ -46,6 +48,64 @@ public class MainActivity extends BaseActivity {
         floatText = findViewById(R.id.float_text);
         floatAppText = findViewById(R.id.float_app_text);
         clickText = findViewById(R.id.click_text);
+        scaleImg = findViewById(R.id.imageView);
+        topLeftImg = findViewById(R.id.image_left);
+        topRightImg = findViewById(R.id.image_right);
+        bottomLeftImg = findViewById(R.id.image_left_bottom);
+        bottomRightImg = findViewById(R.id.image_right_bottom);
+
+        scaleImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scaleImg.getLayoutParams();
+                layoutParams.topToTop = topLeftImg.getId();
+                layoutParams.bottomToBottom = 0;
+                scaleImg.setLayoutParams(layoutParams);
+            }
+        });
+
+        topLeftImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimationSet animationSet = new AnimationSet(false);
+                ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.1f, 1.0f, 0.1f);
+                TranslateAnimation translateAnimation = new TranslateAnimation(0, topLeftImg.getX() - scaleImg.getX(),
+                        0, topLeftImg.getY() - scaleImg.getY());
+                animationSet.addAnimation(scaleAnimation);
+                animationSet.addAnimation(translateAnimation);
+                animationSet.setDuration(1000);
+                scaleImg.startAnimation(animationSet);
+            }
+        });
+
+        topRightImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.1f, 1.0f, 0.1f, topRightImg.getX(), topRightImg.getY());
+                scaleAnimation.setDuration(1000);
+                scaleImg.startAnimation(scaleAnimation);
+            }
+        });
+
+        bottomLeftImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.1f, 1.0f, 0.1f, bottomLeftImg.getX(), bottomLeftImg.getY());
+                scaleAnimation.setDuration(1000);
+                scaleImg.startAnimation(scaleAnimation);
+            }
+        });
+
+        bottomRightImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.1f, 1.0f, 0.1f, bottomRightImg.getX(), bottomRightImg.getY());
+                scaleAnimation.setDuration(1000);
+                scaleImg.startAnimation(scaleAnimation);
+            }
+        });
+
+
         floatText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

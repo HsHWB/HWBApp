@@ -1,11 +1,12 @@
 package com.huehn.initword.ui.view;
 
 import android.content.Context;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.customview.widget.ViewDragHelper;
 
 /**
  * Created by zhy on 15/5/29.

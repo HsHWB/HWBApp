@@ -1,12 +1,13 @@
 package com.huehn.initword.ui.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.customview.widget.ViewDragHelper;
 
 import com.huehn.initword.core.utils.Log.LogManager;
 

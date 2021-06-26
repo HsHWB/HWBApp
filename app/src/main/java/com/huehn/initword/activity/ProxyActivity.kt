@@ -1,8 +1,8 @@
 package com.huehn.initword.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class ProxyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,10 +4,11 @@ package com.huehn.initword.ui.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.huehn.initword.core.utils.Log.LogManager;
 import com.huehn.initword.core.utils.SystemUtils.ViewUtils;

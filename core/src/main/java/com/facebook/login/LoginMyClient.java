@@ -1,8 +1,9 @@
 package com.facebook.login;
 
 import android.os.Parcel;
-import android.support.v4.app.Fragment;
 import android.util.Log;
+
+import androidx.fragment.app.Fragment;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookException;

@@ -4,13 +4,14 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.huehn.initword.R;
 import com.huehn.initword.core.utils.Log.LogManager;

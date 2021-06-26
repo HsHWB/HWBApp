@@ -1,8 +1,6 @@
 package com.huehn.initword.activity;
 
 import android.Manifest;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +14,6 @@ import android.os.Environment;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.content.pm.ResolveInfo;
 
@@ -32,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.FileProvider;
 
 import com.huehn.initword.BuildConfig;
 import com.huehn.initword.R;

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.huehn.initword.core.app.App
 import com.huehn.initword.core.utils.Log.LogManager

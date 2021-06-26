@@ -6,15 +6,17 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'https://dl.bintray.com/umsdk/release' }
+//        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
+
     //声明了使用 Android Studio gradle 插件版本。
     dependencies {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30"
-//        classpath 'net.wequick.tools.build:gradle-small:1.5.0-beta2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
+        classpath 'net.wequick.tools.build:gradle-small:1.5.0-beta2'
     }
 }
 //设置每一个module的构建过程。在此例中，设置了每一个 module 使用maven仓库依赖。
@@ -24,7 +26,8 @@ allprojects {//这是代码运行用的库
         maven { url 'https://maven.fabric.io/public' }
         google()
         jcenter()
-        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+//        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 
@@ -37,7 +40,7 @@ ext {
     versionCode = 1
     versionName = "0.0.1"
     buildToolVersion = '28.0.3'// 构建工具版本
-    kotlin_version = '1.3.72'
+    kotlin_version = '1.4.10'
     isFloatModule = false
 }
 

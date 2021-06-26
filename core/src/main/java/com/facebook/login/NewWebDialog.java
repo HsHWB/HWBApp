@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
@@ -35,6 +34,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookDialogException;

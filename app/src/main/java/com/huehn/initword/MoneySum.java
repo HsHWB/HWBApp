@@ -1,6 +1,5 @@
 package com.huehn.initword;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.huehn.initword.bean.SubTestData;

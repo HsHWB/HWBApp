@@ -2,10 +2,9 @@ package com.huehn.initword.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import android.text.TextUtils
 import android.util.SparseArray
+import androidx.fragment.app.Fragment
 import com.huehn.initword.R
 import com.huehn.initword.activity.fragment.TestFragment1
 import com.huehn.initword.activity.fragment.TestFragment2

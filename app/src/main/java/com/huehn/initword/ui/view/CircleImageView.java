@@ -1,8 +1,9 @@
 package com.huehn.initword.ui.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.taobao.weex.WXSDKInstance;

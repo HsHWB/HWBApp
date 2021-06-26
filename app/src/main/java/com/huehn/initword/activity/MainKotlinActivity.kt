@@ -1,8 +1,8 @@
 package com.huehn.initword.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.animation.*
+import androidx.appcompat.app.AppCompatActivity
 import com.huehn.initword.R
 import kotlinx.android.synthetic.main.activity_main2.*
 import java.lang.RuntimeException

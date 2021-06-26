@@ -1,8 +1,9 @@
 package com.huehn.initword.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;

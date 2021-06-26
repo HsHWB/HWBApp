@@ -1,8 +1,9 @@
 package com.huehn.initword.ui.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.heaven7.android.dragflowlayout.DragAdapter;
 import com.heaven7.android.dragflowlayout.DragFlowLayout;

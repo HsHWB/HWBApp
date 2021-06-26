@@ -2,11 +2,12 @@ package com.huehn.initword.ui.view.movescale;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
 
 import com.huehn.initword.R;
 import com.huehn.initword.core.utils.Log.LogManager;

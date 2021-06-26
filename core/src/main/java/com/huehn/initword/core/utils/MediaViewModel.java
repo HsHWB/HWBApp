@@ -1,6 +1,7 @@
 package com.huehn.initword.core.utils;
 
-import android.arch.lifecycle.MutableLiveData;
+
+import androidx.lifecycle.MutableLiveData;
 
 public class MediaViewModel {
 

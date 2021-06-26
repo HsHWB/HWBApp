@@ -1,10 +1,9 @@
 package com.huehn.initword.ui.view.viewpager;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.huehn.initword.core.utils.Log.LogManager;
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 public class GreatPageTransformer implements ViewPager.PageTransformer {
 

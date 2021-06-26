@@ -1,6 +1,7 @@
 package com.huehn.initword.component.activity.clip;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -8,11 +9,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.Nullable;
 
 import com.huehn.initword.R;
 
@@ -135,6 +137,7 @@ public class InnerView extends View {
      *
      * @param attrs
      */
+    @SuppressLint("ResourceAsColor")
     private void initView(AttributeSet attrs, InnerViewBuilder innerViewBuilder){
         //从xml进来
         if (attrs != null && getContext() != null){

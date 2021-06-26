@@ -1,8 +1,8 @@
 package com.huehn.initword.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
+
+import androidx.annotation.Nullable;
 
 import com.huehn.initword.R;
 import com.huehn.initword.basecomponent.base.BaseActivity;
