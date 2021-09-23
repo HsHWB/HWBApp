@@ -7,6 +7,7 @@ buildscript {
         google()
         jcenter()
 //        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url "https://jitpack.io" }
         maven { url 'https://repo1.maven.org/maven2/' }
     }
 
@@ -24,6 +25,7 @@ allprojects {//这是代码运行用的库
     repositories {
         maven { url 'https://dl.google.com/dl/android/maven2/' }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://jitpack.io" }
         google()
         jcenter()
         maven { url 'https://repo1.maven.org/maven2/' }

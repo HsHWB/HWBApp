@@ -28,6 +28,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.huehn.initword.BuildConfig;
@@ -309,16 +311,16 @@ public class MainActivity extends BaseActivity {
     private void clickText(){
         Intent intent = new Intent(MainActivity.this, TestActivity.class);
         MainActivity.this.startActivityForResult(intent, 1);
-//        //权限判断
-//        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            //申请WRITE_EXTERNAL_STORAGE权限
-//            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-//        } else {
-//            //跳转到调用系统相机
-//            gotoCamera();
-//        }
+        //权限判断
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            //申请WRITE_EXTERNAL_STORAGE权限
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        } else {
+            //跳转到调用系统相机
+            gotoCamera();
+        }
 //        gotoCamera();
 
 //        String storePath = Environment.getExternalStorageDirectory().toString();
@@ -391,8 +393,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void goToFragment(){
-        Intent intent = new Intent(MainActivity.this, TestFragmentActivity.class);
-        MainActivity.this.startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, TestFragmentActivity.class);
+//        MainActivity.this.startActivity(intent);
+
+//        File file = new File()
+
     }
 
     private void goToView(){
@@ -575,6 +580,13 @@ public class MainActivity extends BaseActivity {
                     //此处后面可以将bitMap转为二进制上传后台网络
                     //......
 
+                    LogManager.d("MainActivity", "huehn MainActivity MainActivity onActivityResult : uri : " + uri + ", filePath: " + cropImagePath);
+                    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//                    Uri contentUri = Uri.fromFile(tempFile);
+                    Uri contentUri = uri;
+                    LogManager.d("MainActivity", "huehn MainActivity MainActivity onActivityResult : contentUri : " + contentUri);
+                    mediaScanIntent.setData(contentUri);
+                    this.sendBroadcast(mediaScanIntent);
                 }
                 break;
 
@@ -643,6 +655,7 @@ public class MainActivity extends BaseActivity {
             }
             startActivityForResult(intent, REQUEST_CAPTURE);
         }catch (Exception e){
+            LogManager.d("MainActivity", "huehn MainActivity MainActivity onActivityResult : gotoCamera : error");
             e.printStackTrace();
         }
     }
